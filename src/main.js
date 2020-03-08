@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import './pollyfills'
+import { store } from './store'
 import VueRouter from 'vue-router'
 import VueRouterPrefetch from 'vue-router-prefetch'
 import VueNotify from 'vue-notifyjs'
@@ -7,7 +8,9 @@ import VeeValidate from 'vee-validate'
 import lang from 'element-ui/lib/locale/lang/en'
 import locale from 'element-ui/lib/locale'
 import App from './App.vue'
-
+//Loading
+import VueLoading from 'vuejs-loading-plugin'
+import LoadingMainPanel from './components/Dashboard/Layout/LoadingMainPanel.vue'
 // Plugins
 import GlobalComponents from './globalComponents'
 import GlobalDirectives from './globalDirectives'
@@ -33,6 +36,18 @@ Vue.use(VueNotify)
 Vue.use(SideBar, {sidebarLinks: sidebarLinks})
 Vue.use(VeeValidate)
 locale.use(lang)
+// overwrite defaults
+// Vue.use(VueLoading)
+//Custom loaddig
+Vue.use(VueLoading, {
+  dark: true, // default false
+  text: 'Ladataan', // default 'Loading'
+  loading: false, // default false
+  customLoader: LoadingMainPanel, // replaces the spinner and text with your own
+  background: 'rgb(255,255,255)', // set custom background
+  classes: ['myclass'] // array, object or string
+})
+
 
 // configure router
 const router = new VueRouter({
@@ -53,5 +68,6 @@ initProgress(router);
 new Vue({
   el: '#app',
   render: h => h(App),
-  router
+  store,
+  router,
 })

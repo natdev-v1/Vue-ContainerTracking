@@ -20,6 +20,8 @@ import BwCard from '../../components/BwCard/BwCard'
         computed: {
             
         },
+        methods: {
+        },
         data() {
             return {
                 row:'row',

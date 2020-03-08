@@ -1,4 +1,6 @@
 import { create } from 'apisauce'
+import { asyncLoading } from 'vuejs-loading-plugin'
+
 export default (url,herder)=>{
   console.log(herder)
   const api = create({
@@ -9,20 +11,20 @@ export default (url,herder)=>{
      },
   })
     return{
-      post:async(url,data)=>{
+      post:asyncLoading(async(url,data)=>{
         const respon = await  api.post(url,data)
          if(respon.status == 200)
             return respon.data
           else
             return false
-     },
-      get:async(url)=>{
+     }),
+      get:asyncLoading(async(url)=>{
        const respon = await  api.get(url)
        if(respon.status == 200)
           return respon.data
         else
           return false
-   },
+   }),
     }
 }
 
