@@ -9,7 +9,7 @@
 import BwTable from '../../components/BwTable/BwTable'
 import BwTimePicker from '../../components/BwTimePicker/BwTimePicker'
 import BwCard from '../../components/BwCard/BwCard'
-
+import Api from '../../service/CallHttp'
     export default {
         name:'ImpSAP',
         components:{
@@ -21,6 +21,9 @@ import BwCard from '../../components/BwCard/BwCard'
             
         },
         methods: {
+        },
+       async created() {
+          await (await Api()).getListFile() 
         },
         data() {
             return {

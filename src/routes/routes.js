@@ -6,6 +6,7 @@ const Overview = () => import(/* webpackChunkName: "widgets" */ 'src/components/
 const Widgets = () => import(/* webpackChunkName: "widgets" */ 'src/components/Dashboard/Views/Dashboard/Widgets.vue')
 // AppScreen import
 import ImpSAT from '../screens/ImpSAP/ImpSAP.vue'
+import LoginScreen from '../screens/LoginScreen/LoginScreen.vue'
 //End
 // Pages
 import User from 'src/components/Dashboard/Views/Pages/UserProfile.vue'
@@ -56,6 +57,12 @@ let importSAP = {
       component: ImpSAT
     }
   ]
+}
+
+let loginPage = {
+  path: '/',
+  name: 'Login',
+  component: LoginScreen
 }
 // End
 let componentsMenu = {
@@ -192,12 +199,12 @@ let pagesMenu = {
   ]
 }
 
-let loginPage = {
-  path: '/login',
-  name: 'Login',
-  component: Login
-}
 
+// let loginPage = {
+//   path: '/login',
+//   name: 'Login',
+//   component: Login
+// }
 let registerPage = {
   path: '/register',
   name: 'Register',
@@ -209,10 +216,8 @@ let lockPage = {
   name: 'Lock',
   component: Lock
 }
-
-const routes = [
-  {
-    path: '/',
+let overview ={
+    path: '/admin',
     component: DashboardLayout,
     redirect: '/admin/overview',
     children: [
@@ -227,7 +232,9 @@ const routes = [
         component: Charts
       }
     ]
-  },
+  }
+const routes = [
+  overview,
   importSAP,
   componentsMenu,
   formsMenu,

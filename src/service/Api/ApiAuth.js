@@ -1,6 +1,6 @@
 export default (Api)=>{
-    const generatToken = async(username,pasword)=>{
-      return await Api.post('CTBackend/token/generate-token',{username,pasword})
+    const generatToken = async(username,password)=>{
+      return await Api.post('token/generate-token',{username,password})
     }
     return {
         generatToken

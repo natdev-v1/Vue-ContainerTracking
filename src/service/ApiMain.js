@@ -11,20 +11,20 @@ export default (url,herder)=>{
      },
   })
     return{
-      post:asyncLoading(async(url,data)=>{
-        const respon = await  api.post(url,data)
+      post:async(url,data)=>{
+        const respon =await asyncLoading(api.post(url,data)) 
          if(respon.status == 200)
             return respon.data
           else
             return false
-     }),
-      get:asyncLoading(async(url)=>{
-       const respon = await  api.get(url)
+     },
+      get:async(url)=>{
+       const respon = await asyncLoading(api.get(url)  )
        if(respon.status == 200)
           return respon.data
         else
           return false
-   }),
+   },
     }
 }
 
