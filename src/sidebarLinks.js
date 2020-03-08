@@ -5,6 +5,11 @@ export default [
     path: '/admin/overview'
   },
   {
+    name: 'Import Data',
+    icon: 'nc-icon nc-bank',
+    path: '/importData'
+  },
+  {
     name: 'Pages',
     icon: 'nc-icon nc-book-bookmark',
     children: [

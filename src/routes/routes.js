@@ -4,7 +4,9 @@ import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 // Dashboard pages
 const Overview = () => import(/* webpackChunkName: "widgets" */ 'src/components/Dashboard/Views/Dashboard/Overview.vue')
 const Widgets = () => import(/* webpackChunkName: "widgets" */ 'src/components/Dashboard/Views/Dashboard/Widgets.vue')
-
+// AppScreen import
+import ImpSAT from '../screens/ImpSAP/ImpSAP.vue'
+//End
 // Pages
 import User from 'src/components/Dashboard/Views/Pages/UserProfile.vue'
 import TimeLine from 'src/components/Dashboard/Views/Pages/TimeLinePage.vue'
@@ -41,6 +43,21 @@ import Calendar from 'src/components/Dashboard/Views/Calendar/CalendarRoute.vue'
 // Charts
 const Charts = () => import(/* webpackChunkName: "widgets" */ 'src/components/Dashboard/Views/Charts.vue')
 
+
+//Object Screen App
+let importSAP = {
+  path: '/importData',
+  component: DashboardLayout,
+  redirect: '/importData/sap',
+  children: [
+    {
+      path: 'sap',
+      name: 'sap',
+      component: ImpSAT
+    }
+  ]
+}
+// End
 let componentsMenu = {
   path: '/components',
   component: DashboardLayout,
@@ -211,6 +228,7 @@ const routes = [
       }
     ]
   },
+  importSAP,
   componentsMenu,
   formsMenu,
   tablesMenu,
