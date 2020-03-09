@@ -19,11 +19,11 @@
     <div class="row mt-3">
       <div class="col-6">
         <div class="form-group">
-          <label>LovKey {{  this.$route.params.constanctHeaderId.constanctHeaderId}} </label>
+          <label>LovKey {{  this.$route.params.constantHeaderId.constantHeaderId}} </label>
           <fg-input
             ref="name"
-            v-model="form.constanctKey"
-            v-validate="formValidations.constanctKey"
+            v-model="form.constantKey"
+            v-validate="formValidations.constantKey"
           >
           </fg-input>
         </div>

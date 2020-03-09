@@ -1,7 +1,15 @@
 <template>
   <div class="col-md-12 card">
-          <div class="row mt-3">
-      <div class="col-12">
+      <div class="row mt-3">
+        <div class="col-2">
+        <button
+          @click='goBack'
+          type="button"
+          class="btn btn-danger pull-left"
+        ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
+          ย้อนกลับ</button>
+            </div>
+      <div class="col-10">
         <button
          @click='goBack'
           type="button"
@@ -19,11 +27,11 @@
     <div class="row mt-3">
       <div class="col-6">
         <div class="form-group">
-          <label>Constanct Key    </label>
+          <label>Constant Key    </label>
           <fg-input
            ref="name"
-            v-model="form.constanctKey"
-            v-validate="formValidations.descripton"
+            v-model="form.constantKey"
+            v-validate="formValidations.constantKey"
           >
           </fg-input>
         </div>
@@ -32,8 +40,8 @@
         <div class="form-group">
           <label>Descripton  </label>
           <fg-input
-            v-model="form.constanctKey"
-            v-validate="formValidations.descripton"
+            v-model="form.constantValue"
+            v-validate="formValidations.constantValue"
           >
           </fg-input>
         </div>
@@ -50,7 +58,11 @@ export default {
   },
     async created() {
  
-
+        let res = await (await CallHttp()).getConstantById(this.$route.params.constantId.constantId)
+         let { constantId,constantKey,constantValue } = res.data
+            this.form.constantId = constantId
+          this.form.constantKey = constantKey
+          this.form.constantValue = constantValue
     
         
   },
@@ -64,16 +76,16 @@ export default {
       },
       isVisible: this.visible,
       form: {
-        constanctId:"",
-        constanctKey: "",
-        descripton: "",  
+        constantId:"",
+        constantKey: "",
+        constantValue: "",  
       },
 
       formValidations: {
-        constanctKey: {
+        constantId: {
           required: true,
         },
-        descripton: {
+        constantValue: {
           required: true,        
         },
       },
@@ -85,7 +97,7 @@ export default {
         },
    
        async onSaveData(){
-           let dataSave = await (await CallHttp()).getSaveConstanct(this.form)
+           let dataSave = await (await CallHttp()).saveConstant(this.form)
               this.$router.go(-1)
         },
         goBack(){

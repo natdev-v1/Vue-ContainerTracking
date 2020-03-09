@@ -1,6 +1,7 @@
 import ApiMain from './ApiMain';
 import ApiAutn from './Api/ApiAuth'
 import ApiFile from './Api/ApiFile'
+import ApiConstant from './Api/ApiConstant'
 export default async ()=>{
      const baseUrl =   'http://baiwadev.thddns.net:9440/'
      const CTUrl = baseUrl+'CTBackend/'
@@ -15,6 +16,7 @@ export default async ()=>{
      })
      return {
         ...ApiAutn(API),
-        ...ApiFile(APIToken)
+        ...ApiFile(APIToken),
+        ...ApiConstant(APIToken)
      }
 }

@@ -1,8 +1,8 @@
 <template>
   <div id='role'>
-    <BwCard title='Constanct Table'>
+    <BwCard title='Constant Table'>
       <BwTable
-        @onEdit='onEditConstanct'
+        @onEdit='onEditConstant'
         :onClickTopBtn='onClickAdd'
         :tableData='tableData'
         :title='title'
@@ -26,28 +26,33 @@ export default {
     BwCard
   },
   async created() {
-    this.tableData = await this.$store.getters.callApiGetLov;
+    console.log(save);
+    this.tableData = await this.$store.getters.callApiGetConstant;
+    console.log(await this.$store.getters.callApiGetConstant);
   },
   data() {
     return {
       tableData: [],
-      title: "constanct_table",
-       lableButton: "จัดการข้อมูล",
-      propsToSearch: ["constantKey", "descripton"],
+      title: "constant_table",
+      //  lableButton: "จัดการข้อมูล",
+      propsToSearch: [
+        "constantKey", 
+        "constantVale"
+      ],
       tableColumns: [
         {
-          prop: "constanctHeaderId",
-          label: "ลำดับ",
+          prop: "constantId",
+          label: "ID",
           minWidth: 100
         },
         {
-          prop: "constanctKey",
-          label: "Constanct Key",
+          prop: "constantKey",
+          label: "Constant Key",
           minWidth: 200
         },
         {
-          prop: "descripton",
-          label: "Descripton",
+          prop: "constantValue",
+          label: "Constant Value",
           minWidth: 200
         }
       ],
@@ -60,11 +65,11 @@ export default {
 
   methods: {
     nextPage() {
-      this.$router.push("constanctAdd");
+      this.$router.push("constantAdd");
     },
     onEditConstant(data) {
       console.log(data);
-      this.$router.push({ name: "ConstanctManage", params: { constantHeaderId: data } });
+      this.$router.push({ name: "constantAdd", params: { constantId: data } });
     }
   }
 };

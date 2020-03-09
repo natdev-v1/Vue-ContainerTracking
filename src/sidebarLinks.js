@@ -36,8 +36,8 @@ export default [
         path: '/datasetting/lov'
       },
       {
-        name: 'Constanct',
-        path: '/datasetting/constanct'
+        name: 'Constant',
+        path: '/datasetting/constant'
       }
     ]
   },
