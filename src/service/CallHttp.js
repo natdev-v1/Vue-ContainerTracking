@@ -2,11 +2,12 @@ import ApiMain from './ApiMain';
 import ApiAutn from './Api/ApiAuth'
 import ApiFile from './Api/ApiFile'
 import ApiConstant from './Api/ApiConstant'
+import ApiLov from './Api/ApiLov'
 export default async ()=>{
      const baseUrl =   'http://baiwadev.thddns.net:9440/'
      const CTUrl = baseUrl+'CTBackend/'
      const localUrl = 'http://localhost:8081/CTBackend/'
-     const API = await ApiMain(CTUrl)
+     const API = await ApiMain(localUrl)
      const APIToken = await  ApiMain(localUrl,
      {
       authorization:"Bearer "+localStorage.getItem('token'),
@@ -17,6 +18,7 @@ export default async ()=>{
      return {
         ...ApiAutn(API),
         ...ApiFile(APIToken),
-        ...ApiConstant(APIToken)
+        ...ApiConstant(APIToken),
+        ...ApiLov(APIToken)
      }
 }

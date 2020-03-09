@@ -1,6 +1,6 @@
 <template>
-    <div id='lovHeaderId'>
     <bw-card title='Lov Table'>
+        <button v-on:click="addForm()">5555</button>
       <BwTable 
       @onEdit='onEditConstant'
       :onClickTopBtn='onClickAdd'
@@ -11,7 +11,6 @@
       :propsToSearch='propsToSearch'
       ></BwTable>
     </bw-card>
-    </div>
 </template>
 
 <script>
@@ -41,10 +40,13 @@ import Api from '../../../service/CallHttp'
                 this.$router.push({ name: "LovManage", params: { lovHeaderId: data } });
             },
             async getList() {
-                let {data} = await(await Api()).getAllLov();
+                let {data} = await(await Api()).getListLov()
                 this.tableData = data;
+            },
+            addForm(){
+                this.tableData.push({lovHeaderId:'',lovKey:'',descripton:'',createDate:'',createdBy:'',updatedDate:'',updatedBy:'',isDelete:''})
             }
-              
+                 
         },
        
         data() {
@@ -62,17 +64,20 @@ import Api from '../../../service/CallHttp'
                     {
                          prop: 'lovHeaderId',
                          label: 'ลำดับ', 
-                         minWidth: 50
+                         minWidth: 50,
+                         
                     },
                     {
                          prop: 'lovKey',
                          label: 'LovKey', 
-                         minWidth: 200
+                         minWidth: 200,
+                         type:'input'
                     },
                     {
                          prop: 'descripton',
                          label: 'descripton', 
-                         minWidth: 200
+                         minWidth: 200,
+                         type:'input'
                     },
                     
                 ],

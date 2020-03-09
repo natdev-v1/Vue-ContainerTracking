@@ -39,6 +39,14 @@
                              :min-width="column.minWidth"
                              :prop="column.prop"
                              :label="column.label">
+                      <template slot-scope="scope">
+                          <el-input 
+                          v-if="column.type ==='input'"
+                          size="small"
+                              style="text-align:center"
+                              v-model="scope.row[column.prop]"></el-input>
+                          <h6 v-else >{{scope.row[column.prop]}}</h6>
+                      </template>
             </el-table-column>
             <el-table-column
               :min-width="120"
@@ -76,7 +84,7 @@
 </template>
 <script>
   import Vue from 'vue'
-  import {Table, TableColumn, Select, Option, Button, Row, Col} from 'element-ui'
+  import {Table, TableColumn, Select, Option, Button, Row, Col,Input} from 'element-ui'
   import PPagination from 'src/components/UIComponents/Pagination.vue'
   // Add
   import BwDialog from '../BwDialog/BwDialog'
@@ -91,6 +99,7 @@
   Vue.use(Col)
   Vue.use(Row)
   Vue.use(Button)
+  Vue.use(Input)
 
   export default{
     name:'BwTable',
@@ -213,6 +222,7 @@
         if (indexToDelete >= 0) {
           this.tableData.splice(indexToDelete, 1)
         }
+        // console.log(this.tableData)
       }
     },
     
@@ -223,5 +233,13 @@
   button.btn {
     margin-right: 5px;
   }
+  
   }
+  .el-table__row .el-input .el-input__inner{
+  border-style:none;
+  }
+  .hover-row .el-input .el-input__inner{
+    border-style:solid;   
+  }
+
 </style>
