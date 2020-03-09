@@ -1,5 +1,9 @@
 <template>
-<div :class="setClass" :style="setStyle">
+  <div class="col-sm-12">
+     <el-col v-if=" Object.keys(onClickTopBtn).length" :xs="1" align='end'>
+         <el-button @click="onClickTopBtn.onClick" type="primary">{{onClickTopBtn.text}}</el-button>
+     </el-col>
+      <div class="row">
         <div class="col-sm-6">
           <el-select
             class="select-default"
@@ -23,10 +27,10 @@
             </fg-input>
           </div>
         </div>
-        <div class="col-sm-12 mt-2">
+        <div class="col-sm-12 mt-2 ">
           <el-table class="table-striped"
                     :data="queriedData"
-                    border
+                    stripe
                     style="width: 100%">
             <el-table-column v-for="column in tableColumns"
                              :key="column.label"
@@ -40,11 +44,11 @@
               class-name="td-actions"
               label="Actions">
               <template slot-scope="props">
-                <p-button type="info" size="sm" icon @click="handleLike(props.$index, props.row)">
+                <!-- <p-button type="info" size="sm" icon @click="handleLike(props.$index, props.row)">
                   <i class="fa fa-user"></i>
-                </p-button>
+                </p-button> -->
                 <p-button type="success" size="sm" icon @click="handleEdit(props.$index, props.row)">
-                  <i class="fa fa-edit"></i>
+                  <i class="fa fa-edit"></i> 
                 </p-button>
                 <p-button type="danger" size="sm" icon @click="handleDelete(props.$index, props.row)">
                   <i class="fa fa-times"></i>
@@ -63,20 +67,35 @@
                         :total="pagination.total">
           </p-pagination>
         </div>
-</div>
+      </div>
+
+    <BwDialog title='ผู้เข้าใช้งาน'></BwDialog>
+  </div>
 </template>
 <script>
   import Vue from 'vue'
-  import {Table, TableColumn, Select, Option} from 'element-ui'
+  import {Table, TableColumn, Select, Option, Button, Row, Col} from 'element-ui'
   import PPagination from 'src/components/UIComponents/Pagination.vue'
+  // Add
+  import BwDialog from '../BwDialog/BwDialog'
+  import BwButton from '../BwButton/BwButton'
+
   Vue.use(Table)
   Vue.use(TableColumn)
   Vue.use(Select)
   Vue.use(Option)
+
+  // Add
+  Vue.use(Col)
+  Vue.use(Row)
+  Vue.use(Button)
+
   export default{
     name:'BwTable',
     components: {
-      PPagination
+      PPagination,
+      BwDialog,
+      BwButton
     },
     computed: {
       pagedData () {
@@ -131,7 +150,7 @@
           total: 0
         },
         searchQuery: '',
-        propsToSearch: ['name', 'email', 'age'],
+        // propsToSearch: ['name', 'email', 'age'],   <-------
       }
     },
     props:{
@@ -155,7 +174,30 @@
         setStyle:{
             type: Object,
             default: ()=>{return {}}
-        }
+        },
+
+        // Add
+        
+        tableColumns:{
+        type:Array,
+        default:[]  
+      },
+      propsToSearch:{
+        type:Array,
+        default:[]  
+      },
+      onClickTopBtn:{
+       type:Object,
+       default:()=>({})
+      },
+       lableEdit:{
+       type:String,
+       default:''
+      },
+      onActionEdit:{
+        type:Function,
+        default:null
+      }  
     },
     methods: {
       handleLike (index, row) {

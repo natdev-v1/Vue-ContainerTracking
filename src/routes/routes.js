@@ -8,7 +8,9 @@ const Widgets = () => import(/* webpackChunkName: "widgets" */ 'src/components/D
 import ImpSAT from '../screens/ImpSAP/ImpSAP.vue'
 import LoginScreen from '../screens/LoginScreen/LoginScreen.vue'
 import LOVScreen from '../screens/UserSetting/LOVScreen/LOVScreen.vue'
+import LovAdd from '../screens/UserSetting/LOVScreen/LovAdd.vue'
 import ConstanctScreen from '../screens/UserSetting/ConstanctScreen/ConstanctScreen.vue'
+import ConstanctAdd from '../screens/UserSetting/ConstanctScreen/ConstanctAdd.vue'
 
 //End
 // Pages
@@ -79,10 +81,20 @@ let usersetting ={
       component: LOVScreen
     },
     {
+      path: 'lovadd',
+      name: 'LovAdd',
+      component: LovAdd
+    },
+    {
       path: 'constanct',
       name: 'Constanct',
       component: ConstanctScreen
-    }
+    },
+    {
+      path: 'constanctAdd',
+      name: 'ConstanctAdd',
+      component: ConstanctAdd
+    },
   ]
 }
 // End
