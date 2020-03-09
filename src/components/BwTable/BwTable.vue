@@ -1,10 +1,12 @@
 <template>
   <div class="col-sm-12">
      <el-col v-if=" Object.keys(onClickTopBtn).length" :xs="1" align='end'>
-         <el-button @click="onClickTopBtn.onClick" type="primary">{{onClickTopBtn.text}}</el-button>
+       <button  @click="onClickTopBtn.onClick" type="button" class="btn btn-success"><i class="nc-icon nc-simple-add"></i> {{onClickTopBtn.text}}</button>
+         <!-- <el-button @click="onClickTopBtn.onClick" type="primary">{{onClickTopBtn.text}}</el-button> -->
      </el-col>
+      
       <div class="row">
-        <div class="col-sm-6">
+        <!-- <div class="col-sm-6">
           <el-select
             class="select-default"
             v-model="pagination.perPage"
@@ -26,7 +28,7 @@
                       addon-right-icon="nc-icon nc-zoom-split">
             </fg-input>
           </div>
-        </div>
+        </div> -->
         <div class="col-sm-12 mt-2 ">
           <el-table class="table-striped"
                     :data="queriedData"

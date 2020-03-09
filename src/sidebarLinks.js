@@ -11,18 +11,37 @@ export default [
   },
   {
     name: 'User Setting',
+    icon: 'nc-icon nc-settings-gear-65',
+    children: [
+      {
+        name: 'User',
+        path: '/usersetting/user'
+      },
+      {
+        name: 'Role',
+        path: '/usersetting/role'
+      },
+      {
+        name: 'Organize',
+        path: '/usersetting/organize'
+      }
+    ]
+  },
+  {
+    name: 'Data Setting',
     icon: 'nc-icon nc-book-bookmark',
     children: [
       {
         name: 'LOV',
-        path: '/usersetting/lov'
+        path: '/datasetting/lov'
       },
       {
         name: 'Constanct',
-        path: '/usersetting/constanct'
+        path: '/datasetting/constanct'
       }
     ]
   },
+
   {
     name: 'Pages',
     icon: 'nc-icon nc-book-bookmark',

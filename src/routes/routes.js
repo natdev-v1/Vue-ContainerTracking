@@ -11,7 +11,12 @@ import LOVScreen from '../screens/UserSetting/LOVScreen/LOVScreen.vue'
 import LovAdd from '../screens/UserSetting/LOVScreen/LovAdd.vue'
 import ConstanctScreen from '../screens/UserSetting/ConstanctScreen/ConstanctScreen.vue'
 import ConstanctAdd from '../screens/UserSetting/ConstanctScreen/ConstanctAdd.vue'
-
+import organize from '../screens/ManageUser/organize/organize.vue'
+import organizeDeatil from '../screens/ManageUser/organize/organizeDeatil.vue'
+import role from '../screens/ManageUser/role/role.vue'
+import roleDetail from '../screens/ManageUser/role/roleDetail.vue'
+import user from '../screens/ManageUser/user/user.vue'
+import userDetail from '../screens/ManageUser/user/userDetail.vue'
 //End
 // Pages
 import User from 'src/components/Dashboard/Views/Pages/UserProfile.vue'
@@ -69,11 +74,47 @@ let loginPage = {
   name: 'Login',
   component: LoginScreen
 }
-
 let usersetting ={
   path: '/usersetting',
   component: DashboardLayout,
-  redirect: '/usersetting/lov',
+  redirect: '/usersetting/organize',
+  children: [
+    {
+      path: 'organize',
+      name: 'organize',
+      component: organize
+    },
+    {
+      path: 'organizeDeatil',
+      name: 'organizeDeatil',
+      component: organizeDeatil
+    },
+    {
+      path: 'role',
+      name: 'role',
+      component: role
+    },
+    {
+      path: 'roleDetail',
+      name: 'roleDetail',
+      component: roleDetail
+    },
+    {
+      path: 'user',
+      name: 'user',
+      component: user
+    },
+    {
+      path: 'userDetail',
+      name: 'userDetail',
+      component: userDetail
+    },
+  ]
+}
+let datasetting ={
+  path: '/datasetting',
+  component: DashboardLayout,
+  redirect: '/datasetting/lov',
   children: [
     {
       path: 'lov',
@@ -269,9 +310,10 @@ let overview ={
 const routes = [
   overview,
   importSAP,
-  usersetting,
+  datasetting,
   componentsMenu,
   formsMenu,
+  usersetting,
   tablesMenu,
   mapsMenu,
   pagesMenu,
