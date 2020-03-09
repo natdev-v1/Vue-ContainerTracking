@@ -27,6 +27,7 @@ import './assets/sass/demo.scss'
 
 import sidebarLinks from './sidebarLinks'
 import './registerServiceWorker'
+import VueMoment from 'vue-moment'
 // plugin setup
 Vue.use(VueRouter)
 Vue.use(VueRouterPrefetch)
@@ -35,6 +36,7 @@ Vue.use(GlobalComponents)
 Vue.use(VueNotify)
 Vue.use(SideBar, {sidebarLinks: sidebarLinks})
 Vue.use(VeeValidate)
+Vue.use(VueMoment)
 locale.use(lang)
 // overwrite defaults
 // Vue.use(VueLoading)

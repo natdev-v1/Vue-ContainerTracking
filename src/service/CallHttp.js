@@ -4,8 +4,9 @@ import ApiFile from './Api/ApiFile'
 export default async ()=>{
      const baseUrl =   'http://baiwadev.thddns.net:9440/'
      const CTUrl = baseUrl+'CTBackend/'
+     const localUrl = 'http://localhost:8081/CTBackend/'
      const API = await ApiMain(CTUrl)
-     const APIToken = await  ApiMain(CTUrl,
+     const APIToken = await  ApiMain(localUrl,
      {
       authorization:"Bearer "+localStorage.getItem('token'),
      })

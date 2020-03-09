@@ -7,6 +7,9 @@ const Widgets = () => import(/* webpackChunkName: "widgets" */ 'src/components/D
 // AppScreen import
 import ImpSAT from '../screens/ImpSAP/ImpSAP.vue'
 import LoginScreen from '../screens/LoginScreen/LoginScreen.vue'
+import LOVScreen from '../screens/UserSetting/LOVScreen/LOVScreen.vue'
+import ConstanctScreen from '../screens/UserSetting/ConstanctScreen/ConstanctScreen.vue'
+
 //End
 // Pages
 import User from 'src/components/Dashboard/Views/Pages/UserProfile.vue'
@@ -63,6 +66,24 @@ let loginPage = {
   path: '/',
   name: 'Login',
   component: LoginScreen
+}
+
+let usersetting ={
+  path: '/usersetting',
+  component: DashboardLayout,
+  redirect: '/usersetting/lov',
+  children: [
+    {
+      path: 'lov',
+      name: 'Lov',
+      component: LOVScreen
+    },
+    {
+      path: 'constanct',
+      name: 'Constanct',
+      component: ConstanctScreen
+    }
+  ]
 }
 // End
 let componentsMenu = {
@@ -236,6 +257,7 @@ let overview ={
 const routes = [
   overview,
   importSAP,
+  usersetting,
   componentsMenu,
   formsMenu,
   tablesMenu,

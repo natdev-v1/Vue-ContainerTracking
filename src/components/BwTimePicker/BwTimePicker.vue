@@ -42,9 +42,7 @@
                         },
                     }],
                       disabledDate:(date)=>{
-                           console.log(date)
-                          console.log(new Date())
-                           return date< new Date()
+                           return this.$moment() < new Date().getDate() 
                     }
                 },
                 defaultValue:new Date(),

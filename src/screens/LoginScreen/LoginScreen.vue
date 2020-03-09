@@ -40,6 +40,7 @@
   import AppNavbar from '../../components/BwLayout/AppNavbar'
   import AppFooter from '../../components/BwLayout/AppFooter'
   import Api from '../../service/CallHttp'
+import Axios from 'axios';
   export default {
     components: {
       Card,

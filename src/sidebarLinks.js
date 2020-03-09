@@ -10,6 +10,20 @@ export default [
     path: '/importData'
   },
   {
+    name: 'User Setting',
+    icon: 'nc-icon nc-book-bookmark',
+    children: [
+      {
+        name: 'LOV',
+        path: '/usersetting/lov'
+      },
+      {
+        name: 'Constanct',
+        path: '/usersetting/constanct'
+      }
+    ]
+  },
+  {
     name: 'Pages',
     icon: 'nc-icon nc-book-bookmark',
     children: [

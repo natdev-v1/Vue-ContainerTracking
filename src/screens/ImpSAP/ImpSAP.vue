@@ -1,7 +1,7 @@
 <template>
     <bw-card>
-           <bw-time-picker title='Date : '></bw-time-picker>
-      <BwTable :setClass="'row'" :setStyle="{marginTop:'4%'}"/>
+      <bw-time-picker title='Date : '></bw-time-picker>
+      <BwTable :setClass="'row'" :setStyle="{marginTop:'2%'}"/>
     </bw-card>
 </template>
 
@@ -23,7 +23,7 @@ import Api from '../../service/CallHttp'
         methods: {
         },
        async created() {
-          await (await Api()).getListFile() 
+          let res = await (await Api()).getListFile() 
         },
         data() {
             return {
