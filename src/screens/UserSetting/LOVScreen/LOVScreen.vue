@@ -1,16 +1,13 @@
 <template>
     <div id='lovHeaderId'>
-    <bw-card title='Lov'>
-      <bw-time-picker title='Date : '></bw-time-picker>
+    <bw-card title='Lov Table'>
       <BwTable 
-      :setClass="'row'"
       @onEdit='onEditConstant'
       :onClickTopBtn='onClickAdd'
       :tableData='tableData'
       :title='title' 
       :lableEdit='lableButton'
       :tableColumns='tableColumns'
-      :setStyle="{marginTop:'2%'}"
       :propsToSearch='propsToSearch'
       ></BwTable>
     </bw-card>
@@ -29,12 +26,12 @@ import Api from '../../../service/CallHttp'
         BwTimePicker,
         BwCard
         },
-        async created() {
-            this.tableData = await this.$store.getters.callApiGetLov;
+        created () {
+            this.getList();
         },
-        computed: {
+        computed: { 
             
-        },
+        }, 
         methods: {
             nextPage() {
                 this.$router.push("LovAdd");
@@ -42,13 +39,19 @@ import Api from '../../../service/CallHttp'
             onEditConstant(data) {
                 console.log(data);
                 this.$router.push({ name: "LovManage", params: { lovHeaderId: data } });
+            },
+            async getList() {
+                let {data} = await(await Api()).getAllLov();
+                this.tableData = data;
             }
+              
         },
-       async created() {
-          let res = await (await Api()).getLovHeader() 
-        },
+       
         data() {
             return {
+                from: {
+                    lovKey:''
+                },
                 tableData: [],
                 title: "test",
                 row:'row',
@@ -78,6 +81,9 @@ import Api from '../../../service/CallHttp'
                 text: "Add"
             }
             }
+        },
+        mounted() {
+            
         },
     }
 </script>

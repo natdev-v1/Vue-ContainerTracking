@@ -5,8 +5,8 @@
              <button
          @click='goBack'
           type="button"
-          class="btn btn-danger"
-        ><span class="btn-label"><i class=""></i></span>
+          class="btn btn-info"
+        ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
           ย้อนกลับ</button>
       </div>
            <div class="col-6">
@@ -24,21 +24,22 @@
           บันทึก </button>
       </div>
     </div>
-    <div class="row mt-5">
-      <div class="col-3">
+    <div class="row justify-content-center mt-3 mb-3">
+      <div class="col-4">
         <div class="form-group">
-          <label>LovKey    </label>
+          <label>LovKey  *  :   </label>
           <fg-input
-           ref="name"
             v-model="form.lovKey"
-            v-validate="formValidations.descripton"
+            placeholder="กรุณากรอก LovKey"
+            v-validate="formValidations.lovKey"
           >
           </fg-input>
         </div>
         <div class="form-group">
-          <label>Descripton  </label>
+          <label>Descripton  *  :  </label>
           <fg-input
-            v-model="form.lovKey"
+            v-model="form.descripton"
+            placeholder="กรุณากรอก descripton"
             v-validate="formValidations.descripton"
           >
           </fg-input>
@@ -54,10 +55,7 @@ export default {
   
   components: {
   },
-    async created() {
- 
-
-    
+  async created() {
         
   },
    data() {
@@ -70,7 +68,7 @@ export default {
       },
       isVisible: this.visible,
       form: {
-        constantId:"",
+        lovHeaderId:"",
         lovKey: "",
         descripton: "",  
       },
@@ -91,8 +89,8 @@ export default {
         },
    
        async onSaveData(){
-           let dataSave = await (await CallHttp()).getSaveLov(this.form)
-              this.$router.go(-1)
+          let dataSave = await (await CallHttp()).getSaveLov(this.form)
+          this.$router.go(-1)
         },
         goBack(){
           this.$router.go(-1)
