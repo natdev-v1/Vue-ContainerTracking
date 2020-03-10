@@ -1,7 +1,7 @@
 <template>
     <BwCard title='Constant Table'>
       <BwTable
-        @onEdit='onEditConstant'
+        @onActionEdit='onEditConstant'
         :hiddenButtonEdit='hiddenButtonEdit'
         :onClickTopBtn='onClickAdd'
         :tableData='tableData'
@@ -38,6 +38,7 @@ export default {
       title: "constant_table",
       lableButton: "จัดการข้อมูล",
       propsToSearch: [
+        "constantId",
         "constantKey", 
         "constantVale"
       ],
@@ -70,8 +71,9 @@ export default {
       this.$router.push("constantAdd");
     },
     onEditConstant(data) {
-      console.log("test");
-      // this.$router.push({ name: "constantAdd", params: { constantId: data } });
+      console.log(data)
+      this.$router.push({ name: 'ConstantAdd', params: { constantId: data }  });
+
     },
     async getList(){
       let {data} = await(await Api()).getListConstant()

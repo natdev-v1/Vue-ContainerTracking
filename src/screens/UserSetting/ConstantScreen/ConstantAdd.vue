@@ -28,6 +28,7 @@
       <div class="col-md-6 ml-auto mr-auto">
         <div class="form-group">
           <label>Constant Key : </label>
+          {{this.$route.params}}
           <fg-input
            ref="name"
             v-model="form.constantKey"
@@ -68,7 +69,8 @@ export default {
         //     this.form.constantId = constantId
         //   this.form.constantKey = constantKey
         //   this.form.constantValue = constantValue
-    
+
+        this.getListConstantData();
         
   },
    data() {
@@ -85,7 +87,6 @@ export default {
         constantKey: "",
         constantValue: "",  
       },
-
       formValidations: {
         constantId: {
           required: true,
@@ -97,20 +98,24 @@ export default {
     };
   },
     methods: {
+
         validate() {
           this.onSaveData()
         },
    
-       async onSaveData(){
+        async onSaveData(){
            let dataSave = await (await CallHttp()).saveConstant(this.form)
-              this.$router.go(-1)
+              this.$router.push("constant")
         },
         goBack(){
-          this.$router.go(-1)
+          this.$router.push("constant")
+        },
+        async getListConstantData() {
+          let res = await(await CallHttp()).getListConstantData(this.$route.params.constantId.constantId)
+          console.log(res.data);
+          this.form = res.data;
         }
-      }
-
-
+    }
 }
 </script>
 

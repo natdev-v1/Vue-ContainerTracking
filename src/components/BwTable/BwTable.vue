@@ -34,6 +34,10 @@
                     :data="queriedData"
                     stripe
                     style="width: 100%">
+
+                    <el-table-column label="#" :min-width="120" type="index">
+                      
+            </el-table-column>
             <el-table-column v-for="column in tableColumns"
                              :key="column.label"
                              :min-width="column.minWidth"
@@ -56,7 +60,7 @@
               <template slot-scope="props">
              <el-col v-if=" Object.keys(onClickTopCuttom).length" :xs="1" align='end'>
      
-  <button  type="button"  @click="()=>onClickTopCuttom.onClick(props.row)" v-if="hiddenButtonCustom" class="btn btn-primary btn-sm"> {{onClickTopCuttom.text}}</button>
+  <button  type="button"  @click="onClickTopCuttom.onClick" v-if="hiddenButtonCustom" class="btn btn-primary btn-sm"> {{onClickTopCuttom.text}}</button>
      </el-col>
               
                 <p-button type="success" size="sm" icon v-if="hiddenButtonEdit" @click="handleEdit(props.$index, props.row)">
@@ -217,7 +221,7 @@
       },
       onActionEdit:{
         type:Function,
-        default:null
+        default:()=>{}
       }  ,
       hiddenButtonCustom:{
        type:Boolean,
@@ -241,7 +245,7 @@
      
       },
       handleEdit (index, row) {
-        this.onActionEdit(row);
+       this.$emit('onActionEdit',row)
       },
       handleDelete (index, row) {
         let indexToDelete = this.tableData.findIndex((tableRow) => tableRow.id === row.id)
