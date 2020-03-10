@@ -50,7 +50,9 @@
 </template>
 
 <script>
-import CallHttp from '../../../service/CallHttp'
+import Api from '../../../service/CallHttp'
+import swal from 'sweetalert2'
+import {Wizard, WizardTab} from 'src/components/UIComponents'
 export default {
   
   components: {
@@ -89,7 +91,8 @@ export default {
         },
    
        async onSaveData(){
-          let dataSave = await (await CallHttp()).getSaveLov(this.form)
+          let dataSave = await (await Api()).saveLov(this.form)
+          swal('Good job!', 'You clicked the finish button!', 'success')
           this.$router.go(-1)
         },
         goBack(){

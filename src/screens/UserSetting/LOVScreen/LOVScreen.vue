@@ -1,11 +1,12 @@
 <template>
     <bw-card title='Lov Table'>
-        <button v-on:click="addForm()">5555</button>
+    <!-- <button v-on:click="addForm()">5555</button> -->
       <BwTable 
-      @onEdit='onEditConstant'
+      @onEdit='onEditLov'
+      :hiddenButtonCustom='hiddenButtonCustom'
+      :textCustom='textCustom'
       :onClickTopBtn='onClickAdd'
       :tableData='tableData'
-      :title='title' 
       :lableEdit='lableButton'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
@@ -35,7 +36,7 @@ import Api from '../../../service/CallHttp'
             nextPage() {
                 this.$router.push("LovAdd");
             },
-            onEditConstant(data) {
+            onEditLov(data) {
                 console.log(data);
                 this.$router.push({ name: "LovManage", params: { lovHeaderId: data } });
             },
@@ -43,9 +44,10 @@ import Api from '../../../service/CallHttp'
                 let {data} = await(await Api()).getListLov()
                 this.tableData = data;
             },
-            addForm(){
-                this.tableData.push({lovHeaderId:'',lovKey:'',descripton:'',createDate:'',createdBy:'',updatedDate:'',updatedBy:'',isDelete:''})
-            }
+            
+            // addForm(){
+            //     this.tableData.push({lovHeaderId:'',lovKey:'',descripton:'',createDate:'',createdBy:'',updatedDate:'',updatedBy:'',isDelete:''})
+            // }
                  
         },
        
@@ -54,8 +56,9 @@ import Api from '../../../service/CallHttp'
                 from: {
                     lovKey:''
                 },
+                textCustom:"จัดการข้อมูล",
+                hiddenButtonCustom: Boolean = true,
                 tableData: [],
-                title: "test",
                 row:'row',
                 col:'col-md-12',
                 lableButton: "จัดการข้อมูล",
@@ -71,13 +74,13 @@ import Api from '../../../service/CallHttp'
                          prop: 'lovKey',
                          label: 'LovKey', 
                          minWidth: 200,
-                         type:'input'
+                        //  type:'input'
                     },
                     {
                          prop: 'descripton',
                          label: 'descripton', 
                          minWidth: 200,
-                         type:'input'
+                        //  type:'input'
                     },
                     
                 ],

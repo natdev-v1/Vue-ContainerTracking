@@ -9,6 +9,7 @@ import ImpSAT from '../screens/ImpSAP/ImpSAP.vue'
 import LoginScreen from '../screens/LoginScreen/LoginScreen.vue'
 import LOVScreen from '../screens/UserSetting/LOVScreen/LOVScreen.vue'
 import LovAdd from '../screens/UserSetting/LOVScreen/LovAdd.vue'
+import LovManage from '../screens/UserSetting/LOVScreen/LovManage.vue'
 import ConstantScreen from '../screens/UserSetting/ConstantScreen/ConstantScreen.vue'
 import ConstantAdd from '../screens/UserSetting/ConstantScreen/ConstantAdd.vue'
 import organize from '../screens/ManageUser/organize/organize.vue'
@@ -125,6 +126,11 @@ let datasetting ={
       path: 'lovadd',
       name: 'LovAdd',
       component: LovAdd
+    },
+    {
+      path: 'lovmanage',
+      name: 'LovManage',
+      component: LovManage
     },
     {
       path: 'constant',
