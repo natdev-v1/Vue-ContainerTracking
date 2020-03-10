@@ -2,8 +2,8 @@ export default (Api)=>{
     const getListLov = async(lovKey)=>{
       return await Api.post('api/lov/list',{lovKey})
     }
-    const getListLovData = async(lovKey)=>{
-      return await Api.post('api/lov/listdata',{lovKey})
+    const getListLovData = async(lovHeaderId)=>{
+      return await Api.post('api/lov/listdata',{lovHeaderId})
     }
     const saveLov = async (data)=>{
       let {lovHeaderId,lovKey,descripton} = data
@@ -13,9 +13,9 @@ export default (Api)=>{
       let {} = data
       return await Api.post('/api/lov/save-data-detail')
     }
-    const getListLovDetail = async (data) =>{
-      let {} = data
-      return await Api.post('/api/lov/list-data-detail')
+    const getListLovDetail = async (lovHeaderId) =>{
+    
+      return await Api.post('/api/lov/list-data-detail',{lovHeaderId})
     }
     
     return {
