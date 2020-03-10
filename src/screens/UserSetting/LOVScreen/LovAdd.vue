@@ -54,7 +54,7 @@ import Api from '../../../service/CallHttp'
 import swal from 'sweetalert2'
 import {Wizard, WizardTab} from 'src/components/UIComponents'
 export default {
-  
+  name:'LovAdd',
   components: {
   },
   async created() {

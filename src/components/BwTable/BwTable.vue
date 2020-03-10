@@ -56,7 +56,7 @@
               <template slot-scope="props">
              <el-col v-if=" Object.keys(onClickTopCuttom).length" :xs="1" align='end'>
      
-  <button  type="button"  @click="onClickTopCuttom.onClick" v-if="hiddenButtonCustom" class="btn btn-primary btn-sm"> {{onClickTopCuttom.text}}</button>
+  <button  type="button"  @click="()=>onClickTopCuttom.onClick(props.row)" v-if="hiddenButtonCustom" class="btn btn-primary btn-sm"> {{onClickTopCuttom.text}}</button>
      </el-col>
               
                 <p-button type="success" size="sm" icon v-if="hiddenButtonEdit" @click="handleEdit(props.$index, props.row)">

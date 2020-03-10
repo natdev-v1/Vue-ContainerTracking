@@ -76,7 +76,7 @@ import BwCard from '../../../components/BwCard/BwCard'
 import swal from 'sweetalert2'
 import {Wizard, WizardTab} from 'src/components/UIComponents'
 export default {
-  
+  name:'LovManage',
   components: {
       BwTable,
       BwCard
@@ -102,7 +102,7 @@ export default {
       hiddenButtonDelete: true,
       lableButton: "จัดการข้อมูล",
       tableData: [],
-      propsToSearch:["LovKey", "descripton"],
+      propsToSearch:[],
       tableColumns: [
                     {
                          prop: 'lovCode',
@@ -172,15 +172,17 @@ export default {
           this.$router.push("lov")
         },
         addData(){
-            this.tableData.push({lovDetailId:'',lovCode:'',descTh1:'',descTh2:'',descEn1:'',descEn2:'',orderNo:'',isDelete:''})
+          this.tableData.push({lovCode:'',descTh1:'',descTh2:'',descEn1:'',descEn2:'',orderNo:''})
         },
         async getListLovData() {
-                let {data} = await(await Api()).getListLovData()
-                this.tableData = data;
+          let res = await(await Api()).getListLovData(this.$route.params.lovHeaderId)
+          console.log(res.data);
+          
+          this.form = res.data;
         },
         async getListLovDetail() {
-                let {data} = await(await Api()).getListLovDetail()
-                this.tableData = data;
+          let {data} = await(await Api()).getListLovDetail(this.$route.params.lovHeaderId)
+          this.tableData = data;
         },
       }
 
