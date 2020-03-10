@@ -9,13 +9,12 @@ export default (Api)=>{
       let {lovHeaderId,lovKey,descripton} = data
       return  await Api.post('/api/lov/save',{lovHeaderId,lovKey,descripton})
     }
-    const saveLovDetail = async (data) =>{
-      let {} = data
-      return await Api.post('/api/lov/save-data-detail')
+    const saveLovDetail = async (lovKey,fwLovDetailReqs) =>{
+      return await Api.post('/api/lov/save-data-detail',{lovKey,fwLovDetailReqs})
     }
-    const getListLovDetail = async (lovHeaderId) =>{
-    
-      return await Api.post('/api/lov/list-data-detail',{lovHeaderId})
+    const getListLovDetail = async (lovHeaderId,lovKey,descripton) =>{
+      // let {lovHeaderId,lovKey,descripton} = data
+      return await Api.post('/api/lov/list-data-detail',{lovHeaderId,lovKey,descripton})
     }
     
     return {

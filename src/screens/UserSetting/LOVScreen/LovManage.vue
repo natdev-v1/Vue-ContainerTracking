@@ -27,7 +27,7 @@
     <div class="row justify-content-center mt-3 mb-3">
       <div class="col-4">
         <div class="form-group">
-          <label>LovKey:   </label>
+          <label>LovKey :   </label>
           <fg-input
             v-model="form.lovKey"
             placeholder="กรุณากรอก LovKey"
@@ -37,7 +37,7 @@
           </fg-input>
         </div>
         <div class="form-group">
-          <label>Descripton:  </label>
+          <label>Descripton :  </label>
           <fg-input
             v-model="form.descripton"
             placeholder="กรุณากรอก descripton"
@@ -97,18 +97,19 @@ export default {
       form: {
         lovHeaderId:"",
         lovKey: "",
-        descripton: "",  
+        descripton: ""  
       },
+    
       hiddenButtonDelete: true,
       lableButton: "จัดการข้อมูล",
-      tableData: [],
-      propsToSearch:[],
+      tableData: ["lovCode","descTh1"],
+      propsToSearch:["lovCode"],
       tableColumns: [
                     {
                          prop: 'lovCode',
                          label: 'Lov_Code', 
                          minWidth: 100,
-                          type:'input'
+                         type:'input'
                     },
                     {
                          prop: 'descTh1',
@@ -156,14 +157,15 @@ export default {
   },
     methods: {
         validate() {
-          this.onSaveLovDetail()
+          this.saveLovDetail()
         },
    
-        async onSaveLovDetail(){
-          let dataSave = await (await Api()).SaveLovDetail(this.form)
+        async saveLovDetail(){
+          let dataSave = await (await Api()).saveLovDetail(this.form.lovKey,this.tableData)
           swal('Good job!', 'You clicked the finish button!', 'success')
           this.$router.push('lov')
         },
+        
         onDelete(data) {
                 console.log(data);
                 this.$router.push({ name: "LovManage", params: { lovHeaderId: data.lovHeaderId } });
@@ -175,14 +177,14 @@ export default {
           this.tableData.push({lovCode:'',descTh1:'',descTh2:'',descEn1:'',descEn2:'',orderNo:''})
         },
         async getListLovData() {
-          let res = await(await Api()).getListLovData(this.$route.params.lovHeaderId)
+          let res = await(await Api()).getListLovData(this.$route.params.lovHeaderId.lovHeaderId)
           console.log(res.data);
-          
           this.form = res.data;
         },
         async getListLovDetail() {
-          let {data} = await(await Api()).getListLovDetail(this.$route.params.lovHeaderId)
-          this.tableData = data;
+          let res = await(await Api()).getListLovDetail(this.$route.params.lovHeaderId.lovHeaderId,this.$route.params.lovHeaderId.lovKey,this.$route.params.lovHeaderId.descripton)
+          console.log(res.data);
+          this.tableData = res.data;
         },
       }
 

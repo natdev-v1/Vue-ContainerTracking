@@ -39,7 +39,7 @@ import Api from '../../../service/CallHttp'
             },
             onEditLov(data) {
                 console.log(data);
-                this.$router.push({ name: "LovManage", params: { lovHeaderId: data.lovHeaderId } });
+                this.$router.push({ name: "LovManage", params: { lovHeaderId: data} });
             },
             async getList() {
                 let {data} = await(await Api()).getListLov()
