@@ -54,8 +54,11 @@
               class-name="td-actions"
               label="Actions">
               <template slot-scope="props">
-        
-                <button  @click="handleLike(props.$index, props.row)" v-if="hiddenButtonCustom" type="button" class="btn btn-primary btn-sm"> {{textCustom}}</button>
+             <el-col v-if=" Object.keys(onClickTopCuttom).length" :xs="1" align='end'>
+     
+  <button  type="button"  @click="onClickTopCuttom.onClick" v-if="hiddenButtonCustom" class="btn btn-primary btn-sm"> {{onClickTopCuttom.text}}</button>
+     </el-col>
+              
                 <p-button type="success" size="sm" icon v-if="hiddenButtonEdit" @click="handleEdit(props.$index, props.row)">
                   <i class="fa fa-edit"></i> 
                 </p-button>
@@ -200,6 +203,10 @@
        type:Object,
        default:()=>({})
       },
+       onClickTopCuttom:{
+       type:Object,
+       default:()=>({})
+      },
        lableEdit:{
        type:String,
        default:''
@@ -226,11 +233,15 @@
       }
     },
     methods: {
+       warn(event) {
+        this.onActionEdit(event)
+            }
+  ,
       handleLike (index, row,) {
      
       },
       handleEdit (index, row) {
-     this.onActionEdit(index, row);
+        this.onActionEdit(row);
       },
       handleDelete (index, row) {
         let indexToDelete = this.tableData.findIndex((tableRow) => tableRow.id === row.id)
