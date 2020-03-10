@@ -54,17 +54,16 @@
               class-name="td-actions"
               label="Actions">
               <template slot-scope="props">
-                <!-- <p-button type="info" size="sm" icon @click="handleLike(props.$index, props.row)">
-                  <i class="fa fa-user"></i>
-                </p-button> -->
-                <p-button type="success" size="sm" icon @click="handleEdit(props.$index, props.row)">
+        
+                <button  @click="handleLike(props.$index, props.row)" v-if="hiddenButtonCustom" type="button" class="btn btn-primary btn-sm"> {{textCustom}}</button>
+                <p-button type="success" size="sm" icon v-if="hiddenButtonEdit" @click="handleEdit(props.$index, props.row)">
                   <i class="fa fa-edit"></i> 
                 </p-button>
-                <p-button type="danger" size="sm" icon @click="handleDelete(props.$index, props.row)">
+                <p-button type="danger" size="sm"  v-if="hiddenButtonDelete"  icon @click="handleDelete(props.$index, props.row)">
                   <i class="fa fa-times"></i>
                 </p-button>
               </template>
-            </el-table-column>
+            </el-table-column> 
           </el-table>
         </div>
         <div class="col-sm-6 pagination-info">
@@ -205,17 +204,33 @@
        type:String,
        default:''
       },
+        textCustom:{
+       type:String,
+       default:''
+      },
       onActionEdit:{
         type:Function,
         default:null
-      }  
+      }  ,
+      hiddenButtonCustom:{
+       type:Boolean,
+       default:false
+      },
+       hiddenButtonEdit:{
+       type:Boolean,
+       default:false
+      },
+       hiddenButtonDelete:{
+       type:Boolean,
+       default:false
+      }
     },
     methods: {
-      handleLike (index, row) {
-        alert(`Your want to like ${row.name}`)
+      handleLike (index, row,) {
+     
       },
       handleEdit (index, row) {
-        alert(`Your want to edit ${row.name}`)
+     this.onActionEdit(index, row);
       },
       handleDelete (index, row) {
         let indexToDelete = this.tableData.findIndex((tableRow) => tableRow.id === row.id)
