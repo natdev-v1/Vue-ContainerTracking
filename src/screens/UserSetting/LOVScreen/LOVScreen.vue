@@ -4,6 +4,7 @@
       <BwTable 
       @onEdit='onEditLov'
       :hiddenButtonCustom='hiddenButtonCustom'
+      :onClickTopCuttom='onClickTopCuttom'
       :textCustom='textCustom'
       :onClickTopBtn='onClickAdd'
       :tableData='tableData'
@@ -38,7 +39,7 @@ import Api from '../../../service/CallHttp'
             },
             onEditLov(data) {
                 console.log(data);
-                this.$router.push({ name: "LovManage", params: { lovHeaderId: data } });
+                this.$router.push({ name: "LovManage", params: { lovHeaderId: data.lovHeaderId } });
             },
             async getList() {
                 let {data} = await(await Api()).getListLov()
@@ -57,7 +58,7 @@ import Api from '../../../service/CallHttp'
                     lovKey:''
                 },
                 textCustom:"จัดการข้อมูล",
-                hiddenButtonCustom: Boolean = true,
+                hiddenButtonCustom: true,
                 tableData: [],
                 row:'row',
                 col:'col-md-12',
@@ -87,7 +88,11 @@ import Api from '../../../service/CallHttp'
                 onClickAdd: {
                 onClick: this.nextPage,
                 text: "Add"
-            }
+                },
+                onClickTopCuttom:{
+                text: "จัดการข้อมูล",
+                onClick: this.onEditLov,
+                },  
             }
         },
         mounted() {

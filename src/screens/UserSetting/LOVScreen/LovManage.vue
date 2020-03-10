@@ -27,16 +27,17 @@
     <div class="row justify-content-center mt-3 mb-3">
       <div class="col-4">
         <div class="form-group">
-          <label>LovKey  *  :   </label>
+          <label>LovKey:   </label>
           <fg-input
             v-model="form.lovKey"
             placeholder="กรุณากรอก LovKey"
             v-validate="formValidations.lovKey"
+            disabled
           >
           </fg-input>
         </div>
         <div class="form-group">
-          <label>Descripton  *  :  </label>
+          <label>Descripton:  </label>
           <fg-input
             v-model="form.descripton"
             placeholder="กรุณากรอก descripton"
@@ -54,21 +55,35 @@
             </i></span> เพิ่มข้อมูล
             </button>
       </div>
-        </div>
+    </div>
+    <div>
+      <BwTable 
+      @onEdit='onDelete'
+      :hiddenButtonDelete='hiddenButtonDelete'
+      :tableData='tableData'
+      :lableEdit='lableButton'
+      :tableColumns='tableColumns'
+      :propsToSearch='propsToSearch'
+      ></BwTable>
     </div>
   </div>
 </template>
 
 <script>
 import Api from '../../../service/CallHttp'
+import BwTable from '../../../components/BwTable/BwTable'
+import BwCard from '../../../components/BwCard/BwCard'
 import swal from 'sweetalert2'
 import {Wizard, WizardTab} from 'src/components/UIComponents'
 export default {
   
   components: {
+      BwTable,
+      BwCard
   },
   async created() {
-        
+        this.getListLovData();
+        this.getListLovDetail();        
   },
    data() {
     return {
@@ -84,6 +99,50 @@ export default {
         lovKey: "",
         descripton: "",  
       },
+      hiddenButtonDelete: true,
+      lableButton: "จัดการข้อมูล",
+      tableData: [],
+      propsToSearch:["LovKey", "descripton"],
+      tableColumns: [
+                    {
+                         prop: 'lovCode',
+                         label: 'Lov_Code', 
+                         minWidth: 100,
+                          type:'input'
+                    },
+                    {
+                         prop: 'descTh1',
+                         label: 'Desc_Th_1', 
+                         minWidth: 100,
+                         type:'input'
+                    },
+                    {
+                         prop: 'descTh2',
+                         label: 'Desc_Th_2', 
+                         minWidth: 100,
+                         type:'input'
+                    },
+                    {
+                         prop: 'descEn1',
+                         label: 'Desc_En_1', 
+                         minWidth: 100,
+                         type:'input'
+                    },
+                    {
+                         prop: 'descEn2',
+                         label: 'Desc_En_2', 
+                         minWidth: 100,
+                         type:'input'
+                    },
+                    {
+                         prop: 'orderNo',
+                         label: 'Order', 
+                         minWidth: 100,
+                         type:'input'
+                    },
+                    
+                    
+                ],
 
       formValidations: {
         lovKey: {
@@ -97,20 +156,32 @@ export default {
   },
     methods: {
         validate() {
-          this.onSaveData()
+          this.onSaveLovDetail()
         },
    
-       async onSaveData(){
-          let dataSave = await (await Api()).saveLov(this.form)
+        async onSaveLovDetail(){
+          let dataSave = await (await Api()).SaveLovDetail(this.form)
           swal('Good job!', 'You clicked the finish button!', 'success')
           this.$router.push('lov')
         },
+        onDelete(data) {
+                console.log(data);
+                this.$router.push({ name: "LovManage", params: { lovHeaderId: data.lovHeaderId } });
+            },
         goBack(){
           this.$router.push("lov")
         },
         addData(){
-            this.push({lovHeaderId:'',lovKey:'',descripton:'',createDate:'',createdBy:'',updatedDate:'',updatedBy:'',isDelete:''})
-        }
+            this.tableData.push({lovDetailId:'',lovCode:'',descTh1:'',descTh2:'',descEn1:'',descEn2:'',orderNo:'',isDelete:''})
+        },
+        async getListLovData() {
+                let {data} = await(await Api()).getListLovData()
+                this.tableData = data;
+        },
+        async getListLovDetail() {
+                let {data} = await(await Api()).getListLovDetail()
+                this.tableData = data;
+        },
       }
 
 
