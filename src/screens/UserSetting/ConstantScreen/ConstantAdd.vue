@@ -25,28 +25,33 @@
       </div>
     </div>
     <div class="row mt-3">
-      <div class="col-6">
+      <div class="col-md-6 ml-auto mr-auto">
         <div class="form-group">
-          <label>Constant Key    </label>
+          <label>Constant Key : </label>
           <fg-input
            ref="name"
             v-model="form.constantKey"
+            placeholder="*กรุณากรอก Constant Key"
             v-validate="formValidations.constantKey"
           >
           </fg-input>
         </div>
       </div>
-      <div class="col-6">
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-6 ml-auto mr-auto">
         <div class="form-group">
-          <label>Descripton  </label>
+          <label>Descripton : </label>
           <fg-input
             v-model="form.constantValue"
+            placeholder="*กรุณากรอก Descripton"
             v-validate="formValidations.constantValue"
           >
           </fg-input>
         </div>
       </div>
     </div>
+    
   </div>
 </template>
 
@@ -58,11 +63,11 @@ export default {
   },
     async created() {
  
-        let res = await (await CallHttp()).getConstantById(this.$route.params.constantId.constantId)
-         let { constantId,constantKey,constantValue } = res.data
-            this.form.constantId = constantId
-          this.form.constantKey = constantKey
-          this.form.constantValue = constantValue
+        // let res = await (await CallHttp()).getConstantById(this.$route.params.constantId.constantId)
+        //  let { constantId,constantKey,constantValue } = res.data
+        //     this.form.constantId = constantId
+        //   this.form.constantKey = constantKey
+        //   this.form.constantValue = constantValue
     
         
   },

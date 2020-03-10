@@ -1,8 +1,8 @@
 <template>
-  <div id='role'>
     <BwCard title='Constant Table'>
       <BwTable
         @onEdit='onEditConstant'
+        :hiddenButtonEdit='hiddenButtonEdit'
         :onClickTopBtn='onClickAdd'
         :tableData='tableData'
         :title='title'
@@ -12,7 +12,6 @@
         
       ></BwTable>
     </BwCard>
-  </div>
 
 </template>
 <script>
@@ -20,21 +19,24 @@ import BwCard from "../../../components/BwCard/BwCard.vue";
 import BwTable from "../../../components/BwTable/BwTable.vue";
 import Api from '../../../service/CallHttp'
 export default {
-  name: "Role",
+  name: "ConstantScreen",
   components: {
     BwTable,
-    BwCard
+    BwCard,
   },
   async created() {
-    console.log(save);
-    this.tableData = await this.$store.getters.callApiGetConstant;
-    console.log(await this.$store.getters.callApiGetConstant);
+    // console.log(save);
+    // this.tableData = await this.$store.getters.callApiGetConstant;
+    // console.log(await this.$store.getters.callApiGetConstant);
+    this.getList();
+    
   },
   data() {
     return {
+      hiddenButtonEdit: true,
       tableData: [],
       title: "constant_table",
-      //  lableButton: "จัดการข้อมูล",
+      lableButton: "จัดการข้อมูล",
       propsToSearch: [
         "constantKey", 
         "constantVale"
@@ -52,7 +54,7 @@ export default {
         },
         {
           prop: "constantValue",
-          label: "Constant Value",
+          label: "description",
           minWidth: 200
         }
       ],
@@ -68,8 +70,12 @@ export default {
       this.$router.push("constantAdd");
     },
     onEditConstant(data) {
-      console.log(data);
-      this.$router.push({ name: "constantAdd", params: { constantId: data } });
+      console.log("test");
+      // this.$router.push({ name: "constantAdd", params: { constantId: data } });
+    },
+    async getList(){
+      let {data} = await(await Api()).getListConstant()
+      this.tableData = data; 
     }
   }
 };
