@@ -34,10 +34,13 @@
                     :data="queriedData"
                     stripe
                     style="width: 100%">
-
-                    <el-table-column label="#" :min-width="120" type="index">
+         <el-table-column v-if="hiddenCheckbox"  label="#" :min-width="20" type="index">
+                        <p-checkbox v-model="checkbox"></p-checkbox>
+            </el-table-column>
+                    <el-table-column    v-if="hiddenOder" label="#" :min-width="120" type="index">
                       
             </el-table-column>
+            
             <el-table-column v-for="column in tableColumns"
                              :key="column.label"
                              :min-width="column.minWidth"
@@ -239,7 +242,15 @@
         hiddenTabAction:{
        type:Boolean,
        default:false
-      }
+      },
+        hiddenOder:{
+       type:Boolean,
+       default:false
+      },
+      hiddenCheckbox:{
+      type:Boolean,
+       default:false
+      },
     },
     methods: {
        warn(event) {
