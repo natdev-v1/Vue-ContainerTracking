@@ -64,10 +64,11 @@
     </div>
     <div>
       <BwTable 
-      @onEdit='onDelete'
+      @onActionEdit='onDelete'
+      :hiddenOder='hiddenOder'
+      :hiddenTabAction='hiddenTabAction'
       :hiddenButtonDelete='hiddenButtonDelete'
       :tableData='tableData'
-      :lableEdit='lableButton'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
       ></BwTable>
@@ -105,10 +106,10 @@ export default {
         lovKey: "",
         descripton: ""  
       },
-    
+      hiddenOder: true,
+      hiddenTabAction: true,
       hiddenButtonDelete: true,
       checkButton: false,
-      lableButton: "จัดการข้อมูล",
       tableData: ["lovCode","descTh1"],
       propsToSearch:["lovCode"],
       tableColumns: [
@@ -177,9 +178,9 @@ export default {
         },
         
         onDelete(data) {
-                console.log(data);
-                this.$router.push({ name: "LovManage", params: { lovHeaderId: data.lovHeaderId } });
-            },
+          console.log(data);
+          this.$router.push({ name: "LovManage", params: { lovHeaderId: data.lovHeaderId } });
+        },
         goBack(){
           this.$router.push("lov")
         },

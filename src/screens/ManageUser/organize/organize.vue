@@ -1,10 +1,13 @@
 <template>
     <bw-card title='Organize Table'>
       <BwTable 
-      @onEdit='Editorg'
+      @onActionEdit='EditOrg'
+      :hiddenOder='hiddenOder'
+      :hiddenTabAction='hiddenTabAction'
       :onClickTopBtn='onClickAdd'
+      :hiddenButtonEdit='hiddenButtonEdit'
+      :hiddenButtonDelete='hiddenButtonDelete'
       :tableData='tableData'
-      :lableEdit='lableButton'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
       ></BwTable>
@@ -17,52 +20,46 @@ import BwTimePicker from '../../../components/BwTimePicker/BwTimePicker'
 import BwCard from '../../../components/BwCard/BwCard'
 import Api from '../../../service/CallHttp'
     export default {
-        name:'LOVScreen',
+        name:'organize',
         components:{
         BwTable,
         BwTimePicker,
         BwCard
         },
         created () {
-            this.getList();
+            this.getAllOrg();
         },
         computed: { 
             
         }, 
         methods: {
             nextPage() {
-                this.$router.push("LovAdd");
+                this.$router.push("organizeDeatil");
             },
-            Editorg(data) {
+            EditOrg(data) {
                 console.log(data);
-                this.$router.push({ name: "organizeDeatil", params: { lovHeaderId: data} });
+                this.$router.push({ name: "organizeDeatil", params: { orgId: data} });
             },
-            async getList() {
-                let {data} = await(await Api()).getListLov()
+            async getAllOrg() {
+                let {data} = await(await Api()).getAllOrg()
                 this.tableData = data;
             },
-            
-            // addForm(){
-            //     this.tableData.push({lovHeaderId:'',lovKey:'',descripton:'',createDate:'',createdBy:'',updatedDate:'',updatedBy:'',isDelete:''})
-            // }
                  
         },
        
         data() {
             return {
-                from: {
-                    lovKey:''
-                },
-                hiddenButtonCustom: true,
+                hiddenOder: true,
+                hiddenTabAction: true,
+                hiddenButtonEdit: true,
+                hiddenButtonDelete: true,
                 tableData: [],
-                row:'row',
-                col:'col-md-12',
-                propsToSearch:["LovKey", "descripton"],
+                propsToSearch:["orgCode", "orgDescription"],
                 tableColumns: [
                     {
                          prop: 'orgCode',
                          label: 'Code', 
-                         minWidth: 100,
+                         minWidth: 200,
                     },
                     {
                          prop: 'orgDescription',

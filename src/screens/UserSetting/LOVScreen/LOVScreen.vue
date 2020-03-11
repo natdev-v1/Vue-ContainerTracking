@@ -2,12 +2,13 @@
     <bw-card title='Lov Table'>
       <BwTable 
       @onEdit='onEditLov'
+      :hiddenOder='hiddenOder'
+      :hiddenTabAction='hiddenTabAction'
       :hiddenButtonCustom='hiddenButtonCustom'
       :onClickTopCuttom='onClickTopCuttom'
       :textCustom='textCustom'
       :onClickTopBtn='onClickAdd'
       :tableData='tableData'
-      :lableEdit='lableButton'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
       ></BwTable>
@@ -52,30 +53,23 @@ import Api from '../../../service/CallHttp'
                     lovKey:''
                 },
                 textCustom:"จัดการข้อมูล",
+                hiddenOder: true,
+                hiddenTabAction: true,
                 hiddenButtonCustom: true,
                 tableData: [],
                 row:'row',
                 col:'col-md-12',
-                lableButton: "จัดการข้อมูล",
-                propsToSearch:["LovKey", "descripton"],
+                propsToSearch:["lovKey", "descripton"],
                 tableColumns: [
-                    {
-                         prop: 'lovHeaderId',
-                         label: 'ลำดับ', 
-                         minWidth: 50,
-                         
-                    },
                     {
                          prop: 'lovKey',
                          label: 'LovKey', 
                          minWidth: 200,
-                        //  type:'input'
                     },
                     {
                          prop: 'descripton',
                          label: 'descripton', 
                          minWidth: 200,
-                        //  type:'input'
                     },
                     
                 ],
