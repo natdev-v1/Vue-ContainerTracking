@@ -53,11 +53,12 @@
                       </template>
             </el-table-column>
             <el-table-column
+             v-if="hiddenTabAction"
               :min-width="120"
               fixed="right"
               class-name="td-actions"
               label="Actions">
-              <template slot-scope="props">
+              <template slot-scope="props"  >
              <el-col v-if=" Object.keys(onClickTopCuttom).length" :xs="1" align='end'>
      
   <button  type="button"  @click="()=>onClickTopCuttom.onClick(props.row)" v-if="hiddenButtonCustom" class="btn btn-primary btn-sm"> {{onClickTopCuttom.text}}</button>
@@ -67,7 +68,7 @@
                   <i class="fa fa-edit"></i> 
                 </p-button>
                 <p-button type="danger" size="sm"  v-if="hiddenButtonDelete"  icon @click="handleDelete(props.$index, props.row)">
-                  <i class="fa fa-times"></i>
+                  <i class="nc-icon nc-box"></i>
                 </p-button>
               </template>
             </el-table-column> 
@@ -232,6 +233,10 @@
        default:false
       },
        hiddenButtonDelete:{
+       type:Boolean,
+       default:false
+      },
+        hiddenTabAction:{
        type:Boolean,
        default:false
       }
