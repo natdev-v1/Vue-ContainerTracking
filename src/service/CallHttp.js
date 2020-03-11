@@ -3,6 +3,7 @@ import ApiAutn from './Api/ApiAuth'
 import ApiFile from './Api/ApiFile'
 import ApiConstant from './Api/ApiConstant'
 import ApiLov from './Api/ApiLov'
+import ApiRole from './Api/ApiManageUser/ApiRole'
 import ApiOrganize from './Api/ApiManageUser/ApiOrganize';
 export default async ()=>{
      const baseUrl =   'http://baiwadev.thddns.net:9440/'
@@ -22,5 +23,6 @@ export default async ()=>{
         ...ApiConstant(APIToken),
         ...ApiLov(APIToken),
         ...ApiOrganize(APIToken),
+        ...ApiRole(APIToken),
      }
 }

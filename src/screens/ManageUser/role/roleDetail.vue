@@ -106,7 +106,8 @@ export default {
         roleId:"",
         roleCode: "",
         roleCategory: "", 
-        roleDesc: ""
+        roleDesc: "",
+        
       },
       formValidations: {
         roleId: {
@@ -124,6 +125,7 @@ export default {
           this.onSaveData()
         },
         validateEdit(){
+          // this.onSaveData()
           this.editRole()
         },
         

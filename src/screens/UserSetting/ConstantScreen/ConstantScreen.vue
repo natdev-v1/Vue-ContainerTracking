@@ -3,10 +3,12 @@
       <BwTable
         @onActionEdit='onEditConstant'
         :hiddenButtonEdit='hiddenButtonEdit'
+        :hiddenButtonCustom='hiddenButtonCustom'
+        :hiddenTabAction='hiddenTabAction'
+        :hiddenOder='hiddenOder'     
+
         :onClickTopBtn='onClickAdd'
         :tableData='tableData'
-        :title='title'
-        :lableEdit='lableButton'
         :tableColumns='tableColumns'
         :propsToSearch='propsToSearch'
         
@@ -33,7 +35,14 @@ export default {
   },
   data() {
     return {
+      onActionEdit: true,
       hiddenButtonEdit: true,
+      hiddenButtonCustom: true,
+      hiddenTabAction: true,
+      hiddenOder: true,
+      
+      
+      
       tableData: [],
       title: "constant_table",
       lableButton: "จัดการข้อมูล",
@@ -43,11 +52,6 @@ export default {
         "constantVale"
       ],
       tableColumns: [
-        {
-          prop: "constantId",
-          label: "ID",
-          minWidth: 100
-        },
         {
           prop: "constantKey",
           label: "Constant Key",
@@ -73,6 +77,7 @@ export default {
     onEditConstant(data) {
       console.log(data)
       this.$router.push({ name: 'ConstantAdd', params: { constantId: data }  });
+
     },
     async getList(){
       let {data} = await(await Api()).getListConstant()

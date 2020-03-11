@@ -3,10 +3,12 @@
       <BwTable
         @onActionEdit='onEditRole'
         :hiddenButtonEdit='hiddenButtonEdit'
+        :hiddenButtonCustom='hiddenButtonCustom'
+        :hiddenTabAction='hiddenTabAction'
+        :hiddenOder='hiddenOder'
+
         :onClickTopBtn='onClickAdd'
         :tableData='tableData'
-        :title='title'
-        :lableEdit='lableButton'
         :tableColumns='tableColumns'
         :propsToSearch='propsToSearch'
         
@@ -33,7 +35,13 @@ export default {
   },
   data() {
     return {
+      onActionEdit: true,
       hiddenButtonEdit: true,
+      hiddenButtonCustom: true,
+      hiddenTabAction: true,
+      hiddenOder: true,
+      
+
       tableData: [],
       title: "role_table",
       lableButton: "จัดการข้อมูล",
@@ -45,11 +53,6 @@ export default {
         "createdDate"
       ],
       tableColumns: [
-        {
-          prop: "roleId",
-          label: "ID",
-          minWidth: 100
-        },
         {
           prop: "roleCode",
           label: "Code",
@@ -66,7 +69,7 @@ export default {
           minWidth: 200
         },
         {
-          prop: "createdDate",
+          prop: "createDate",
           label: "Date Created",
           minWidth: 200
         }
@@ -80,11 +83,11 @@ export default {
 
   methods: {
     nextPage() {
-      this.$router.push("role");
+      this.$router.push("roleDetail");
     },
     onEditRole(data) {
       console.log(data)
-      this.$router.push({ name: 'role', params: { roleId: data }  });
+      this.$router.push({ name: 'roleDetail', params: { roleId: data }  });
     },
     async getList(){
       let {data} = await(await Api()).getListRole()
