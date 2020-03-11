@@ -57,7 +57,7 @@
         <div class='col'>
             <button @click='addData' type="button" class="btn btn-success pull-right">
             <span class="btn-label">
-            <i class="nc-icon nc-check-2">
+            <i class="nc-icon nc-simple-add">
             </i></span> เพิ่มข้อมูล
             </button>
       </div>
@@ -188,7 +188,7 @@ export default {
         },
         async getListLovData() {
           let res = await(await Api()).getListLovData(this.$route.params.lovHeaderId.lovHeaderId)
-          console.log(res.data);
+        
           this.form = res.data;
           if( this.$route.params.lovHeaderId.lovHeaderId  &&  this.tableData[0].lovDetailId  ){
               this.checkButton = true;
@@ -196,12 +196,14 @@ export default {
         },
         async getListLovDetail() {
           let res = await(await Api()).getListLovDetail(this.$route.params.lovHeaderId.lovHeaderId,this.$route.params.lovHeaderId.lovKey,this.$route.params.lovHeaderId.descripton)
-          console.log(res.data);
+     
           this.tableData = res.data;
         },
         async editLov() {//{lovHeaderId,lovKey,descripton,fwLovDetailReqs}
-          let res = await(await Api()).editLov(this.form.lovHeaderId,this.form.lovKey,this.form.descripton,this.tableData)
-          console.log(res.data);
+ 
+        console.log("this.form.tableData",this.form);
+          let res = await(await Api()).editLov(this.form,this.tableData)
+         
           swal('Good job!', 'You clicked the finish button!', 'success')
           this.$router.push("lov")
           // this.tableData = res.data;
