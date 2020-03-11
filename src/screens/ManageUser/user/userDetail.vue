@@ -121,6 +121,8 @@ import BwTable from '../../../components/BwTable/BwTable'
 import BwCard from '../../../components/BwCard/BwCard'
 import swal from 'sweetalert2'
 import {Wizard, WizardTab} from 'src/components/UIComponents'
+import {find} from 'lodash'
+
 export default {
   name:'LovManage',
   components: {
@@ -129,7 +131,8 @@ export default {
   },
   async created() {
         this.getListUserDetail(); 
-        this.getById();     
+        if(this.$route.params.dataUser.userId)
+           this.getById();     
   },
    data() {
     return {
@@ -139,7 +142,7 @@ export default {
           default: false
         }
       },
-      hiddenCheckbox:true,
+      hiddenCheckbox:false,
       isbutton:false,
       isVisible: this.visible,
       form: {
@@ -159,6 +162,12 @@ export default {
       tableData: ["",""],
       propsToSearch:["lovCode"],
       tableColumns: [
+          {
+                         prop: 'check',
+                         label: '#', 
+                         minWidth: 200,
+                         type:'checkbox'
+                    },
                     {
                          prop: 'roleCode',
                          label: 'Code', 
@@ -234,16 +243,23 @@ export default {
         async getListUserDetail() {
           let res = await(await Api()).getUserDetail()
      
-          this.tableData = res.data;
+          this.tableData = res.data.map((data)=>{
+           data.check = false
+           return data
+           }
+          );
         },
         async getById() {
- 
-          let res = await(await Api()).getByIdUser(this.$route.params.userId.userId)
-         
-          this.form = res.data.user
-          console.log("res.data",res.data);
-          
-          // this.tableData = res.data;
+          let {data} = await(await Api()).getByIdUser(this.$route.params.dataUser.userId)
+          let {user={},role=[]} = data
+          this.form = user
+           this.tableData.map((table,idx)=>{
+             if(find(role,['roleCode',table.roleCode]))
+                  table.check  = true
+              else
+                  table.check  = false
+              return table
+           })   
         },
       }
 

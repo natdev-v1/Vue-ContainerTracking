@@ -125,6 +125,7 @@ export default {
     };
   },
     methods: {
+   
         validate() {
           this.saveOrg()
         },
@@ -135,21 +136,18 @@ export default {
           this.tableData.push({departCode:'',departDesc:''})
         },
         async getListOrg() {
-            let res = await(await Api()).getListOrg(this.$route.params.orgId.orgId,this.$route.params.orgId.orgCode,this.$route.params.orgId.orgDescription,this.$route.params.orgId.departDetail)
+          
+            const res = await(await Api()).getListOrg(id)
             this.form.orgCode = res.data.orgCode
             this.form.orgDescription = res.data.orgDescription
             this.tableData = res.data.departDetail 
         },
         async saveOrg() {
-           if(this.$route.params.orgId.orgId != null){
+    
                let dataSave = await (await Api()).saveOrg(this.$route.params.orgId.orgId,this.form.orgCode,this.form.orgDescription,this.tableData)
                swal('Good job!', 'You clicked the finish button!', 'success')
                this.$router.push('organize') 
-           }else{
-               let dataSave = await (await Api()).saveOrg(this.form.orgCode,this.form.orgDescription,this.tableData)
-               swal('Good job!', 'You clicked the finish button!', 'success')
-               this.$router.push('organize') 
-           }
+          
            
         }
       }

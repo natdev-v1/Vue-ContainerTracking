@@ -35,7 +35,9 @@
                     stripe
                     style="width: 100%">
          <el-table-column  v-if="hiddenCheckbox"  label="#" width="60">
-                        <p-checkbox v-model="checkbox"></p-checkbox>
+             <!-- <template slot-scope="scope">
+                        <p-checkbox v-model="scope.row["check"]"></p-checkbox>
+                      </template> -->
             </el-table-column>
                     <el-table-column    v-if="hiddenOder" label="#" :min-width="120" type="index">
                       
@@ -52,6 +54,7 @@
                           size="small"
                               style="text-align:center"
                               v-model="scope.row[column.prop]"></el-input>
+                                <p-checkbox v-else-if="column.type ==='checkbox'" v-model="scope.row[column.prop]"></p-checkbox>
                           <h6 v-else >{{scope.row[column.prop]}}</h6>
                       </template>
             </el-table-column>
@@ -188,6 +191,10 @@
         type: Array,
         default: ()=>{return []}
         },
+        deleteBy:{
+        type: String,
+        default: ''
+        },
     setClass:{
         type: String,
         default: ''
@@ -269,7 +276,11 @@
        this.$emit('onActionEdit',row)
       },
       handleDelete (index, row) {
-        let indexToDelete = this.tableData.findIndex((tableRow) => tableRow.id === row.id)
+        console.log("index",index);
+        console.log("row",this.deleteBy);
+
+
+        let indexToDelete = this.tableData.findIndex((tableRow) => {return tableRow[this.deleteBy] === row[this.deleteBy]})
         if (indexToDelete >= 0) {
           this.tableData.splice(indexToDelete, 1)
         }

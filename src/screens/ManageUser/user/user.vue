@@ -7,7 +7,7 @@
       :hiddenTabAction='hiddenTabAction'
       :hiddenButtonEdit='hiddenButtonEdit'
       :hiddenButtonDelete='hiddenButtonDelete'
-      :onClickTopCuttom='onClickTopCuttom'
+  
       :textCustom='textCustom'
       :onClickTopBtn='onClickAdd'
       :tableData='tableData'
@@ -41,8 +41,8 @@ import Api from '../../../service/CallHttp'
                 this.$router.push("userDetail");
             },
             onEditLov(data) {
-                console.log(data);
-                this.$router.push({ name: "userDetail", params: { userId: data} });
+                console.log('ddddd',data);
+                this.$router.push({ name: "userDetail", params: { dataUser: data} });
             },
             async getList() {
                 let {data} = await(await Api()).getUser()
@@ -66,7 +66,7 @@ import Api from '../../../service/CallHttp'
                 lableButton: "จัดการข้อมูล",
                 propsToSearch:["LovKey", "descripton"],
                 tableColumns: [
-                   
+                 
                     {
                          prop: 'name',
                          label: 'รหัสผู้ใช้งาน', 

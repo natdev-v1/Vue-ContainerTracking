@@ -10,6 +10,7 @@
       :tableData='tableData'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
+      deleteBy="orgId"
       ></BwTable>
     </bw-card>
 </template>
