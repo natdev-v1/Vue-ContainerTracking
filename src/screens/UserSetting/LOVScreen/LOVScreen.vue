@@ -1,6 +1,5 @@
 <template>
     <bw-card title='Lov Table'>
-    <!-- <button v-on:click="addForm()">5555</button> -->
       <BwTable 
       @onEdit='onEditLov'
       :hiddenButtonCustom='hiddenButtonCustom'
@@ -44,12 +43,7 @@ import Api from '../../../service/CallHttp'
             async getList() {
                 let {data} = await(await Api()).getListLov()
                 this.tableData = data;
-            },
-            
-            // addForm(){
-            //     this.tableData.push({lovHeaderId:'',lovKey:'',descripton:'',createDate:'',createdBy:'',updatedDate:'',updatedBy:'',isDelete:''})
-            // }
-                 
+            },                
         },
        
         data() {
@@ -92,7 +86,7 @@ import Api from '../../../service/CallHttp'
                 onClickTopCuttom:{
                 text: "จัดการข้อมูล",
                 onClick: this.onEditLov,
-                },  
+                },        
             }
         },
         mounted() {
