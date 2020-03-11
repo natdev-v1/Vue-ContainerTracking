@@ -34,7 +34,7 @@
                     :data="queriedData"
                     stripe
                     style="width: 100%">
-         <el-table-column v-if="hiddenCheckbox"  label="#" :min-width="20" type="index">
+         <el-table-column  v-if="hiddenCheckbox"  label="#" width="60">
                         <p-checkbox v-model="checkbox"></p-checkbox>
             </el-table-column>
                     <el-table-column    v-if="hiddenOder" label="#" :min-width="120" type="index">
@@ -203,6 +203,10 @@
         type:Array,
         default:[]  
       },
+         checkbox:{
+      type:Boolean,
+       default:false 
+      },
       propsToSearch:{
         type:Array,
         default:[]  
@@ -250,7 +254,8 @@
       hiddenCheckbox:{
       type:Boolean,
        default:false
-      },
+      }
+    
     },
     methods: {
        warn(event) {

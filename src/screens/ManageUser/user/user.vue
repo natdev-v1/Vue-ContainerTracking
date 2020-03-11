@@ -2,8 +2,11 @@
     <bw-card title='Lov Table'>
     <!-- <button v-on:click="addForm()">5555</button> -->
       <BwTable 
-      @onEdit='onEditLov'
-      :hiddenButtonCustom='hiddenButtonCustom'
+      @onActionEdit='onEditLov'
+      :hiddenOder='hiddenOder'
+      :hiddenTabAction='hiddenTabAction'
+      :hiddenButtonEdit='hiddenButtonEdit'
+      :hiddenButtonDelete='hiddenButtonDelete'
       :onClickTopCuttom='onClickTopCuttom'
       :textCustom='textCustom'
       :onClickTopBtn='onClickAdd'
@@ -35,21 +38,16 @@ import Api from '../../../service/CallHttp'
         }, 
         methods: {
             nextPage() {
-                this.$router.push("LovAdd");
+                this.$router.push("userDetail");
             },
             onEditLov(data) {
                 console.log(data);
-                this.$router.push({ name: "LovManage", params: { lovHeaderId: data} });
+                this.$router.push({ name: "userDetail", params: { userId: data} });
             },
             async getList() {
-                let {data} = await(await Api()).getListLov()
+                let {data} = await(await Api()).getUser()
                 this.tableData = data;
-            },
-            
-            // addForm(){
-            //     this.tableData.push({lovHeaderId:'',lovKey:'',descripton:'',createDate:'',createdBy:'',updatedDate:'',updatedBy:'',isDelete:''})
-            // }
-                 
+            }, 
         },
        
         data() {
@@ -57,8 +55,11 @@ import Api from '../../../service/CallHttp'
                 from: {
                     lovKey:''
                 },
+                hiddenOder:true,
+                hiddenTabAction:true,
                 textCustom:"จัดการข้อมูล",
-                hiddenButtonCustom: true,
+                hiddenButtonEdit: true,
+                hiddenButtonDelete:true,
                 tableData: [],
                 row:'row',
                 col:'col-md-12',
@@ -67,13 +68,25 @@ import Api from '../../../service/CallHttp'
                 tableColumns: [
                    
                     {
-                         prop: 'lovKey',
-                         label: 'LovKey', 
+                         prop: 'name',
+                         label: 'รหัสผู้ใช้งาน', 
                          minWidth: 200,
                         //  type:'input'
                     },
                     {
-                         prop: 'descripton',
+                         prop: 'surname',
+                         label: 'ชื่อ', 
+                         minWidth: 200,
+                        //  type:'input'
+                    },
+                     {
+                         prop: 'userName',
+                         label: 'นามสกุล', 
+                         minWidth: 200,
+                        //  type:'input'
+                    },
+                        {
+                         prop: 'createdDate',
                          label: 'descripton', 
                          minWidth: 200,
                         //  type:'input'
@@ -84,10 +97,7 @@ import Api from '../../../service/CallHttp'
                 onClick: this.nextPage,
                 text: "Add"
                 },
-                onClickTopCuttom:{
-                text: "จัดการข้อมูล",
-                onClick: this.onEditLov,
-                },  
+               
             }
         },
         mounted() {
