@@ -16,12 +16,18 @@
           class="btn btn-danger pull-right"
         ><span class="btn-label"><i class="nc-icon nc-simple-remove"></i></span>
           ยกเลิก</button>
-        <button
+        <button v-if="!checkButton"
           @click='validate'
           type="button"
           class="btn btn-success pull-right"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
+        <button v-if="checkButton"
+          @click='validateedit'
+          type="button"
+          class="btn btn-success pull-right"
+        ><span class="btn-label"><i class="nc-icon nc-ruler-pencil"></i></span>
+          แก้ไข </button>
       </div>
     </div>
     <div class="row justify-content-center mt-3 mb-3">
@@ -83,7 +89,7 @@ export default {
   },
   async created() {
         this.getListLovData();
-        this.getListLovDetail();        
+        this.getListLovDetail();      
   },
    data() {
     return {
@@ -101,6 +107,7 @@ export default {
       },
     
       hiddenButtonDelete: true,
+      checkButton: false,
       lableButton: "จัดการข้อมูล",
       tableData: ["lovCode","descTh1"],
       propsToSearch:["lovCode"],
@@ -159,7 +166,10 @@ export default {
         validate() {
           this.saveLovDetail()
         },
-   
+        validateedit() {
+          this.editLov()
+        },
+           
         async saveLovDetail(){
           let dataSave = await (await Api()).saveLovDetail(this.form.lovKey,this.tableData)
           swal('Good job!', 'You clicked the finish button!', 'success')
@@ -180,11 +190,21 @@ export default {
           let res = await(await Api()).getListLovData(this.$route.params.lovHeaderId.lovHeaderId)
           console.log(res.data);
           this.form = res.data;
+          if( this.$route.params.lovHeaderId.lovHeaderId  &&  this.tableData[0].lovDetailId  ){
+              this.checkButton = true;
+          }
         },
         async getListLovDetail() {
           let res = await(await Api()).getListLovDetail(this.$route.params.lovHeaderId.lovHeaderId,this.$route.params.lovHeaderId.lovKey,this.$route.params.lovHeaderId.descripton)
           console.log(res.data);
           this.tableData = res.data;
+        },
+        async editLov() {//{lovHeaderId,lovKey,descripton,fwLovDetailReqs}
+          let res = await(await Api()).editLov(this.form.lovHeaderId,this.form.lovKey,this.form.descripton,this.tableData)
+          console.log(res.data);
+          swal('Good job!', 'You clicked the finish button!', 'success')
+          this.$router.push("lov")
+          // this.tableData = res.data;
         },
       }
 
