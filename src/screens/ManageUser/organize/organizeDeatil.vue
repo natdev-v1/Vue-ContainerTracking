@@ -54,7 +54,6 @@
     </div>
     <div>
       <BwTable 
-      @onActionEdit='onDelete'
       :hiddenOder='hiddenOder'
       :hiddenTabAction='hiddenTabAction'
       :hiddenButtonDelete='hiddenButtonDelete'
@@ -142,9 +141,16 @@ export default {
             this.tableData = res.data.departDetail 
         },
         async saveOrg() {
-           let dataSave = await (await Api()).saveOrg(this.form.orgCode,this.form.orgDescription,this.tableData)
-           swal('Good job!', 'You clicked the finish button!', 'success')
-           this.$router.push('organize') 
+           if(this.$route.params.orgId.orgId != null){
+               let dataSave = await (await Api()).saveOrg(this.$route.params.orgId.orgId,this.form.orgCode,this.form.orgDescription,this.tableData)
+               swal('Good job!', 'You clicked the finish button!', 'success')
+               this.$router.push('organize') 
+           }else{
+               let dataSave = await (await Api()).saveOrg(this.form.orgCode,this.form.orgDescription,this.tableData)
+               swal('Good job!', 'You clicked the finish button!', 'success')
+               this.$router.push('organize') 
+           }
+           
         }
       }
 
