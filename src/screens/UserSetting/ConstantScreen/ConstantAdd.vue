@@ -18,17 +18,24 @@
           ยกเลิก</button>
         <button
           @click='validate'
+          v-if="!checkButton"
           type="button"
           class="btn btn-success pull-right"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
+        <button v-if="checkButton"
+          @click='validateEdit'
+          type="button"
+          class="btn btn-success pull-right"
+        ><span class="btn-label"><i class="nc-icon nc-ruler-pencil"></i></span>
+          แก้ไข </button>
       </div>
     </div>
     <div class="row mt-3">
       <div class="col-md-6 ml-auto mr-auto">
         <div class="form-group">
           <label>Constant Key : </label>
-          {{this.$route.params}}
+          
           <fg-input
            ref="name"
             v-model="form.constantKey"
@@ -81,6 +88,7 @@ export default {
           default: false
         }
       },
+      checkButton:false,
       isVisible: this.visible,
       form: {
         constantId:"",
@@ -102,6 +110,21 @@ export default {
         validate() {
           this.onSaveData()
         },
+        validateEdit(){
+          this.editConstant()
+        },
+        
+
+        async editConstant(){
+          let res = await(await CallHttp()).editConstant(this.form.constantId,this.form.constantKey,this.form.constantValue)
+          console.log(res.data);
+          this.$router.push("constant")
+        },
+
+        // async editConstant(data) {
+        //   console.log(data)
+        // this.$router.push({ name: 'ConstantAdd', params: { constantId: data }  });
+        // },
    
         async onSaveData(){
            let dataSave = await (await CallHttp()).saveConstant(this.form)
@@ -114,6 +137,9 @@ export default {
           let res = await(await CallHttp()).getListConstantData(this.$route.params.constantId.constantId)
           console.log(res.data);
           this.form = res.data;
+          if(this.$route.params.constantId.constantId !=  null){
+              this.checkButton  = true;
+          }
         }
     }
 }

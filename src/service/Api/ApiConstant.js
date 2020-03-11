@@ -9,10 +9,14 @@ export default(Api)=>{
     const getListConstant = async(constantKey)=>{
         return await Api.post('api/constant/list',{constantKey})
     }
+    const editConstant = async(constantId,constantKey,constantValue)=>{
+        return await Api.post('api/constant/edit',{constantId,constantKey,constantValue})
+    }
 
     return {
         saveConstant,
         getListConstantData,
-        getListConstant
+        getListConstant,
+        editConstant
     }
 }

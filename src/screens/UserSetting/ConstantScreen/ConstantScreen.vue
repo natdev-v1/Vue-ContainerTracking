@@ -73,7 +73,6 @@ export default {
     onEditConstant(data) {
       console.log(data)
       this.$router.push({ name: 'ConstantAdd', params: { constantId: data }  });
-
     },
     async getList(){
       let {data} = await(await Api()).getListConstant()
