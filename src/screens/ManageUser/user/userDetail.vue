@@ -13,6 +13,13 @@
       <div class="col-6">
      
         <button 
+          @click='validateEdit'
+          type="button"
+          class="btn btn-success pull-right"
+        ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
+          บันทึก </button>
+          
+        <button 
           @click='validate'
           type="button"
           class="btn btn-success pull-right"
@@ -56,6 +63,7 @@
           </fg-input>
         </div>
         <div class="form-group">
+      
           <label>Username  :  </label>
           <fg-input
             v-model="form.userName"
@@ -120,7 +128,8 @@ export default {
       BwCard
   },
   async created() {
-        this.getListUserDetail();      
+        this.getListUserDetail(); 
+        this.getById();     
   },
    data() {
     return {
@@ -131,6 +140,7 @@ export default {
         }
       },
       hiddenCheckbox:true,
+      isbutton:false,
       isVisible: this.visible,
       form: {
         userId:"",
@@ -202,12 +212,11 @@ export default {
         validate() {
           this.saveUser()
         },
-        validateedit() {
-          this.editLov()
+         validateEdit() {
+          this.editUser()
         },
-           
         async saveUser(){
-          let dataSave = await (await Api()).saveUser(this.form.surname,this.form.email,this.form.name,this.form.userName,this.form.password,this.tableData)
+          let dataSave = await (await Api()).saveUser(this.$route.params.userId.userId,this.form.surname,this.form.email,this.form.name,this.form.userName,this.form.password,this.tableData)
 
           this.$router.push('user')
             swal('Good job!', 'You clicked the finish button!', 'success')
@@ -215,20 +224,25 @@ export default {
         goBack(){
           this.$router.push("user")
         },
-    
+       async editUser(){
+          let dataSave = await (await Api()).saveUser(this.$route.params.userId.userId,this.form.surname,this.form.email,this.form.name,this.form.userName,this.form.password,this.tableData)
+
+          this.$router.push('user')
+            swal('Good job!', 'You clicked the finish button!', 'success')
+        },
      
         async getListUserDetail() {
           let res = await(await Api()).getUserDetail()
      
           this.tableData = res.data;
         },
-        async editLov() {
+        async getById() {
  
-        console.log("this.form.tableData",this.form);
-          let res = await(await Api()).editLov(this.form,this.tableData)
+          let res = await(await Api()).getByIdUser(this.$route.params.userId.userId)
          
-          swal('Good job!', 'You clicked the finish button!', 'success')
-          this.$router.push("lov")
+          this.form = res.data.user
+          console.log("res.data",res.data);
+          
           // this.tableData = res.data;
         },
       }

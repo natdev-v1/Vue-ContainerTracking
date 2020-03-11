@@ -5,18 +5,22 @@ export default (Api)=>{
     const getUserDetail = async()=>{
         return await Api.get('api/users/get_all')
       }
-      const saveUser = async(surname,email,name,userName,password)=>{
-        return await Api.post('api/users/save',{surname,email,name,userName,password})
+      const saveUser = async(userId,surname,email,name,userName,password)=>{
+        return await Api.post('api/users/save',{userId,surname,email,name,userName,password})
+      }
+      const EditUser = async(userId,surname,email,name,userName,password)=>{
+        return await Api.post('api/users/edit',{userId,surname,email,name,userName,password})
       }
       const getByIdUser = async(userId)=>{
-        return await Api.post(' api/users/getUser',{userId})
+        return await Api.post('api/users/getUser',{userId})
       }
      
     return {
         getUserDetail,
         getUser,
         saveUser,
-        getByIdUser
+        getByIdUser,
+        EditUser
     }
 }
 
