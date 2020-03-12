@@ -4,21 +4,19 @@
         <div class="row card" >
             <div class="col-12">
                 <div class='row mt-3'>
-                  <div class='row mt-3'>
-                    <div class='col-6'>
+                  <div class="col-4 text-center">
                         <label>To :</label>
                     </div>
-                    <div class='col-6'>
+                    <div class="col-4 text-center">
                       <label>Booking No. :</label>
                       </div>
-                    </div>
-                    <div class="col-12 pull-right">
-                        <button
-                        type="button"
-                        class="btn-sm btn btn-success pull-right"
+                      <div class='col-4'>
+                      <button
+                        type="button" round outline @click="showSwal('input-field')"
+                        class="btn-md btn btn-success pull-right"
                         ><span class="btn-label"><i class="nc-icon nc-simple-add"></i></span>
                         Add </button>
-                    </div>
+                      </div>
                 </div>
                 
             </div>
@@ -27,6 +25,7 @@
             <div class="col-4 card">
                 <div class="row mt-3">
                     <div class="col-6 text-center">
+                     
                         Proforma Invoice No.<br>
                         <label>77080129</label>
                     </div>
@@ -55,6 +54,7 @@
                         :propsToSearch='propsToSearch'
                         ></BwTable>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -68,6 +68,7 @@ import Api from '../../service/CallHttp'
 import {DatePicker, TimeSelect, Slider, Tag, Input, Button, Select, Option} from 'element-ui'
 import BwTable from '../../components/BwTable/BwTable'
 import BwCard from '../../components/BwCard/BwCard'
+import swal from 'sweetalert2'
 export default {
   name:'LovManage',
   components: {
@@ -76,7 +77,7 @@ export default {
       [Select.name]: Select,
   },
   async created() {
-      if(this.$route.params.proformaInvoice != null){
+      if(this.$route.params.data.proformaInvoice != null){
           this.findTruckBookDetail();
       }
   },
@@ -104,17 +105,17 @@ export default {
       propsToSearch:[],
       tableColumns: [
                     {
-                         prop: 'plant',
+                         prop: 'material',
                          label: 'Material', 
                          minWidth: 100,
                     },
                     {
-                         prop: 'proformaInvoice',
+                         prop: 'lotNo',
                          label: 'Lot No.', 
                          minWidth: 100,
                     },
                     {
-                         prop: 'status',
+                         prop: 'quantity',
                          label: 'Quantity', 
                          minWidth: 100,
                     },
@@ -201,20 +202,45 @@ export default {
     };
   },
     methods: {
+      showSwal(type){
+        swal({
+            title: 'รายละเอียด',
+            html: '<div class="form-group">' +
+            '<input id="input-field" type="text" class="form-control" />' +
+            '<br>'+
+               '<input id="input-field" type="text" class="form-control" />'+
+            '<br>'+
+               '<input id="input-field" type="text" class="form-control" />'+
+            '</div>',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-success btn-fill',
+            cancelButtonClass: 'btn btn-danger btn-fill',
+            buttonsStyling: false
+            
+          }).then(function (result) {
+            swal({
+              type: 'success',
+              html: 'You entered',
+              confirmButtonClass: 'btn btn-success btn-fill',
+              buttonsStyling: false
+
+            })
+          }).catch(swal.noop)
+      },
         search() {
         },
         validateedit() {
           this.editLov()
         },
         goBack() {
-            this.$router.push("mtdr")
+            this.$router.push("truckBookData")
         },
         addData() {
             this.tableData.push({material:'',descTh1:'',descTh2:'',descEn1:'',descEn2:'',orderNo:''})
         },
         async findTruckBookDetail() {
             let res = await(await Api()).findTruckBookDetail(this.$route.params.data.proformaInvoice);
-            this.tableData = res.data;
+            this.tableData1 = res.data;
         }   
         
         

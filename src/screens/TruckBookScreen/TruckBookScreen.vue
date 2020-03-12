@@ -12,7 +12,7 @@
     </div>
 
     <div class="col-2 mt-4">
-        <h7 class="card-title">Truck Booking :</h7>
+        <h6 class="card-title">Truck Booking :</h6>
         <div class='pull-right'>
             <p-checkbox :checked="false">Yes</p-checkbox>
         </div>
@@ -128,6 +128,7 @@ export default {
             this.$router.push("truckBookDetail");
         },
         onTruckBookEdit(data){
+          console.log("add",data);
           this.$router.push({ name: "truckBookDetail", params: { data: data} });
         },
         search() {
