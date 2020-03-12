@@ -42,7 +42,6 @@
       :textCustom='textCustom'
       :hiddenButtonCustom='hiddenButtonCustom'
       :hiddenOder='hiddenOder'
-      :hiddenTabAction='hiddenTabAction'
       :tableData='tableData'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
@@ -100,9 +99,19 @@ export default {
                          minWidth: 100,
                     },
                     {
+                         prop: 'text',
+                         label: 'Status', 
+                         minWidth: 100,
+                   
+                    },
+                     {
                          prop: 'status',
                          label: 'Status', 
                          minWidth: 100,
+                         btnText:'btnText',
+                         btnStyle:'btnStyle',
+                         onClick:'onClick',
+                           type:'button',
                     },
                     
                 ],
@@ -124,7 +133,15 @@ export default {
         },
         async getAllMtdr() {
                 let {data} = await(await Api()).getAllMtdr()
-                this.tableData = data;
+              this.tableData = data.map((data)=>{
+                  data.btnText = data.status == 'N'?'Create MTDR':'View'
+                  data.text = data.status == 'N'?'On Process':'Success'
+                  data.btnStyle = {backgroundColor:'#65B4B5'}
+                  data.onClick = ()=> {this.addMTDR(data)}
+                  return data;
+            })     
+            console.log("fildIndex",this.tableData);
+            
         },
         addMTDR(data) {
                 console.log(data);

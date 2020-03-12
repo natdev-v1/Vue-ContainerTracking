@@ -4,7 +4,7 @@
     <div class="col-4">
         <bw-time-picker ></bw-time-picker>
     </div>
-       <div class="col-2">
+       <div class="col-2"> 
            <button class="btn  btn-sm" style="background-color: #1CAF9A; color: #fff;" type="button"><i  aria-hidden="true" class="fa fa-search"></i> ค้นหา </button>
  
     </div>
@@ -21,7 +21,7 @@
      @onActionDetail='DetailSap'
       :hiddenOder='hiddenOder'
       :hiddenTabAction='hiddenTabAction'
-    :hiddenButtonDetail='hiddenButtonDetail'
+     :hiddenButtonDetail='hiddenButtonDetail'
       :hiddenButtonEdit='hiddenButtonEdit'
       :hiddenButtonDelete='hiddenButtonDelete'
       :tableData='tableData'

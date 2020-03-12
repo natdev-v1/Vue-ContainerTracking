@@ -54,6 +54,7 @@
                           size="small"
                               style="text-align:center"
                               v-model="scope.row[column.prop]"></el-input>
+                              <p-button v-else-if="column.type ==='button'" v-on:click="scope.row[column.onClick]()" :style="scope.row[column.btnStyle]" v-model="scope.row[column.prop]">{{scope.row[column.btnText]}}</p-button>
                                 <p-checkbox v-else-if="column.type ==='checkbox'" v-model="scope.row[column.prop]"></p-checkbox>
                           <h6 v-else >{{scope.row[column.prop]}}</h6>
                       </template>
@@ -173,7 +174,7 @@
     data () {
       return {
         pagination: {
-          perPage: 5,
+          perPage: 7,
           currentPage: 1,
           perPageOptions: [5, 10, 25, 50],
           total: 0
