@@ -1,7 +1,25 @@
 <template>
-    <bw-card>
-      <bw-time-picker title='Date : '></bw-time-picker>
-      <BwTable :setClass="'row'" :setStyle="{marginTop:'2%'}"/>
+    <bw-card title='Organize Table'>
+           <div class="row  mt-3 mb-3">
+    <div class="col-4">
+        <bw-time-picker ></bw-time-picker>
+    </div>
+       <div class="col-4">
+   <button _ngcontent-c5="" class="btn   btn-sm"  style="background-color: #1CAF9A; color: #fff;" type="button" ><i _ngcontent-c5="" aria-hidden="true" class="fa fa-upload"></i> Upload</button>
+    </div>
+    </div>
+      <BwTable 
+     @onActionDetail='DetailSap'
+      :hiddenOder='hiddenOder'
+      :hiddenTabAction='hiddenTabAction'
+         :hiddenButtonDetail='hiddenButtonDetail'
+      :hiddenButtonEdit='hiddenButtonEdit'
+      :hiddenButtonDelete='hiddenButtonDelete'
+      :tableData='tableData'
+      :tableColumns='tableColumns'
+      :propsToSearch='propsToSearch'
+      deleteBy="orgId"
+      ></BwTable>
     </bw-card>
 </template>
 
@@ -11,25 +29,69 @@ import BwTimePicker from '../../components/BwTimePicker/BwTimePicker'
 import BwCard from '../../components/BwCard/BwCard'
 import Api from '../../service/CallHttp'
     export default {
-        name:'ImpSAP',
+        name:'organize',
         components:{
         BwTable,
         BwTimePicker,
         BwCard
         },
-        computed: {
+        created () {
+            this.getAll();
+        },
+        computed: { 
             
-        },
+        }, 
         methods: {
+            nextPage() {
+                this.$router.push("organizeDeatil");
+            },
+            DetailSap(data) {
+                console.log(data);
+                this.$router.push({ name: "sapDetail", params: { data: data} });
+            },
+            async getAll() {
+                let {data} = await(await Api()).getListFile()
+                this.tableData = data.sapListZTPHdr;
+           
+            },
+                 
         },
-       async created() {
-          let res = await (await Api()).getListFile() 
-        },
+       
         data() {
             return {
-                row:'row',
-                col:'col-md-12'
+                hiddenOder: true,
+                hiddenButtonDetail:true,
+                hiddenTabAction: true,
+                hiddenButtonEdit: false,
+                hiddenButtonDelete: false,
+                tableData: [],
+                propsToSearch:["orgCode", "orgDescription"],
+                tableColumns: [
+                    {
+                         prop: 'fileName',
+                         label: 'File Name', 
+                         minWidth: 200,
+                    },
+                    {
+                         prop: 'uploadDate',
+                         label: 'Upload Date', 
+                         minWidth: 200,
+                    },
+                    {
+                         prop: 'createdBy',
+                         label: 'Upload By', 
+                         minWidth: 200,
+                    },
+                    
+                ],
+                onClickAdd: {
+                onClick: this.nextPage,
+                text: "Add"
+                },
             }
+        },
+        mounted() {
+            
         },
     }
 </script>

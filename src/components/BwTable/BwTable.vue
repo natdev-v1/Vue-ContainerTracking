@@ -69,14 +69,19 @@
      
   <button  type="button"  @click="()=>onClickTopCuttom.onClick(props.row)" v-if="hiddenButtonCustom" class="btn btn-primary btn-sm"> {{onClickTopCuttom.text}}</button>
      </el-col>
-              
+         
+                    <p-button type="info" size="sm" icon v-if="hiddenButtonDetail" @click="handleDetail(props.$index, props.row)">
+                  <i class="nc-icon nc-zoom-split icon-bold"></i> 
+                </p-button>
                 <p-button type="success" size="sm" icon v-if="hiddenButtonEdit" @click="handleEdit(props.$index, props.row)">
                   <i class="fa fa-edit"></i> 
                 </p-button>
                 <p-button type="danger" size="sm"  v-if="hiddenButtonDelete"  icon @click="handleDelete(props.$index, props.row)">
                   <i class="nc-icon nc-box"></i>
                 </p-button>
+               
               </template>
+           
             </el-table-column> 
           </el-table>
         </div>
@@ -234,10 +239,15 @@
        type:String,
        default:''
       },
+      
       onActionEdit:{
         type:Function,
         default:()=>{}
       }  ,
+       onActionDetail:{
+        type:Function,
+        default:()=>{}
+      } ,
       hiddenButtonCustom:{
        type:Boolean,
        default:false
@@ -247,6 +257,9 @@
        default:false
       },
        hiddenButtonDelete:{
+       type:Boolean,
+       default:false
+      } ,hiddenButtonDetail:{
        type:Boolean,
        default:false
       },
@@ -272,6 +285,9 @@
       handleLike (index, row,) {
      
       },
+      handleDetail(index, row){
+          this.$emit('onActionDetail',row)
+      } ,
       handleEdit (index, row) {
        this.$emit('onActionEdit',row)
       },
