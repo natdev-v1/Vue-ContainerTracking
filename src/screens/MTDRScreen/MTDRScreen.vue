@@ -37,8 +37,10 @@
     </div>
     <div>
       <BwTable 
-      @onActionDetail='addMTDR'
-      :hiddenButtonDetail='hiddenButtonDetail'
+      @onEdit='addMTDR'
+      :onClickTopCuttom='onClickTopCuttom'
+      :textCustom='textCustom'
+      :hiddenButtonCustom='hiddenButtonCustom'
       :hiddenOder='hiddenOder'
       :hiddenTabAction='hiddenTabAction'
       :tableData='tableData'
@@ -79,9 +81,10 @@ export default {
         }
       },
       isVisible: this.visible,
+      textCustom:"จัดการข้อมูล",
+      hiddenButtonCustom: true,
       hiddenOder: true,
       hiddenTabAction: true,
-      hiddenButtonDetail: true,
       checkButton: false,
       tableData: [],
       propsToSearch:[],
@@ -107,6 +110,10 @@ export default {
       formValidations: {
         
       },
+      onClickTopCuttom:{
+                text: "จัดการข้อมูล",
+                onClick: this.addMTDR,
+                },    
     };
   },
     methods: {
