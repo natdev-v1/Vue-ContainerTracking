@@ -1,6 +1,7 @@
 import DashboardLayout from '../components/Dashboard/Layout/DashboardLayout.vue'
 // GeneralViews
 import NotFound from '../components/GeneralViews/NotFoundPage.vue'
+import ImpSAPDetail from '../screens/ImpSAP/ImpSAPDetail.vue'
 // Dashboard pages
 const Overview = () => import(/* webpackChunkName: "widgets" */ 'src/components/Dashboard/Views/Dashboard/Overview.vue')
 const Widgets = () => import(/* webpackChunkName: "widgets" */ 'src/components/Dashboard/Views/Dashboard/Widgets.vue')
@@ -68,7 +69,13 @@ let importSAP = {
       path: 'sap',
       name: 'sap',
       component: ImpSAT
+    },
+    {
+      path: 'sapDetail',
+      name: 'sapDetail',
+      component: ImpSAPDetail
     }
+	
   ]
 }
 
