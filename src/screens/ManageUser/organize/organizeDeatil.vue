@@ -5,7 +5,7 @@
              <button
          @click='goBack'
           type="button"
-          class="btn btn-info"
+          class="btn btn-default"
         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
           ย้อนกลับ</button>
       </div>

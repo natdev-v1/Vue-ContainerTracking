@@ -1,32 +1,44 @@
 <template>
   <div class="col-md-12 card">
     <div class="row justify-content-center mt-3 mb-3">
-        <v-subheader>Prepended icon</v-subheader>
+        <div class="col-4">
+                <fg-input label="Plant">
+                  <el-select class="select-success"
+                             size="large"
+                             placeholder="Select"
+                             v-model="selects.simple">
+                    <el-option v-for="option in selects.countries"
+                               class="select-danger"
+                               :value="option.value"
+                               :label="option.label"
+                               :key="option.label">
+                    </el-option>
+                  </el-select>
+                </fg-input>
+              </div>
       <div class="col-4">
         <div class="form-group">
-          <label>LovKey :   </label>
           <fg-input
-            v-model="form.lovKey"
-            placeholder="กรุณากรอก LovKey"
-            v-validate="formValidations.lovKey"
-            disabled
+            label="JOB/INV. Number"
+            placeholder="JOB/INV. Number"
           >
           </fg-input>
+
         </div>
-        <div class="form-group">
-          <label>Descripton :  </label>
-          <fg-input
-            v-model="form.descripton"
-            placeholder="กรุณากรอก descripton"
-            v-validate="formValidations.descripton"
-          >
-          </fg-input>
-        </div>
+      </div>
+      <div class='col-4 mt-3' >
+          <button
+          @click='search'
+          type="button"
+          class="btn btn-success"
+        ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
+          ค้นหา </button>
       </div> 
     </div>
     <div>
       <BwTable 
-      @onActionEdit='onDelete'
+      @onActionEdit='addMTDR'
+      :hiddenButtonEdit='hiddenButtonEdit'
       :hiddenOder='hiddenOder'
       :hiddenTabAction='hiddenTabAction'
       :tableData='tableData'
@@ -39,20 +51,25 @@
 
 <script>
 import Api from '../../service/CallHttp'
+import {DatePicker, TimeSelect, Slider, Tag, Input, Button, Select, Option} from 'element-ui'
 import BwTable from '../../components/BwTable/BwTable'
 import BwCard from '../../components/BwCard/BwCard'
 export default {
   name:'LovManage',
   components: {
       BwTable,
-      BwCard
+      BwCard,
+      [Select.name]: Select,
   },
   async created() {
-        this.getListLovData();
-        this.getListLovDetail();      
+      this.getAllMtdr();
   },
    data() {
     return {
+        selects: {
+          countries: [{value: 'Test1', label: 'Test1'},
+          ]
+        },
       props: {
         visible: {
           type: Boolean,
@@ -60,30 +77,25 @@ export default {
         }
       },
       isVisible: this.visible,
-      form: {
-        lovHeaderId:"",
-        lovKey: "",
-        descripton: ""  
-      },
       hiddenOder: true,
       hiddenTabAction: true,
-      hiddenButtonDelete: true,
+      hiddenButtonEdit: true,
       checkButton: false,
       tableData: [],
-      propsToSearch:["lovCode"],
+      propsToSearch:[],
       tableColumns: [
                     {
-                         prop: '',
+                         prop: 'plant',
                          label: 'Plant', 
                          minWidth: 100,
                     },
                     {
-                         prop: '',
+                         prop: 'proformaInvoice',
                          label: 'JOB/INV. Number', 
                          minWidth: 100,
                     },
                     {
-                         prop: '',
+                         prop: 'status',
                          label: 'Status', 
                          minWidth: 100,
                     },
@@ -91,61 +103,29 @@ export default {
                 ],
 
       formValidations: {
-        lovKey: {
-          required: true,
-        },
-        descripton: {
-          required: true,        
-        },
+        
       },
     };
   },
     methods: {
-        validate() {
-          this.saveLovDetail()
+        search() {
         },
         validateedit() {
           this.editLov()
         },
-           
-        async saveLovDetail(){
-          let dataSave = await (await Api()).saveLovDetail(this.form.lovKey,this.tableData)
-          swal('Good job!', 'You clicked the finish button!', 'success')
-          this.$router.push('lov')
+        async getAllMtdr() {
+                let {data} = await(await Api()).getAllMtdr()
+                this.tableData = data;
         },
+        addMTDR(data) {
+                console.log(data);
+                this.$router.push({ name: "mtdradd", params: { orgId: data} });
+        },   
         
-        onDelete(data) {
-          console.log(data);
-          this.$router.push({ name: "LovManage", params: { lovHeaderId: data.lovHeaderId } });
-        },
-        goBack(){
-          this.$router.push("lov")
-        },
-        addData(){
-          this.tableData.push({lovCode:'',descTh1:'',descTh2:'',descEn1:'',descEn2:'',orderNo:''})
-        },
-        async getListLovData() {
-          let res = await(await Api()).getListLovData(this.$route.params.lovHeaderId.lovHeaderId)
         
-          this.form = res.data;
-          if( this.$route.params.lovHeaderId.lovHeaderId  &&  this.tableData[0].lovDetailId  ){
-              this.checkButton = true;
-          }
-        },
-        async getListLovDetail() {
-          let res = await(await Api()).getListLovDetail(this.$route.params.lovHeaderId.lovHeaderId,this.$route.params.lovHeaderId.lovKey,this.$route.params.lovHeaderId.descripton)
-     
-          this.tableData = res.data;
-        },
-        async editLov() {//{lovHeaderId,lovKey,descripton,fwLovDetailReqs}
- 
-        console.log("this.form.tableData",this.form);
-          let res = await(await Api()).editLov(this.form,this.tableData)
-         
-          swal('Good job!', 'You clicked the finish button!', 'success')
-          this.$router.push("lov")
-          // this.tableData = res.data;
-        },
+        
+        
+        
       }
 
 

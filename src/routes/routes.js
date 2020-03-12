@@ -8,6 +8,8 @@ const Widgets = () => import(/* webpackChunkName: "widgets" */ 'src/components/D
 // AppScreen import
 import ImpSAT from '../screens/ImpSAP/ImpSAP.vue'
 import MTDRScreen from '../screens/MTDRScreen/MTDRScreen.vue'
+import MTDRAdd from '../screens/MTDRScreen/MTDRAdd.vue'
+import MTDRView from '../screens/MTDRScreen/MTDRView.vue'
 import TruckBookScreen from '../screens/TruckBookScreen/TruckBookScreen.vue'
 import LoginScreen from '../screens/LoginScreen/LoginScreen.vue'
 import LOVScreen from '../screens/UserSetting/LOVScreen/LOVScreen.vue'
@@ -76,6 +78,29 @@ let importSAP = {
       component: ImpSAPDetail
     }
 	
+  ]
+}
+
+let MTDR = {
+  path: '/mtdr',
+  component: DashboardLayout,
+  redirect: '/mtdr/mtdr',
+  children: [
+    {
+      path: 'mtdr',
+      name: 'mtdr',
+      component: MTDRScreen
+    },
+    {
+      path: 'mtdradd',
+      name: 'mtdradd',
+      component: MTDRAdd
+    },
+    {
+      path: 'mtdrview',
+      name: 'mtdrview',
+      component: MTDRView
+    },
   ]
 }
 

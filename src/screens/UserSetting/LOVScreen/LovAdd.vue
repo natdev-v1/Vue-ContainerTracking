@@ -1,11 +1,11 @@
 <template>
   <div class="col-md-12 card">
-          <div class="row mt-3">
+    <div class="row mt-3">
       <div class="col-6">
              <button
          @click='goBack'
           type="button"
-          class="btn btn-info"
+          class="btn btn-default"
         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
           ย้อนกลับ</button>
       </div>
