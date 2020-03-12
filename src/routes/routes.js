@@ -110,19 +110,6 @@ let loginPage = {
   component: LoginScreen
 }
 
-let MTDR = {
-  path: '/mtdr',
-  component: DashboardLayout,
-  redirect: '/mtdr/mtdr',
-  children: [
-    {
-      path: 'mtdr',
-      name: 'mtdr',
-      component: MTDRScreen
-    }
-  ]
-}
-
 let TruckBook = {
   path: '/truckBook',
   component: DashboardLayout,
