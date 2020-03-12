@@ -1,0 +1,255 @@
+<template>
+<div class="row" >
+    <div class="col-12">
+        <div class="row card" >
+            <div class="col-12">
+                <div class='row mt-3'>
+                    <div class="col-12 pull-right">
+                         <button
+                        @click='goBack'
+                        type="button"
+                        class="btn-sm btn btn-danger pull-right"
+                        ><span class="btn-label"><i class="nc-icon nc-simple-remove"></i></span>
+                        ยกเลิก</button>
+                        <button
+                        type="button"
+                        class="btn-sm btn btn-success pull-right"
+                        ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
+                        บันทึก </button>
+                    </div>
+                </div>
+                <div class='row mt-3'>
+                    <div class='col-3'>
+                        <label>PLANT:</label>
+                    </div>
+                    <div class='col-3'>
+                        <label>PRODUCT TYPE:</label>
+                    </div>
+                    <div class='col-3'>
+                        <label>ORIGINAL:</label>
+                    </div>
+                    <div class='col-3'>
+                        <label>LOADING DATE:</label>
+                    </div>
+                </div>
+                <div class='row mt-3 mb-3'>
+                    <div class='col-3'>
+                        <label>TYPE:</label>
+                    </div>
+                    <div class='col-3'>
+                        <label>CONTAINER LOADING:</label>
+                    </div>
+                    <div class='col-3'>
+                        <label>DESCRIPTION:</label>
+                    </div>
+                    <div class='col-3'>
+                        <label>BY:</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-4 card">
+                <div class="row mt-3">
+                    <div class="col-6 text-center">
+                        Proforma Invoice No.<br>
+                        <label>77080129</label>
+                    </div>
+                    <div class="col-6 text-center">
+                        Customer PO no.<br>
+                        <label>A1911194</label>
+                    </div>
+                </div>
+                <hr>
+                <BwTable 
+                :tableData='tableData1'
+                :tableColumns='tableColumns'
+                :propsToSearch='propsToSearch'
+                ></BwTable>
+            </div>
+            <div class="col-8">
+                <div class="col-md-12 card">
+                    <div class="row justify-content-center mt-3 mb-3">
+                        <div class="col-3 mt-3">
+                            asdasdsad
+                            {{this.$route.params.proformaInvoice}}
+                            Truck Type :
+                            <label></label>
+                        </div>
+                        <div class="col-3 mt-3">
+                            Transporter :
+                            <label></label>
+                        </div>
+                        <div class="col-3 mt-3">
+                            Container No. :
+                            <label>1</label>
+                        </div>
+                        <div class='col'>
+                            <button @click='addData' type="button" class="btn-sm btn btn-success pull-right">
+                            <span class="btn-label">
+                            <i class="nc-icon nc-simple-add">
+                            </i></span> เพิ่มข้อมูล
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <BwTable 
+                        :tableData='tableData'
+                        :tableColumns='tableColumns1'
+                        :propsToSearch='propsToSearch'
+                        ></BwTable>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</template>
+
+<script>
+import Api from '../../service/CallHttp'
+import {DatePicker, TimeSelect, Slider, Tag, Input, Button, Select, Option} from 'element-ui'
+import BwTable from '../../components/BwTable/BwTable'
+import BwCard from '../../components/BwCard/BwCard'
+export default {
+  name:'LovManage',
+  components: {
+      BwTable,
+      BwCard,
+      [Select.name]: Select,
+  },
+  async created() {
+      if(this.$route.params.proformaInvoice != null){
+          this.findTruckBookDetail();
+      }
+  },
+   data() {
+    return {
+        selects: {
+          countries: [{value: 'Test1', label: 'Test1'},
+          {value: 'Test2', label: 'Test2'},
+          {value: 'Test3', label: 'Test3'},
+          ]
+        },
+      props: {
+        visible: {
+          type: Boolean,
+          default: false
+        }
+      },
+      isVisible: this.visible,
+      hiddenOder: true,
+      hiddenTabAction: true,
+      hiddenButtonEdit: true,
+      checkButton: false,
+      tableData: [],
+      tableData1: [],
+      propsToSearch:[],
+      tableColumns: [
+                    {
+                         prop: 'plant',
+                         label: 'Material', 
+                         minWidth: 100,
+                    },
+                    {
+                         prop: 'proformaInvoice',
+                         label: 'Lot No.', 
+                         minWidth: 100,
+                    },
+                    {
+                         prop: 'status',
+                         label: 'Quantity', 
+                         minWidth: 100,
+                    },
+                    
+      ],
+      tableColumns1: [
+                    {
+                         prop: 'material',
+                         label: 'Meterial.', 
+                         minWidth: 50,
+                         type:'input'
+                    },
+                    {
+                         prop: 'codeNote',
+                         label: 'Code/Note', 
+                         minWidth: 50,
+                         type:'input'
+                    },
+                    {
+                         prop: 'logNo',
+                         label: 'Lot No.', 
+                         minWidth: 50,
+                         type:'input'
+                    },
+                    {
+                         prop: 'scNo',
+                         label: 'SC No.', 
+                         minWidth: 50,
+                         type:'input'
+                    },
+                    {
+                         prop: 'bags',
+                         label: 'Bags', 
+                         minWidth: 50,
+                         type:'input'
+                    },
+                    {
+                         prop: 'kgs',
+                         label: 'Kgs', 
+                         minWidth: 50,
+                         type:'input'
+                    },
+                    {
+                         prop: 'pallet',
+                         label: 'Pallet', 
+                         minWidth: 50,
+                         type:'input'
+                    },
+                    {
+                         prop: 'palletType',
+                         label: 'Pallet type', 
+                         minWidth: 50,
+                         type:'input'
+                    },
+                    {
+                         prop: 'remark',
+                         label: 'Remark', 
+                         minWidth: 50,
+                         type:'input'
+                    },                    
+      ],
+
+      formValidations: {
+        
+      },
+    };
+  },
+    methods: {
+        search() {
+        },
+        validateedit() {
+          this.editLov()
+        },
+        goBack() {
+            this.$router.push("mtdr")
+        },
+        addData() {
+            this.tableData.push({material:'',descTh1:'',descTh2:'',descEn1:'',descEn2:'',orderNo:''})
+        },
+        async findTruckBookDetail() {
+            let res = await(await Api()).findTruckBookDetail(this.$route.params.data.proformaInvoice);
+            this.tableData = res.data;
+        }   
+        
+        
+        
+        
+        
+      }
+
+
+}
+</script>
+

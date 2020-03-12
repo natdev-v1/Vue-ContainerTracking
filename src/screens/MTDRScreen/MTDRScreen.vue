@@ -68,6 +68,8 @@ export default {
     return {
         selects: {
           countries: [{value: 'Test1', label: 'Test1'},
+          {value: 'Test2', label: 'Test2'},
+          {value: 'Test3', label: 'Test3'},
           ]
         },
       props: {
@@ -119,7 +121,7 @@ export default {
         },
         addMTDR(data) {
                 console.log(data);
-                this.$router.push({ name: "mtdradd", params: { orgId: data} });
+                this.$router.push({ name: "mtdradd", params: { data: data} });
         },   
         
         
