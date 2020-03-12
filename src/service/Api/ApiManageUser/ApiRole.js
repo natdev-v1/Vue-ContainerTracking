@@ -1,7 +1,7 @@
 export default(Api)=>{
     const saveRole = async (data)=>{
-        let {roleCode,roleCategory,roleDesc} = data
-        return await Api.post('/api/role/save',{roleCode,roleCategory,roleDesc})
+        let {roleId,roleCode,roleCategory,roleDesc} = data
+        return await Api.post('/api/role/save',{roleId,roleCode,roleCategory,roleDesc})
     }
     const editRole = async(roleId,roleCode,roleCategory,roleDesc)=>{
         return await Api.post('api/role/edit',{roleId,roleCode,roleCategory,roleDesc})

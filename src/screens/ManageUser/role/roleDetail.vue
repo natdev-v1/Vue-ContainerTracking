@@ -23,12 +23,12 @@
           class="btn btn-success pull-right"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
-        <button v-if="checkButton"
+        <!-- <button v-if="checkButton"
           @click='validateEdit'
           type="button"
           class="btn btn-success pull-right"
         ><span class="btn-label"><i class="nc-icon nc-ruler-pencil"></i></span>
-          แก้ไข </button>
+          แก้ไข </button> -->
       </div>
     </div>
     <div class="row mt-3">
@@ -124,10 +124,10 @@ export default {
         validate() {
           this.onSaveData()
         },
-        validateEdit(){
+        // validateEdit(){
           // this.onSaveData()
-          this.editRole()
-        },
+        //   this.editRole()
+        // },
         
 
         async editRole(){
@@ -142,6 +142,9 @@ export default {
         // },
    
         async onSaveData(){
+          if(this.$route.params.roleId.roleId != null){
+            let dataSave = await (await CallHttp()).saveRole(this.form)
+          }
            let dataSave = await (await CallHttp()).saveRole(this.form)
               this.$router.push("role")
         },
@@ -152,9 +155,9 @@ export default {
           let res = await(await CallHttp()).getListRoleData(this.$route.params.roleId.roleId)
           console.log(res.data);
           this.form = res.data;
-          if(this.$route.params.roleId.roleId !=  null){
-              this.checkButton  = true;
-          }
+          // if(this.$route.params.roleId.roleId !=  null){
+          //     this.checkButton  = true;
+          // }
         }
     }
 }

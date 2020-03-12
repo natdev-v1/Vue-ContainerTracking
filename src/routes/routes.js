@@ -7,6 +7,7 @@ const Widgets = () => import(/* webpackChunkName: "widgets" */ 'src/components/D
 // AppScreen import
 import ImpSAT from '../screens/ImpSAP/ImpSAP.vue'
 import MTDRScreen from '../screens/MTDRScreen/MTDRScreen.vue'
+import TruckBookScreen from '../screens/TruckBookScreen/TruckBookScreen.vue'
 import LoginScreen from '../screens/LoginScreen/LoginScreen.vue'
 import LOVScreen from '../screens/UserSetting/LOVScreen/LOVScreen.vue'
 import LovAdd from '../screens/UserSetting/LOVScreen/LovAdd.vue'
@@ -86,6 +87,19 @@ let MTDR = {
       path: 'mtdr',
       name: 'mtdr',
       component: MTDRScreen
+    }
+  ]
+}
+
+let TruckBook = {
+  path: '/truckBook',
+  component: DashboardLayout,
+  redirect: '/truckBook/truckBookData',
+  children: [
+    {
+      path: 'truckBookData',
+      name: 'truckBookData',
+      component: TruckBookScreen
     }
   ]
 }
@@ -342,6 +356,7 @@ const routes = [
   loginPage,
   registerPage,
   lockPage,
+  TruckBook,
   {
     path: '/admin',
     component: DashboardLayout,
