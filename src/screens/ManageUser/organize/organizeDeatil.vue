@@ -60,6 +60,7 @@
       :tableData='tableData'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
+      deleteBy="departId"
       ></BwTable>
     </div>
   </div>
@@ -136,7 +137,7 @@ export default {
           this.tableData.push({departCode:'',departDesc:''})
         },
         async getListOrg() {
-          
+            let id = this.$route.params.orgId.orgId
             const res = await(await Api()).getListOrg(id)
             this.form.orgCode = res.data.orgCode
             this.form.orgDescription = res.data.orgDescription
@@ -147,8 +148,6 @@ export default {
                let dataSave = await (await Api()).saveOrg(this.$route.params.orgId.orgId,this.form.orgCode,this.form.orgDescription,this.tableData)
                swal('Good job!', 'You clicked the finish button!', 'success')
                this.$router.push('organize') 
-          
-           
         }
       }
 

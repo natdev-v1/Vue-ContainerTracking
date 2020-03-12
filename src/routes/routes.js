@@ -6,6 +6,7 @@ const Overview = () => import(/* webpackChunkName: "widgets" */ 'src/components/
 const Widgets = () => import(/* webpackChunkName: "widgets" */ 'src/components/Dashboard/Views/Dashboard/Widgets.vue')
 // AppScreen import
 import ImpSAT from '../screens/ImpSAP/ImpSAP.vue'
+import MTDRScreen from '../screens/MTDRScreen/MTDRScreen.vue'
 import LoginScreen from '../screens/LoginScreen/LoginScreen.vue'
 import LOVScreen from '../screens/UserSetting/LOVScreen/LOVScreen.vue'
 import LovAdd from '../screens/UserSetting/LOVScreen/LovAdd.vue'
@@ -75,6 +76,20 @@ let loginPage = {
   name: 'Login',
   component: LoginScreen
 }
+
+let MTDR = {
+  path: '/mtdr',
+  component: DashboardLayout,
+  redirect: '/mtdr/mtdr',
+  children: [
+    {
+      path: 'mtdr',
+      name: 'mtdr',
+      component: MTDRScreen
+    }
+  ]
+}
+
 let usersetting ={
   path: '/usersetting',
   component: DashboardLayout,
@@ -316,6 +331,7 @@ let overview ={
 const routes = [
   overview,
   importSAP,
+  MTDR,
   datasetting,
   componentsMenu,
   formsMenu,

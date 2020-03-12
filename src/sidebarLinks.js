@@ -10,6 +10,11 @@ export default [
     path: '/importData'
   },
   {
+    name: 'mtdr',
+    icon: 'nc-icon nc-bus-front-12',
+    path: '/mtdr'
+  },
+  {
     name: 'User Setting',
     icon: 'nc-icon nc-settings-gear-65',
     children: [
