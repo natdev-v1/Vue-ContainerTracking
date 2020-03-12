@@ -62,7 +62,7 @@
                 </div>
                 <hr>
                 <BwTable 
-                :tableData='tableData1'
+                :tableData='tableData'
                 :tableColumns='tableColumns'
                 :propsToSearch='propsToSearch'
                 ></BwTable>
@@ -71,8 +71,6 @@
                 <div class="col-md-12 card">
                     <div class="row justify-content-center mt-3 mb-3">
                         <div class="col-3 mt-3">
-                            asdasdsad
-                            {{this.$route.params.proformaInvoice}}
                             Truck Type :
                             <label></label>
                         </div>
@@ -94,7 +92,7 @@
                     </div>
                     <div>
                         <BwTable 
-                        :tableData='tableData'
+                        :tableData='tableData1'
                         :tableColumns='tableColumns1'
                         :propsToSearch='propsToSearch'
                         ></BwTable>
@@ -120,7 +118,7 @@ export default {
       [Select.name]: Select,
   },
   async created() {
-      if(this.$route.params.proformaInvoice != null){
+      if(this.$route.params.data.proformaInvoice != null){
           this.findTruckBookDetail();
       }
   },
@@ -148,17 +146,17 @@ export default {
       propsToSearch:[],
       tableColumns: [
                     {
-                         prop: 'plant',
+                         prop: 'material',
                          label: 'Material', 
                          minWidth: 100,
                     },
                     {
-                         prop: 'proformaInvoice',
+                         prop: 'batch',
                          label: 'Lot No.', 
                          minWidth: 100,
                     },
                     {
-                         prop: 'status',
+                         prop: 'quantity',
                          label: 'Quantity', 
                          minWidth: 100,
                     },
@@ -236,7 +234,7 @@ export default {
             this.$router.push("mtdr")
         },
         addData() {
-            this.tableData.push({material:'',descTh1:'',descTh2:'',descEn1:'',descEn2:'',orderNo:''})
+            this.tableData1.push({material:'',descTh1:'',descTh2:'',descEn1:'',descEn2:'',orderNo:''})
         },
         async findTruckBookDetail() {
             let res = await(await Api()).findTruckBookDetail(this.$route.params.data.proformaInvoice);

@@ -80,7 +80,7 @@ export default {
   data() {
     return {
       hiddenOder: true,
-      hiddenButtonDetail: true,
+      hiddenButtonDetail:  true,
       hiddenTabAction: true,
       hiddenButtonEdit: false,
       hiddenButtonDelete: false,
