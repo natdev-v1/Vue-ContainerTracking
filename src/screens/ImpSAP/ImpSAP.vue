@@ -4,15 +4,24 @@
     <div class="col-4">
         <bw-time-picker ></bw-time-picker>
     </div>
+       <div class="col-2">
+           <button class="btn  btn-sm" style="background-color: #1CAF9A; color: #fff;" type="button"><i  aria-hidden="true" class="fa fa-search"></i> ค้นหา </button>
+ 
+    </div>
+       <div class="col-2">
+         
+   <button @click="nextPageUpload" class="btn   btn-sm"  style="background-color: #1CAF9A; color: #fff;" type="button" ><i  aria-hidden="true" class="fa fa-upload"></i> Upload</button>
+    </div>
        <div class="col-4">
-   <button _ngcontent-c5="" class="btn   btn-sm"  style="background-color: #1CAF9A; color: #fff;" type="button" ><i _ngcontent-c5="" aria-hidden="true" class="fa fa-upload"></i> Upload</button>
+         
+   <button  @click="nextPageSearch" class="btn   btn-sm"  style="background-color: #1CAF9A; color: #fff;" type="button" > Search by Proforma Invoice</button>
     </div>
     </div>
       <BwTable 
      @onActionDetail='DetailSap'
       :hiddenOder='hiddenOder'
       :hiddenTabAction='hiddenTabAction'
-         :hiddenButtonDetail='hiddenButtonDetail'
+    :hiddenButtonDetail='hiddenButtonDetail'
       :hiddenButtonEdit='hiddenButtonEdit'
       :hiddenButtonDelete='hiddenButtonDelete'
       :tableData='tableData'
@@ -42,11 +51,17 @@ import Api from '../../service/CallHttp'
             
         }, 
         methods: {
+              nextPageSearch() {
+                this.$router.push("sapSearch");
+            },
+          nextPageUpload() {
+                this.$router.push("sapUpload");
+            },
             nextPage() {
                 this.$router.push("organizeDeatil");
             },
             DetailSap(data) {
-                console.log(data);
+              
                 this.$router.push({ name: "sapDetail", params: { data: data} });
             },
             async getAll() {

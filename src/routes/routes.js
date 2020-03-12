@@ -2,6 +2,8 @@ import DashboardLayout from '../components/Dashboard/Layout/DashboardLayout.vue'
 // GeneralViews
 import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 import ImpSAPDetail from '../screens/ImpSAP/ImpSAPDetail.vue'
+import ImpSAPUpload from '../screens/ImpSAP/ImpSAPUpload.vue'
+import ImpSAPSearch from '../screens/ImpSAP/ImpSAPSearch.vue'
 // Dashboard pages
 const Overview = () => import(/* webpackChunkName: "widgets" */ 'src/components/Dashboard/Views/Dashboard/Overview.vue')
 const Widgets = () => import(/* webpackChunkName: "widgets" */ 'src/components/Dashboard/Views/Dashboard/Widgets.vue')
@@ -76,6 +78,16 @@ let importSAP = {
       path: 'sapDetail',
       name: 'sapDetail',
       component: ImpSAPDetail
+    },
+    {
+      path: 'sapUpload',
+      name: 'sapUpload',
+      component: ImpSAPUpload
+    },
+    {
+      path: 'sapSearch',
+      name: 'sapSearch',
+      component: ImpSAPSearch
     }
 	
   ]
