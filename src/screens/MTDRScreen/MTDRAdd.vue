@@ -8,9 +8,9 @@
                          <button
                         @click='goBack'
                         type="button"
-                        class="btn-sm btn btn-danger pull-right"
-                        ><span class="btn-label"><i class="nc-icon nc-simple-remove"></i></span>
-                        ยกเลิก</button>
+                        class="btn-sm btn btn-default pull-left"
+                        ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
+                        ย้อนกลับ</button>
                         <button
                         type="button"
                         class="btn-sm btn btn-success pull-right"
@@ -32,7 +32,7 @@
                         <label>LOADING DATE:</label>
                     </div>
                 </div>
-                <div class='row mt-3 mb-3'>
+                <div class='row mt-3 mb-5'>
                     <div class='col-3'>
                         <label>TYPE:</label>
                     </div>
@@ -61,11 +61,23 @@
                     </div>
                 </div>
                 <hr>
-                <BwTable 
-                :tableData='tableData'
-                :tableColumns='tableColumns'
-                :propsToSearch='propsToSearch'
-                ></BwTable>
+                <div class="row mb-3">
+                    <BwTable 
+                    :tableData='tableData'
+                    :tableColumns='tableColumns'
+                    :propsToSearch='propsToSearch'
+                    ></BwTable>
+                </div>
+                <div class="row mb-5">
+                    <div class="col-6 text-right">
+                        N.W<br>
+                        Container<br>                        
+                    </div>
+                    <div class="col-6 text-left">
+                        <label>61100</label><br>
+                        <label>4</label><br>
+                    </div>
+                </div>
             </div>
             <div class="col-8">
                 <div class="col-md-12 card">
@@ -234,7 +246,7 @@ export default {
             this.$router.push("mtdr")
         },
         addData() {
-            this.tableData1.push({material:'',descTh1:'',descTh2:'',descEn1:'',descEn2:'',orderNo:''})
+            this.tableData1.push({material:'',codeNote:'',logNo:'',scNo:'',bags:'',kgs:'',pallet:'',palletType:'',remark:''})
         },
         async findTruckBookDetail() {
             let res = await(await Api()).findTruckBookDetail(this.$route.params.data.proformaInvoice);

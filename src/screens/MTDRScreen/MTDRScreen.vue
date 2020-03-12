@@ -37,8 +37,8 @@
     </div>
     <div>
       <BwTable 
-      @onActionEdit='addMTDR'
-      :hiddenButtonEdit='hiddenButtonEdit'
+      @onActionDetail='addMTDR'
+      :hiddenButtonDetail='hiddenButtonDetail'
       :hiddenOder='hiddenOder'
       :hiddenTabAction='hiddenTabAction'
       :tableData='tableData'
@@ -81,7 +81,7 @@ export default {
       isVisible: this.visible,
       hiddenOder: true,
       hiddenTabAction: true,
-      hiddenButtonEdit: true,
+      hiddenButtonDetail: true,
       checkButton: false,
       tableData: [],
       propsToSearch:[],
