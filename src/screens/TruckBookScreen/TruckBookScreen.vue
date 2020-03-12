@@ -1,45 +1,51 @@
 <template>
-  <div class="col-md-12 card"><br>
-    <div class="row-md-4">
+  <div class="col-md-12 card">
+      <div class="row justify-content-center mt-3 mb-3">
+    <div class="col-4">
         <div class="form-group">
-          <label>Performa Invoice : </label>
           <fg-input
-           ref="name"
-            v-model="form.constantKey"
+            label="Performa Invoice :"
             placeholder="*กรอก Performa Invoice"
-            v-validate="formValidations.constantKey"
           >
           </fg-input>
         </div>
     </div>
 
-    <div class="row-md-4">
-        <h6 class="card-title">Truck Booking :</h6>
-          <p-checkbox :checked="false">Yes</p-checkbox>
+    <div class="col-2 mt-4">
+        <h7 class="card-title">Truck Booking :</h7>
+        <div class='pull-right'>
+            <p-checkbox :checked="false">Yes</p-checkbox>
+        </div>
+          
+    </div>
+
+    <div class="col-2 mt-4">
           <p-checkbox :checked="false">No</p-checkbox>
     </div>
 
-    <div class="row-md-4">
+    <div class="row-mt-4 pull-left">
         <button
-         @click='validate'
+         @click='search'
           type="button"
-          class="btn btn-success pull-right"
+          class="btn btn-success"
         ><span class="btn-label"><i class="nc-icon nc-zoom-split"></i></span>
           ค้นหา</button>
     </div>
-
-    <div class="col-md-12 card">
+      </div>
         <div>
           <BwTable 
-          @onActionEdit='onDelete'
-          :hiddenOder='hiddenOder'
+          @onActionEdit='onTruckBookEdit'
+          :hiddenButtonEdit='hiddenButtonEdit'
+          :hiddenButtonCustom='hiddenButtonCustom'
           :hiddenTabAction='hiddenTabAction'
+          :hiddenOder='hiddenOder'
+          
+
           :tableData='tableData'
           :tableColumns='tableColumns'
           :propsToSearch='propsToSearch'
           ></BwTable>
         </div>
-    </div>
   </div>
 </template>
 
@@ -47,6 +53,7 @@
 import Api from '../../service/CallHttp'
 import BwTable from '../../components/BwTable/BwTable'
 import BwCard from '../../components/BwCard/BwCard'
+import {DatePicker, TimeSelect, Slider, Tag, Input, Button, Select, Option} from 'element-ui'
 export default {
   name:'TruckBook',
   components: {
@@ -54,8 +61,7 @@ export default {
       BwCard
   },
   async created() {
-        this.getListLovData();
-        this.getListLovDetail();      
+    this.findTruckBook();      
   },
    data() {
     return {
@@ -66,102 +72,78 @@ export default {
         }
       },
       isVisible: this.visible,
-      form: {
-        lovHeaderId:"",
-        lovKey: "",
-        descripton: ""  
-      },
+      onActionEdit: true,
+      hiddenButtonEdit: true,
+      hiddenButtonCustom: true,
       hiddenOder: true,
       hiddenTabAction: true,
-      hiddenButtonDelete: true,
-      checkButton: false,
+      checkButton: true,
       tableData: [],
-      propsToSearch:["lovCode"],
+      propsToSearch:["proformaInvoice"],
       tableColumns: [
                     {
-                         prop: '',
+                         prop: 'proformaInvoice',
                          label: 'Performa Invoice', 
                          minWidth: 100,
                     },
                     {
-                         prop: '',
+                         prop: 'billingDocument',
                          label: 'Billing Document	Sales', 
                          minWidth: 120,
                     },
                     {
-                         prop: '',
+                         prop: 'saleDocument',
                          label: 'Sales Document', 
                          minWidth: 90,
                     },
                     {
-                         prop: '',
+                         prop: 'deliverlyDocument',
                          label: 'Deliverly Document', 
                          minWidth: 110,
                     },
                     {
-                         prop: '',
+                         prop: 'customerPONo',
                          label: 'Costomer PO no.', 
                          minWidth: 100,
                     },
                     {
-                         prop: '',
+                         prop: 'soldTo',
                          label: 'Sold-to', 
                          minWidth: 80,
                     },
                     
                 ],
                 onClickAdd: {
-                    onClick: this.nextPage,
-                    text: "ค้นหา"
-                    },
+                onClick: this.nextPage,
+                text: "Add"
+                },
+                
       formValidations: {
-        lovKey: {
-          required: true,
-        },
-        descripton: {
-          required: true,        
-        },
+        
       },
     };
   },
     methods: {
-        validate() {
-          this.saveLovDetail()
+        nextPage() {
+            this.$router.push("truckBookDetail");
+        },
+        onTruckBookEdit(data){
+          this.$router.push({ name: "truckBookDetail", params: { data: data} });
+        },
+        search() {
         },
         validateedit() {
           this.editLov()
         },
-        async saveLovDetail(){
-          let dataSave = await (await Api()).saveLovDetail(this.form.lovKey,this.tableData)
-          this.$router.push('lov')
-        },
-        goBack(){
-          this.$router.push("lov")
-        },
-        async getListLovData() {
-          let res = await(await Api()).getListLovData(this.$route.params.lovHeaderId.lovHeaderId)
-        
-          this.form = res.data;
-          if( this.$route.params.lovHeaderId.lovHeaderId  &&  this.tableData[0].lovDetailId  ){
-              this.checkButton = true;
-          }
-        },
-        async getListLovDetail() {
-          let res = await(await Api()).getListLovDetail(this.$route.params.lovHeaderId.lovHeaderId,this.$route.params.lovHeaderId.lovKey,this.$route.params.lovHeaderId.descripton)
-     
-          this.tableData = res.data;
-        },
-        async editLov() {//{lovHeaderId,lovKey,descripton,fwLovDetailReqs}
- 
-        console.log("this.form.tableData",this.form);
-          let res = await(await Api()).editLov(this.form,this.tableData)
-         
-          this.$router.push("lov")
-          // this.tableData = res.data;
+        async findTruckBook(){
+          let {data} = await(await Api()).findTruckBook()
+                this.tableData = data;
         },
       }
-
-
 }
 </script>
+
+<style scoped>
+
+</style>
 

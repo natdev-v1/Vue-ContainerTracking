@@ -1,9 +1,13 @@
 export default(Api)=>{
-    const getByIdTruckBook = async(truckBookingHeadId)=>{
-        return await Api.post('api/truckBooking/get_by_id',{truckBookingHeadId})
+    const findTruckBook = async()=>{
+        return await Api.post('api/truckBooking/findTruckBook',{})
     }
+    const findTruckBookDetail = async(proformaInvoice)=>{
+        return await Api.post('api/truckBooking/findTruckBookDetail',{proformaInvoice})
+      }
 
     return {
-        getByIdTruckBook,
+        findTruckBook,
+        findTruckBookDetail
     }
 }

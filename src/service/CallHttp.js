@@ -7,6 +7,7 @@ import ApiRole from './Api/ApiManageUser/ApiRole'
 import ApiOrganize from './Api/ApiManageUser/ApiOrganize';
 import ApiUser from './Api/ApiManageUser/ApiUser'
 import ApiMtdr from './Api/ApiMtdr';
+import ApiTruckBook from './Api/ApiTruckBook';
 export default async ()=>{
      const baseUrl =   'http://baiwadev.thddns.net:9440/'
      const CTUrl = baseUrl+'CTBackend/'
@@ -28,5 +29,6 @@ export default async ()=>{
         ...ApiRole(APIToken),
         ...ApiUser(APIToken),
         ...ApiMtdr(APIToken),
+        ...ApiTruckBook(APIToken),
      }
 }

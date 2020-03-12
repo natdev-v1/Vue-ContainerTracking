@@ -13,6 +13,7 @@ import MTDRScreen from '../screens/MTDRScreen/MTDRScreen.vue'
 import MTDRAdd from '../screens/MTDRScreen/MTDRAdd.vue'
 import MTDRView from '../screens/MTDRScreen/MTDRView.vue'
 import TruckBookScreen from '../screens/TruckBookScreen/TruckBookScreen.vue'
+import TruckBookDetail from '../screens/TruckBookScreen/TruckBookDetail.vue'
 import LoginScreen from '../screens/LoginScreen/LoginScreen.vue'
 import LOVScreen from '../screens/UserSetting/LOVScreen/LOVScreen.vue'
 import LovAdd from '../screens/UserSetting/LOVScreen/LovAdd.vue'
@@ -131,6 +132,11 @@ let TruckBook = {
       path: 'truckBookData',
       name: 'truckBookData',
       component: TruckBookScreen
+    },
+    {
+      path: 'truckBookDetail',
+      name: 'truckBookDetail',
+      component: TruckBookDetail
     }
   ]
 }
