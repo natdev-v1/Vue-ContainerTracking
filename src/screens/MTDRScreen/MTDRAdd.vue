@@ -12,6 +12,7 @@
                         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
                         ย้อนกลับ</button>
                         <button
+                        @click='saveMTDR'
                         type="button"
                         class="btn-sm btn btn-success pull-right"
                         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
@@ -81,11 +82,11 @@
                 </div>
             </div>
             <div class="col-8">
-                <div class="col-md-12 card" >  <!-- :v-for="index in i" -->
-                    <div class="row justify-content-center mt-3 mb-3" >
+                <div class="col-md-12 card">
+                    <!-- <div class="row justify-content-center mt-3 mb-3" >
                         <div class="col-3 mt-3">Truck Type :<label></label></div>
                         <div class="col-3 mt-3">Transporter :<label></label></div>
-                        <div class="col-3 mt-3">Container No. :<!-- <label>{{this.truckBookDetailList[0].ctnNo}}</label> --></div>
+                        <div class="col-3 mt-3">Container No. :<label>{{this.truckBookDetailList[0].ctnNo}}</label></div>
                         <div class='col'>
                             <button @click='addData' type="button" class="btn-sm btn btn-success pull-right">
                             <span class="btn-label"><i class="nc-icon nc-simple-add"></i></span> เพิ่มข้อมูล
@@ -99,9 +100,9 @@
                         :propsToSearch='propsToSearch'
                         ></BwTable>
                     </div>
-                    <hr>
+                    <hr> -->
                 </div>
-                
+                 <!-- :v-for="test"  -->
             </div>
         </div>
     </div>
@@ -114,6 +115,7 @@ import Api from '../../service/CallHttp'
 import {DatePicker, TimeSelect, Slider, Tag, Input, Button, Select, Option} from 'element-ui'
 import BwTable from '../../components/BwTable/BwTable'
 import BwCard from '../../components/BwCard/BwCard'
+import swal from 'sweetalert2'
 export default {
   name:'LovManage',
   components: {
@@ -250,10 +252,15 @@ export default {
             let res = await(await Api()).getById(this.$route.params.data.proformaInvoice);
             console.log("this.truckBookDetailList >>>",res.data.truckBookingDtlRes);
             this.truckBookDetailList = res.data.truckBookingDtlRes;
-            let test = this.truckBookDetailList;
-            console.log(test.length);
+            let test = this.truckBookDetailList.length;
+            console.log(test);
             this.tableData1 = test.data;
             
+        },
+        async saveMTDR() {
+            let dataSave = await (await Api()).saveMTDR(this.$route.params.data.proformaInvoice,this.truckBookDetailList)
+            swal('Good job!', 'You clicked the finish button!', 'success')
+            this.$router.go(-1)
         },       
       }
 

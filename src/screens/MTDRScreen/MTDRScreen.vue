@@ -39,7 +39,6 @@
       <BwTable 
       @onEdit='addMTDR'
       :textCustom='textCustom'
-      :hiddenTabAction='hiddenTabAction'
       :hiddenButtonCustom='hiddenButtonCustom'
       :hiddenOder='hiddenOder'
       :tableData='tableData'
@@ -105,11 +104,12 @@ export default {
                     },
                      {
                          prop: 'status',
+                         label: 'Action',
                          minWidth: 100,
                          btnText:'btnText',
                          btnStyle:'btnStyle',
                          onClick:'onClick',
-                           type:'button',
+                         type:'button',
                     },
                     
                 ],

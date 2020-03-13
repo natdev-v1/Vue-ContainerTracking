@@ -11,13 +11,14 @@ export default (Api)=>{
     const getListId = async(bookingNo)=>{
       return await Api.post('api/mtdr/get_list_id',{bookingNo})
     }
-    const saveMTDR = async()=>{
-      return await Api.post('api/mtdr/save')
+    const saveMTDR = async(bookingNo,items)=>{
+      return await Api.post('api/mtdr/save',{bookingNo,items})
     }    
     return {
         getAllMtdr,
         findTruckBookDetail,
         getById,
-        getListId
+        getListId,
+        saveMTDR
     }
 }

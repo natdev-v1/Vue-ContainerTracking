@@ -15,6 +15,10 @@ import MTDRView from '../screens/MTDRScreen/MTDRView.vue'
 import TruckBookScreen from '../screens/TruckBookScreen/TruckBookScreen.vue'
 import TruckBookDetail from '../screens/TruckBookScreen/TruckBookDetail.vue'
 import TruckBookView from '../screens/TruckBookScreen/TruckBookView.vue'
+import VGMScreen from '../screens/Report/VGM_LGScreen/VGMScreen.vue'
+import VGMEMCScreen from '../screens/Report/VGM_EMCScreen/VGMEMCScreen.vue'
+import MTDRReport from '../screens/Report/MTDRReport/MTDRReport.vue'
+import CTRScreen from '../screens/Report/CTRScreen/CTRScreen.vue'
 import LoginScreen from '../screens/LoginScreen/LoginScreen.vue'
 import LOVScreen from '../screens/UserSetting/LOVScreen/LOVScreen.vue'
 import LovAdd from '../screens/UserSetting/LOVScreen/LovAdd.vue'
@@ -114,6 +118,34 @@ let MTDR = {
       path: 'mtdrview',
       name: 'mtdrview',
       component: MTDRView
+    },
+  ]
+}
+
+let Report = {
+  path: '/report',
+  component: DashboardLayout,
+  redirect: '/report/report',
+  children: [
+    {
+      path: 'vgmLgReport',
+      name: 'vgmLgReport',
+      component: VGMScreen
+    },
+    {
+      path: 'vgmEmcReport',
+      name: 'vgmEmcReport',
+      component: VGMEMCScreen
+    },
+    {
+      path: 'mtdrReport',
+      name: 'mtdrReport',
+      component: MTDRReport
+    },
+    {
+      path: 'ctrReport',
+      name: 'ctrReport',
+      component: CTRScreen
     },
   ]
 }
