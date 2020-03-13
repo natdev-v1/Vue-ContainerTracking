@@ -83,7 +83,7 @@
             </div>
             <div class="col-8">
                 <div class="col-md-12 card">
-                    <!-- <div class="row justify-content-center mt-3 mb-3" >
+                    <div class="row justify-content-center mt-3 mb-3" >
                         <div class="col-3 mt-3">Truck Type :<label></label></div>
                         <div class="col-3 mt-3">Transporter :<label></label></div>
                         <div class="col-3 mt-3">Container No. :<label>{{this.truckBookDetailList[0].ctnNo}}</label></div>
@@ -100,7 +100,7 @@
                         :propsToSearch='propsToSearch'
                         ></BwTable>
                     </div>
-                    <hr> -->
+                    <hr>
                 </div>
                  <!-- :v-for="test"  -->
             </div>

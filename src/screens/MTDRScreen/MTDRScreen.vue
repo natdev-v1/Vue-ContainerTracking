@@ -78,7 +78,6 @@ export default {
         }
       },
       isVisible: this.visible,
-      textCustom:"จัดการข้อมูล",
       hiddenButtonCustom: true,
       hiddenOder: true,
       hiddenTabAction: true,
@@ -149,7 +148,7 @@ export default {
         },
         viewMTDR(data) {
           console.log(data);
-          this.$router.pus,h({ name: "mtdrview", params: { data: data} });
+          this.$router.push({ name: "mtdrview", params: { data: data} });
         },     
         
         
