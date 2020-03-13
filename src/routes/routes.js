@@ -131,13 +131,13 @@ let Report = {
   redirect: '/report/report',
   children: [
     {
-      path: 'vgmLgReport',
-      name: 'vgmLgReport',
+      path: 'vgmlg',
+      name: 'vgmlg',
       component: VGMScreen
     },
     {
-      path: 'vgmEmcReport',
-      name: 'vgmEmcReport',
+      path: 'vgmemc',
+      name: 'vgmemc',
       component: VGMEMCScreen
     },
     {
@@ -439,6 +439,7 @@ const routes = [
   overview,
   importSAP,
   MTDR,
+  Report,
   datasetting,
   componentsMenu,
   formsMenu,

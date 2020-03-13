@@ -20,6 +20,41 @@ export default [
     path: '/mtdr'
   }, 
   {
+    name: 'Report',
+    icon: 'nc-icon nc-paper',
+    path: '',
+    children: [
+      {
+        name: 'VGM (LG)_Report',
+        path: '/report/vgmlg'
+      },
+      {
+        name: 'VGM (EMC)_Report',
+        path: '/report/vgmemc'
+      },
+      {
+        name: 'MTRD',
+        path: '/report/mtdrReport'
+      },
+      {
+        name: 'Container Tracking Report',
+        path: '/report/ctrReport'
+      },
+      {
+        name: 'Summary Report of Transporttation',
+        path: '/report/srotReport'
+      },
+      {
+        name: 'Sum Lot Pallet Report',
+        path: '/report/slprReport'
+      },
+      {
+        name: 'Download All Date Report',
+        path: '/report/dadrReport'
+      },
+    ]
+  },
+  {
     name: 'User Setting',
     icon: 'nc-icon nc-settings-gear-65',
     children: [
