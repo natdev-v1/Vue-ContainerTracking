@@ -11,8 +11,7 @@ export default(Api)=>{
     const findTruckBookView = async(proformaInvoice)=>{
         return await Api.post('api/truckBooking/findTruckBookView',{proformaInvoice})
     }
-    const saveTruckBook = async (data)=>{
-        let {proformaInvoice} = data
+    const saveTruckBook = async ()=>{
         return await Api.post('/api/truckBooking/save',{proformaInvoice})
     }
 

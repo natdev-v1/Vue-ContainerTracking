@@ -132,6 +132,16 @@ export default {
       tableData: [],
       tableDataAdd: [],
       propsToSearch:[],
+      form: {
+        ctnSize:"",
+        ctnNo:"",
+        sealNo:"",
+        place:"",
+        nw:"",
+        gw:"",
+        tare:"",
+        vgm:"",
+      },
       tableColumns: [
                     {
                          prop: 'material',
@@ -237,31 +247,31 @@ export default {
       validate() {
           this.onSaveData()
         },
-      showSwal(type){
-        swal({
-            title: 'รายละเอียด',
-            html: '<div class="form-group">' +
-            '<input id="input-field" type="text" class="form-control" placeholder="ขนาดตู้"/>' +
-            '<br>'+
-               '<input id="input-field" type="text" class="form-control" placeholder="Ctn.No" />'+
-            '<br>'+
-               '<input id="input-field" type="text" class="form-control" placeholder="Seal No."/>'+
-            '</div>',
-            showCancelButton: true,
-            confirmButtonClass: 'btn btn-success btn-fill',
-            cancelButtonClass: 'btn btn-danger btn-fill',
-            buttonsStyling: false
+      // showSwal(type){
+      //   swal({
+      //       title: 'รายละเอียด',
+      //       html: '<div class="form-group">' +
+      //       '<input id="input-field" type="text" class="form-control" placeholder="ขนาดตู้"/>' +
+      //       '<br>'+
+      //          '<input id="input-field" type="text" class="form-control" placeholder="Ctn.No" />'+
+      //       '<br>'+
+      //          '<input id="input-field" type="text" class="form-control" placeholder="Seal No."/>'+
+      //       '</div>',
+      //       showCancelButton: true,
+      //       confirmButtonClass: 'btn btn-success btn-fill',
+      //       cancelButtonClass: 'btn btn-danger btn-fill',
+      //       buttonsStyling: false
             
-          }).then(function (result) {
-            swal({
-              type: 'success',
-              html: 'เพิ่มข้อมูลสำเร็จ',
-              confirmButtonClass: 'btn btn-success btn-fill',
-              buttonsStyling: false
+      //     }).then(function (result) {
+      //       swal({
+      //         type: 'success',
+      //         html: 'เพิ่มข้อมูลสำเร็จ',
+      //         confirmButtonClass: 'btn btn-success btn-fill',
+      //         buttonsStyling: false
 
-            })
-          }).catch(swal.noop)
-      },
+      //       })
+      //     }).catch(swal.noop)
+      // },
         search() {
         },
         validateedit() {

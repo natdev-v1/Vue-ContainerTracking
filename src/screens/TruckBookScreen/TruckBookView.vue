@@ -16,7 +16,9 @@
                     <div class="col-4 text-center"><br>
                       <label>Booking No. :</label>
                       </div>
-                </div>
+                      <div class='col-4'>
+                      </div>
+                </div> 
             </div>
         </div>
         <div class="row" >
@@ -64,8 +66,8 @@
                         :propsToSearch='propsToSearch'
                         :hiddenButtonDelete='hiddenButtonDelete'
                         ></BwTable>
-                    </div>
-                </div>
+                    </div>                    
+                </div>                
             </div>
         </div>
     </div>
@@ -80,7 +82,7 @@ import BwTable from '../../components/BwTable/BwTable'
 import BwCard from '../../components/BwCard/BwCard'
 import swal from 'sweetalert2'
 export default {
-  name:'TruckBookView',
+  name:'TruckBookDetail',
   components: {
       BwTable,
       BwCard,
@@ -88,7 +90,7 @@ export default {
   },
   async created() {
       if(this.$route.params.data.proformaInvoice != null){
-          this.findTruckBookView();
+          this.findTruckBookDetail();
       }
   },
    data() {
@@ -114,6 +116,16 @@ export default {
       tableData: [],
       tableDataAdd: [],
       propsToSearch:[],
+      form: {
+        ctnSize:"",
+        ctnNo:"",
+        sealNo:"",
+        place:"",
+        nw:"",
+        gw:"",
+        tare:"",
+        vgm:"",
+      },
       tableColumns: [
                     {
                          prop: 'material',
@@ -203,6 +215,8 @@ export default {
                          prop: 'status',
                          label: '#', 
                          minWidth: 100,
+                         type:'button',
+                         onClick:'onClick',
                     },                    
       ],
       onClickDelete:{
@@ -214,6 +228,9 @@ export default {
     };
   },
     methods: {
+      validate() {
+          this.onSaveData()
+        },
         search() {
         },
         validateedit() {
@@ -222,16 +239,10 @@ export default {
         goBack() {
             this.$router.push("truckBookData")
         },
-        addData() {
-            this.tableDataAdd.push({ctnSize:'',ctnNo:'',sealNo:'',place:'',nw:'',gw:'',tare:'',vgm:'',bag:'',pallet:'',m3:''})
-        },
         async findTruckBookDetail() {
             let res = await(await Api()).findTruckBookDetail(this.$route.params.data.proformaInvoice);
             this.tableData = res.data;
-        },
-        show(){
-          
-        }   
+        }, 
       }
 }
 </script>

@@ -53,13 +53,11 @@
         <div>
           <BwTable 
           @onActionEdit='onTruckBookEdit'
+          :onEdit='addTruckBook'
           :hiddenButtonEdit='hiddenButtonEdit'
           :hiddenButtonCustom='hiddenButtonCustom'
           :hiddenTabAction='hiddenTabAction'
-          :hiddenOder='hiddenOder'
-          :onClickTopCuttom='onClickTopCuttom'
-          :textCustom='textCustom'
-          
+          :hiddenOder='hiddenOder'          
 
           :tableData='tableData'
           :tableColumns='tableColumns'
@@ -133,7 +131,7 @@ export default {
                     },
                     {
                          prop: 'status',
-                         label: 'Actions', 
+                         label: 'Actions',
                          minWidth: 100,
                          btnText:'btnText',
                          btnStyle:'btnStyle',
@@ -142,14 +140,14 @@ export default {
                     },
                     
                 ],
-                onClickAdd: {
-                onClick: this.nextPage,
-                text: "Add"
-                },
-                onClickTopCuttom:{
-                text: "จัดการข้อมูล",
-                onClick: this.onTruckBookEdit,
-                },  
+                // onClickAdd: {
+                // onClick: this.nextPage,
+                // text: "Add"
+                // },
+                // onClickTopCuttom:{
+                // text: "จัดการข้อมูล",
+                // onClick: this.onTruckBookEdit,
+                // },  
                 
       formValidations: {
         
@@ -160,29 +158,41 @@ export default {
       search() {
         
       },
-        nextPage() {
-            this.$router.push("truckBookDetail");
-        },
-        onTruckBookEdit(data){
-          console.log("add",data);
-          this.$router.push({ name: "truckBookDetail", params: { data: data} });
-        },
-        
-        validateEdit() {
-          this.editLov()
-        },
-        async findTruckBook(){
-          let {data} = await(await Api()).findTruckBook()
-                this.tableData = data.map((data)=>{
-                  data.btnText = data.status == 'N'?'Edit':'View'
-                  data.text = data.status == 'N'?'On Process':'Success'
-                  data.btnStyle = {backgroundColor:'#65B4B5'}
-                  data.onClick = ()=> {this.onTruckBookEdit(data)}
-                  return data;
-            })     
-            console.log("findIndex",this.tableData);
-        },
+      validateEdit() {
+        this.editLov()
+      },
+      nextPage() {
+          this.$router.push("truckBookDetail");
+      },
+      onTruckBookEdit(data){
+        console.log("add",data);
+        this.$router.push({ name: "truckBookDetail", params: { data: data} });
+      },
+      async findTruckBook(){
+        let {data} = await(await Api()).findTruckBook()
+              this.tableData = data.map((data)=>{
+                data.btnText = data.status > 0?'Edit':'View'
+                data.btnStyle = {backgroundColor:'#65B4B5'}
+                data.onClick = ()=> {
+                  if(data.btnText == 'Edit'){
+                    this.addTruckBook(data)
+                  } else {
+                    this.viewTruckBook(data)
+                  }
+                }
+                return data;
+          })     
+          console.log("Index",this.tableData);
+      },
+      addTruckBook(data){
+        console.log(data);
+        this.$router.push({ name: "truckBookDetail", params: { data: data} });
+      },
+      viewTruckBook(data){
+        console.log(data);
+        this.$router.push({ name: "truckBookView", params: { data: data} });
       }
+    }
 }
 </script>
 
