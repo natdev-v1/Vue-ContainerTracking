@@ -16,15 +16,7 @@
                     <div class="col-4 text-center"><br>
                       <label>Booking No. :</label>
                       </div>
-                      <div class='col-4'>
-                      <button
-                      @click='addData'
-                        type="button" round outline 
-                        class="btn-md btn btn-success pull-right"
-                        ><span class="btn-label"><i class="nc-icon nc-simple-add"></i></span>
-                        เพิ่มข้อมูล </button>
-                      </div>
-                </div> 
+                </div>
             </div>
         </div>
         <div class="row" >
@@ -73,17 +65,7 @@
                         :hiddenButtonDelete='hiddenButtonDelete'
                         ></BwTable>
                     </div>
-                    <div class="col">
-                      <button
-                        @click='validate'
-                        type="button"
-                        class="btn-md btn btn-success pull-right"
-                        ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
-                        บันทึก </button>
-                    </div>
-                    
                 </div>
-                
             </div>
         </div>
     </div>
@@ -98,7 +80,7 @@ import BwTable from '../../components/BwTable/BwTable'
 import BwCard from '../../components/BwCard/BwCard'
 import swal from 'sweetalert2'
 export default {
-  name:'TruckBookDetail',
+  name:'TruckBookView',
   components: {
       BwTable,
       BwCard,
@@ -106,7 +88,7 @@ export default {
   },
   async created() {
       if(this.$route.params.data.proformaInvoice != null){
-          this.findTruckBookDetail();
+          this.findTruckBookView();
       }
   },
    data() {
@@ -221,8 +203,6 @@ export default {
                          prop: 'status',
                          label: '#', 
                          minWidth: 100,
-                         type:'button',
-                         onClick:'onClick',
                     },                    
       ],
       onClickDelete:{
@@ -234,34 +214,6 @@ export default {
     };
   },
     methods: {
-      validate() {
-          this.onSaveData()
-        },
-      showSwal(type){
-        swal({
-            title: 'รายละเอียด',
-            html: '<div class="form-group">' +
-            '<input id="input-field" type="text" class="form-control" placeholder="ขนาดตู้"/>' +
-            '<br>'+
-               '<input id="input-field" type="text" class="form-control" placeholder="Ctn.No" />'+
-            '<br>'+
-               '<input id="input-field" type="text" class="form-control" placeholder="Seal No."/>'+
-            '</div>',
-            showCancelButton: true,
-            confirmButtonClass: 'btn btn-success btn-fill',
-            cancelButtonClass: 'btn btn-danger btn-fill',
-            buttonsStyling: false
-            
-          }).then(function (result) {
-            swal({
-              type: 'success',
-              html: 'เพิ่มข้อมูลสำเร็จ',
-              confirmButtonClass: 'btn btn-success btn-fill',
-              buttonsStyling: false
-
-            })
-          }).catch(swal.noop)
-      },
         search() {
         },
         validateedit() {
@@ -277,10 +229,9 @@ export default {
             let res = await(await Api()).findTruckBookDetail(this.$route.params.data.proformaInvoice);
             this.tableData = res.data;
         },
-        async onSaveData(){
-          let dataSave = await (await CallHttp()).saveTruckBook(this.form)
-              this.$router.push("ttruckBookDetail")
-        }    
+        show(){
+          
+        }   
       }
 }
 </script>

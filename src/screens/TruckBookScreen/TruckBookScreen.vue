@@ -10,27 +10,45 @@
           </fg-input>
         </div>
     </div>
+    
+    <div class="col-2 mt-4">
+      <div class='pull-right'>
+        <h6 class="card-title">Truck Booking :</h6>
+      </div>
+   
+    </div>
 
     <div class="col-2 mt-4">
-        <h6 class="card-title">Truck Booking :</h6>
-        <div class='pull-right'>
-            <p-checkbox :checked="false">Yes</p-checkbox>
+       
+        <div class='pull-left'>
+            <p-checkbox :checked="false">มี</p-checkbox>
+            <p-checkbox :checked="false">ไม่มี</p-checkbox>
         </div>
           
     </div>
 
-    <div class="col-2 mt-4">
-          <p-checkbox :checked="false">No</p-checkbox>
-    </div>
-
-    <div class="row-mt-4 pull-left">
+    <div class="col-2 mt-3">
+      <!-- <div class='pull-right'>
         <button
          @click='search'
           type="button"
           class="btn btn-success"
         ><span class="btn-label"><i class="nc-icon nc-zoom-split"></i></span>
           ค้นหา</button>
+      </div> -->
     </div>
+
+    <div class="col-2 mt-3">
+      <div class='pull-left'>
+        <button
+         @click='search'
+          type="button"
+          class="btn btn-success"
+        ><span class="btn-label"><i class="nc-icon nc-zoom-split"></i></span>
+          ค้นหา</button>
+      </div>
+    </div>
+
       </div>
         <div>
           <BwTable 
@@ -39,6 +57,8 @@
           :hiddenButtonCustom='hiddenButtonCustom'
           :hiddenTabAction='hiddenTabAction'
           :hiddenOder='hiddenOder'
+          :onClickTopCuttom='onClickTopCuttom'
+          :textCustom='textCustom'
           
 
           :tableData='tableData'
@@ -76,7 +96,7 @@ export default {
       hiddenButtonEdit: true,
       hiddenButtonCustom: true,
       hiddenOder: true,
-      hiddenTabAction: true,
+      hiddenTabAction: false,
       checkButton: true,
       tableData: [],
       propsToSearch:["proformaInvoice"],
@@ -111,12 +131,25 @@ export default {
                          label: 'Sold-to', 
                          minWidth: 80,
                     },
+                    {
+                         prop: 'status',
+                         label: 'Actions', 
+                         minWidth: 100,
+                         btnText:'btnText',
+                         btnStyle:'btnStyle',
+                         onClick:'onClick',
+                           type:'button',
+                    },
                     
                 ],
                 onClickAdd: {
                 onClick: this.nextPage,
                 text: "Add"
                 },
+                onClickTopCuttom:{
+                text: "จัดการข้อมูล",
+                onClick: this.onTruckBookEdit,
+                },  
                 
       formValidations: {
         
@@ -124,6 +157,9 @@ export default {
     };
   },
     methods: {
+      search() {
+        
+      },
         nextPage() {
             this.$router.push("truckBookDetail");
         },
@@ -131,14 +167,20 @@ export default {
           console.log("add",data);
           this.$router.push({ name: "truckBookDetail", params: { data: data} });
         },
-        search() {
-        },
-        validateedit() {
+        
+        validateEdit() {
           this.editLov()
         },
         async findTruckBook(){
           let {data} = await(await Api()).findTruckBook()
-                this.tableData = data;
+                this.tableData = data.map((data)=>{
+                  data.btnText = data.status == 'N'?'Edit':'View'
+                  data.text = data.status == 'N'?'On Process':'Success'
+                  data.btnStyle = {backgroundColor:'#65B4B5'}
+                  data.onClick = ()=> {this.onTruckBookEdit(data)}
+                  return data;
+            })     
+            console.log("findIndex",this.tableData);
         },
       }
 }
