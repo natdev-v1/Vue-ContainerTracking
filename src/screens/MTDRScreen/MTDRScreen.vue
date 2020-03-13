@@ -149,7 +149,7 @@ export default {
         },
         viewMTDR(data) {
           console.log(data);
-          this.$router.push({ name: "mtdrview", params: { data: data} });
+          this.$router.pus,h({ name: "mtdrview", params: { data: data} });
         },     
         
         
