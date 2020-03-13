@@ -8,14 +8,16 @@
          </button>
     </div>
        <div class="col-4">
-   <div  class="custom-file sm" id="customFile" lang="es">
-<input accept=".xlsx , .xls" aria-describedby="fileHelp" class="custom-file-input" type="file">
+   <!-- <div  class="custom-file sm" id="customFile" lang="es">
+<input  accept=".xlsx , .xls" aria-describedby="fileHelp" class="custom-file-input"  type="file">
 <label _ngcontent-c9="" class="custom-file-label" for="exampleInputFile"> Select File... </label>
-</div>
+</div> -->
+
+    <input class="file-input" type="file" ref="file" name="file"  >
     </div>
    
        <div class="col-4 pull-right"> 
- <button class="btn   btn-sm" style="background-color: #1CAF9A; color: #fff;" type="button"><i _ngcontent-c11="" aria-hidden="true" class="fa fa-download"></i> นำเข้ารายงาน
+ <button @click="uploadFileExcel" class="btn   btn-sm" style="background-color: #1CAF9A; color: #fff;" type="button"><i _ngcontent-c11="" aria-hidden="true" class="fa fa-download"></i> นำเข้ารายงาน
 </button>
     </div>
     </div>
@@ -54,7 +56,11 @@ import Api from '../../service/CallHttp'
         }, 
         methods: {
      goBack(){
+  
           this.$router.push("sap")
+        },
+        uploadFileExcel(){
+            this.submitForm();
         },
             nextPage() {
                 this.$router.push("organizeDeatil");
@@ -68,11 +74,24 @@ import Api from '../../service/CallHttp'
                 this.tableData = data.sapListZTPHdr;
            
             },
-                 
+            async  submitForm() {
+       
+            let formData = new FormData();
+             formData.append('fileName', this.$refs.file.name);
+              formData.append('fileUpload', this.$refs.file.files[0]);
+             formData.append('status', "ON_PROCESS");
+               console.log(" this.formData", this.formData);
+               let {data} = await(await Api()).uploadFile(formData)
+               this.tableData = data.sapUploadZTP
+     
+}  
         },
        
         data() {
             return {
+
+               fileName: '',
+               attachment: '',
                 hiddenOder: true,
                 hiddenButtonDetail:true,
                 hiddenTabAction: true,
