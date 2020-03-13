@@ -38,8 +38,8 @@
     <div>
       <BwTable 
       @onEdit='addMTDR'
-      :onClickTopCuttom='onClickTopCuttom'
       :textCustom='textCustom'
+      :hiddenTabAction='hiddenTabAction'
       :hiddenButtonCustom='hiddenButtonCustom'
       :hiddenOder='hiddenOder'
       :tableData='tableData'
@@ -67,12 +67,11 @@ export default {
   },
    data() {
     return {
-        selects: {
-          countries: [{value: 'Test1', label: 'Test1'},
-          {value: 'Test2', label: 'Test2'},
-          {value: 'Test3', label: 'Test3'},
+      selects: {
+          countries: [{value: 'PC01', label: 'PC01'},
+          {value: 'PC02', label: 'PC02'},
           ]
-        },
+      },
       props: {
         visible: {
           type: Boolean,
@@ -106,7 +105,6 @@ export default {
                     },
                      {
                          prop: 'status',
-                         label: 'Status', 
                          minWidth: 100,
                          btnText:'btnText',
                          btnStyle:'btnStyle',
@@ -118,35 +116,41 @@ export default {
 
       formValidations: {
         
-      },
-      onClickTopCuttom:{
-                text: "จัดการข้อมูล",
-                onClick: this.addMTDR,
-                },    
+      }, 
     };
   },
     methods: {
         search() {
         },
         validateedit() {
-          this.editLov()
+          
         },
         async getAllMtdr() {
-                let {data} = await(await Api()).getAllMtdr()
-              this.tableData = data.map((data)=>{
-                  data.btnText = data.status == 'N'?'Create MTDR':'View'
-                  data.text = data.status == 'N'?'On Process':'Success'
-                  data.btnStyle = {backgroundColor:'#65B4B5'}
-                  data.onClick = ()=> {this.addMTDR(data)}
-                  return data;
-            })     
-            console.log("fildIndex",this.tableData);
+          let {data} = await(await Api()).getAllMtdr()
+          this.tableData = data.map((data)=>{
+          data.btnText = data.status == 'N'?'Create MTDR':'View'
+          data.text = data.status == 'N'?'On Process':'Success'
+          data.btnStyle = {backgroundColor:'#65B4B5'}
+          data.onClick = ()=> {
+            if(data.btnText == 'Create MTDR'){
+              this.addMTDR(data)
+            } else {
+              this.viewMTDR(data)
+            }
             
+          }
+          return data;
+          })     
+          console.log("fildIndex",this.tableData); 
         },
         addMTDR(data) {
-                console.log(data);
-                this.$router.push({ name: "mtdradd", params: { data: data} });
-        },   
+          console.log(data);
+          this.$router.push({ name: "mtdradd", params: { data: data} });
+        },
+        viewMTDR(data) {
+          console.log(data);
+          this.$router.push({ name: "mtdrview", params: { data: data} });
+        },     
         
         
         

@@ -48,11 +48,11 @@
                 <div class="row mt-3">
                     <div class="col-6 text-center">
                         Proforma Invoice No.<br>
-                        <label>3</label>
+                        <label>{{this.dataHead.proformaInvoice}}</label>
                     </div>
                     <div class="col-6 text-center">
                         Customer PO no.<br>
-                        <label>3</label>
+                        <label>{{this.dataHead.customerPONo}}</label>
                     </div>
                 </div>
                 <hr>
@@ -121,21 +121,20 @@ export default {
       if(this.$route.params.data.proformaInvoice != null){
           this.findTruckBookDetail();
       }
+    //   if(this.$route.params.data.proformaInvoice != null){
+    //       this.findTruckBookDetail();
+    //   }
+    this.getListId();
   },
    data() {
     return {
-        selects: {
-          countries: [{value: 'Test1', label: 'Test1'},
-          {value: 'Test2', label: 'Test2'},
-          {value: 'Test3', label: 'Test3'},
-          ]
-        },
       props: {
         visible: {
           type: Boolean,
           default: false
         }
       },
+      dataHead:'',
       isVisible: this.visible,
       hiddenOder: true,
       hiddenTabAction: true,
@@ -228,17 +227,19 @@ export default {
         search() {
         },
         validateedit() {
-          this.editLov()
+          
         },
         goBack() {
             this.$router.push("mtdr")
         },
-        addData() {
-            this.tableData1.push({material:'',codeNote:'',logNo:'',scNo:'',bags:'',kgs:'',pallet:'',palletType:'',remark:''})
-        },
         async findTruckBookDetail() {
             let res = await(await Api()).findTruckBookDetail(this.$route.params.data.proformaInvoice);
+            this.dataHead = res.data[0];
             this.tableData = res.data;
+        },
+        async getListId() {
+            let res = await(await Api()).getListId(this.$route.params.data.proformaInvoice);
+            this.tableData1 = res.data;
         }   
         
         

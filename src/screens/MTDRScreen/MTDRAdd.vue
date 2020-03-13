@@ -21,6 +21,7 @@
                 <div class='row mt-3'>
                     <div class='col-3'>
                         <label>PLANT:</label>
+                        <!-- <label>{{this.truckBookDetailList[0]}}</label> -->
                     </div>
                     <div class='col-3'>
                         <label>PRODUCT TYPE:</label>
@@ -53,11 +54,11 @@
                 <div class="row mt-3">
                     <div class="col-6 text-center">
                         Proforma Invoice No.<br>
-                        <label>77080129</label>
+                        <label>{{this.dataHead.proformaInvoice}}</label>
                     </div>
                     <div class="col-6 text-center">
                         Customer PO no.<br>
-                        <label>A1911194</label>
+                        <label>{{this.dataHead.customerPONo}}</label>
                     </div>
                 </div>
                 <hr>
@@ -80,25 +81,14 @@
                 </div>
             </div>
             <div class="col-8">
-                <div class="col-md-12 card">
-                    <div class="row justify-content-center mt-3 mb-3">
-                        <div class="col-3 mt-3">
-                            Truck Type :
-                            <label></label>
-                        </div>
-                        <div class="col-3 mt-3">
-                            Transporter :
-                            <label></label>
-                        </div>
-                        <div class="col-3 mt-3">
-                            Container No. :
-                            <label>1</label>
-                        </div>
+                <div class="col-md-12 card" >  <!-- :v-for="index in i" -->
+                    <div class="row justify-content-center mt-3 mb-3" >
+                        <div class="col-3 mt-3">Truck Type :<label></label></div>
+                        <div class="col-3 mt-3">Transporter :<label></label></div>
+                        <div class="col-3 mt-3">Container No. :<!-- <label>{{this.truckBookDetailList[0].ctnNo}}</label> --></div>
                         <div class='col'>
                             <button @click='addData' type="button" class="btn-sm btn btn-success pull-right">
-                            <span class="btn-label">
-                            <i class="nc-icon nc-simple-add">
-                            </i></span> เพิ่มข้อมูล
+                            <span class="btn-label"><i class="nc-icon nc-simple-add"></i></span> เพิ่มข้อมูล
                             </button>
                         </div>
                     </div>
@@ -109,7 +99,9 @@
                         :propsToSearch='propsToSearch'
                         ></BwTable>
                     </div>
+                    <hr>
                 </div>
+                
             </div>
         </div>
     </div>
@@ -133,28 +125,26 @@ export default {
       if(this.$route.params.data.proformaInvoice != null){
           this.findTruckBookDetail();
       }
+    //   if(this.$route.params.data.proformaInvoice != null){
+          this.getById();
+    //   }
   },
    data() {
     return {
-        selects: {
-          countries: [{value: 'Test1', label: 'Test1'},
-          {value: 'Test2', label: 'Test2'},
-          {value: 'Test3', label: 'Test3'},
-          ]
-        },
       props: {
         visible: {
           type: Boolean,
           default: false
         }
       },
+      dataHead:'',
+      truckBookDetailList:'',
       isVisible: this.visible,
       hiddenOder: true,
       hiddenTabAction: true,
       hiddenButtonEdit: true,
       checkButton: false,
       tableData: [],
-      tableData1: [],
       propsToSearch:[],
       tableColumns: [
                     {
@@ -174,6 +164,7 @@ export default {
                     },
                     
       ],
+      tableData1: [],
       tableColumns1: [
                     {
                          prop: 'material',
@@ -240,7 +231,7 @@ export default {
         search() {
         },
         validateedit() {
-          this.editLov()
+          
         },
         goBack() {
             this.$router.push("mtdr")
@@ -250,13 +241,20 @@ export default {
         },
         async findTruckBookDetail() {
             let res = await(await Api()).findTruckBookDetail(this.$route.params.data.proformaInvoice);
+            this.dataHead = res.data[0];
+            console.log("this.mtdrList >>>",res.data);
+            console.log("this.dataHead >>>",res.data[0]);
             this.tableData = res.data;
-        }   
-        
-        
-        
-        
-        
+        },
+        async getById() {            
+            let res = await(await Api()).getById(this.$route.params.data.proformaInvoice);
+            console.log("this.truckBookDetailList >>>",res.data.truckBookingDtlRes);
+            this.truckBookDetailList = res.data.truckBookingDtlRes;
+            let test = this.truckBookDetailList;
+            console.log(test.length);
+            this.tableData1 = test.data;
+            
+        },       
       }
 
 
