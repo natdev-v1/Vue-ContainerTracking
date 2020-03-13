@@ -17,6 +17,9 @@ import TruckBookDetail from '../screens/TruckBookScreen/TruckBookDetail.vue'
 import TruckBookView from '../screens/TruckBookScreen/TruckBookView.vue'
 import VGMScreen from '../screens/Report/VGM_LGScreen/VGMScreen.vue'
 import VGMEMCScreen from '../screens/Report/VGM_EMCScreen/VGMEMCScreen.vue'
+import SROTScreen from '../screens/Report/SROTScreen/SROTScreen.vue'
+import SLPRScreen from '../screens/Report/SLPRScreen/SLPRScreen.vue'
+import DADRScreen from '../screens/Report/DADRScreen/DADRScreen.vue'
 import MTDRReport from '../screens/Report/MTDRReport/MTDRReport.vue'
 import CTRScreen from '../screens/Report/CTRScreen/CTRScreen.vue'
 import LoginScreen from '../screens/LoginScreen/LoginScreen.vue'
@@ -146,6 +149,21 @@ let Report = {
       path: 'ctrReport',
       name: 'ctrReport',
       component: CTRScreen
+    },
+    {
+      path: 'srotReport',
+      name: 'srotReport',
+      component: SROTScreen
+    },
+    {
+      path: 'slprReport',
+      name: 'slprReport',
+      component: SLPRScreen
+    },
+    {
+      path: 'dadrReport',
+      name: 'dadrReport',
+      component: DADRScreen
     },
   ]
 }
