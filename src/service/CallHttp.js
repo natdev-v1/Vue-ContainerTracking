@@ -8,6 +8,7 @@ import ApiOrganize from './Api/ApiManageUser/ApiOrganize';
 import ApiUser from './Api/ApiManageUser/ApiUser'
 import ApiMtdr from './Api/ApiMtdr';
 import ApiTruckBook from './Api/ApiTruckBook';
+import ApiUploadFile from './Api/ApiUploadFile';
 export default async ()=>{
      const baseUrl =   'http://baiwadev.thddns.net:9440/'
      const CTUrl = baseUrl+'CTBackend/'
@@ -17,9 +18,11 @@ export default async ()=>{
      {
       authorization:"Bearer "+localStorage.getItem('token'),
      })
-     const APITokenDataConfig = await  ApiMain('http://baiwadev.thddns.net:9440/aot-ric/',{
-      Authorization:"Bearer "+ localStorage.getItem('token')
-     })
+     const APIUploadFile = await  ApiMain(localUrl,
+      {
+       authorization:"Bearer "+localStorage.getItem('token'),
+       'Content-Type': 'multipart/form-data'
+      })
      return {
         ...ApiAutn(API),
         ...ApiFile(APIToken),
@@ -30,5 +33,6 @@ export default async ()=>{
         ...ApiUser(APIToken),
         ...ApiMtdr(APIToken),
         ...ApiTruckBook(APIToken),
+        ...ApiUploadFile(APIUploadFile)
      }
 }
