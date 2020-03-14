@@ -252,7 +252,10 @@ export default {
         async getById() {
           let {data} = await(await Api()).getByIdUser(this.$route.params.dataUser.userId)
           let {user={},role=[]} = data
-          this.form = user
+          this.form.name = user.name
+           this.form.surname = user.surname
+           this.form.email = user.email
+               this.form.userName = user.userName
            this.tableData.map((table,idx)=>{
              if(find(role,['roleCode',table.roleCode]))
                   table.check  = true

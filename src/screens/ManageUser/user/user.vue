@@ -45,8 +45,13 @@ import Api from '../../../service/CallHttp'
                 this.$router.push({ name: "userDetail", params: { dataUser: data} });
             },
             async getList() {
-                let {data} = await(await Api()).getUser()
-                this.tableData = data;
+                // let {data} = await(await Api()).getUser()
+                // this.tableData = data;
+                    let {data} = await(await Api()).getUser()
+                this.tableData = data.map((data)=>{
+                    data.createdDate = this.$moment(data.createdDate).format('DD/MM/YYYY')
+                    return data
+                });
             }, 
         },
        
@@ -87,7 +92,7 @@ import Api from '../../../service/CallHttp'
                     },
                         {
                          prop: 'createdDate',
-                         label: 'descripton', 
+                         label: 'Date Created', 
                          minWidth: 200,
                         //  type:'input'
                     },
