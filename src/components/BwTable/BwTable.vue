@@ -51,9 +51,25 @@
                       <template slot-scope="scope">
                           <el-input 
                           v-if="column.type ==='input'"
+                          :type="column.inputType || 'text'"
+                          min="1"
                           size="small"
-                              style="text-align:center"
-                              v-model="scope.row[column.prop]"></el-input>
+                          style="text-align:center"
+                          v-model="scope.row[column.prop]"></el-input>
+                                <el-select
+                                    v-else-if="column.type ==='select'"
+                                    v-model="scope.row[column.prop]"
+                                    filterable
+                                    allow-create
+                                    default-first-option
+                                    placeholder="เลือก">
+                                    <el-option
+                                      v-for="item in column.options"
+                                      :key="item.value"
+                                      :label="item.label"
+                                      :value="item.value">
+                                    </el-option>
+                                  </el-select>
                               <p-button v-else-if="column.type ==='button'" v-on:click="scope.row[column.onClick]()" :style="scope.row[column.btnStyle]" v-model="scope.row[column.prop]">{{scope.row[column.btnText]}}</p-button>
                                 <p-checkbox v-else-if="column.type ==='checkbox'" v-model="scope.row[column.prop]"></p-checkbox>
                           <h6 v-else >{{scope.row[column.prop]}}</h6>
@@ -276,7 +292,6 @@
       type:Boolean,
        default:false
       }
-    
     },
     methods: {
        warn(event) {
@@ -296,8 +311,7 @@
         console.log("index",index);
         console.log("row",this.deleteBy);
         console.log("row",row);
-        
-
+       this.$emit('onDelete',row)
         let indexToDelete = this.tableData.findIndex((tableRow) => {return tableRow[this.deleteBy] === row[this.deleteBy]})
         if (indexToDelete >= 0) {
           this.tableData.splice(indexToDelete, 1)

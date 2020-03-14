@@ -136,7 +136,7 @@ export default {
                          btnText:'btnText',
                          btnStyle:'btnStyle',
                          onClick:'onClick',
-                           type:'button',
+                        type:'button',
                     },
                     
                 ],
@@ -171,10 +171,11 @@ export default {
       async findTruckBook(){
         let {data} = await(await Api()).findTruckBook()
               this.tableData = data.map((data)=>{
-                data.btnText = data.status > 0?'Edit':'View'
+                let check = Number(data.status)== 0
+                data.btnText = check?'Truck Booking':'View'
                 data.btnStyle = {backgroundColor:'#65B4B5'}
                 data.onClick = ()=> {
-                  if(data.btnText == 'Edit'){
+                  if(check){
                     this.addTruckBook(data)
                   } else {
                     this.viewTruckBook(data)

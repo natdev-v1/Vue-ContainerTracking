@@ -1,7 +1,7 @@
 <template>
 <div class="row" >
     <div class="col-12">
-        <div class="row card">
+        <div class="row card" >
             <div class="col-12">
                 <div class='row mt-3'>
                     <div class="col-12 pull-right">
@@ -15,36 +15,37 @@
                 </div>
                 <div class='row mt-3'>
                     <div class='col-3'>
-                        <label>PLANT:&nbsp;&nbsp;&nbsp;PC01</label>
+                        <label>PLANT:</label>
+                        <!-- <label>{{this.truckBookDetailList[0]}}</label> -->
                     </div>
                     <div class='col-3'>
-                        <label>PRODUCT TYPE:&nbsp;&nbsp;&nbsp;FG</label>
+                        <label>PRODUCT TYPE:</label>
                     </div>
                     <div class='col-3'>
-                        <label>ORIGINAL:&nbsp;&nbsp;&nbsp;2602-SCL WH-LCB</label>
+                        <label>ORIGINAL:</label>
                     </div>
                     <div class='col-3'>
-                        <label>LOADING DATE:&nbsp;&nbsp;&nbsp;5-jun-19</label>
+                        <label>LOADING DATE:</label>
                     </div>
                 </div>
                 <div class='row mt-3 mb-5'>
                     <div class='col-3'>
-                        <label>TYPE:&nbsp;&nbsp;&nbsp;EXPORTED</label>
+                        <label>TYPE:</label>
                     </div>
                     <div class='col-3'>
-                        <label>CONTAINER LOADING:&nbsp;&nbsp;&nbsp;FCL</label>
+                        <label>CONTAINER LOADING:</label>
                     </div>
                     <div class='col-3'>
-                        <label>DESCRIPTION:&nbsp;&nbsp;&nbsp;SINGAPORE</label>
+                        <label>DESCRIPTION:</label>
                     </div>
                     <div class='col-3'>
-                        <label>BY:&nbsp;&nbsp;&nbsp;SEA</label>
+                        <label>BY:</label>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row" >
-            <div class="col-4 card">
+            <div class="col-3 card">
                 <div class="row mt-3">
                     <div class="col-6 text-center">
                         Proforma Invoice No.<br>
@@ -74,30 +75,25 @@
                     </div>
                 </div>
             </div>
-            <div class="col-8">
-                <div class="col-md-12 card">
-                    <div class="row justify-content-center mt-3 mb-3">
-                        <div class="col-3 mt-3">
-                            Truck Type :
-                            <label></label>
-                        </div>
-                        <div class="col-3 mt-3">
-                            Transporter :
-                            <label></label>
-                        </div>
-                        <div class="col-3 mt-3">
-                            Container No. :
-                            <label>1</label>
+            <div class="col-9">
+                <div  class="col-md-12 card" v-for="item in truckBookDetailList" :key="item.truckBookingDetailId">
+                    <div class="row justify-content-center mt-3 mb-3" >
+                        <div class="col-3 mt-3">Truck Type :<label></label></div>
+                        <div class="col-3 mt-3">Transporter :<label></label></div>
+                        <div class="col-3 mt-3">Container No. :<label>{{item.ctnNo}}</label></div>
+                        <div class='col'>
                         </div>
                     </div>
                     <div>
                         <BwTable 
-                        :tableData='tableData1'
+                        :tableData='item.mtdritems'
                         :tableColumns='tableColumns1'
                         :propsToSearch='propsToSearch'
                         ></BwTable>
                     </div>
+                    <hr>
                 </div>
+                 <!-- :v-for="test"  -->
             </div>
         </div>
     </div>
@@ -110,6 +106,7 @@ import Api from '../../service/CallHttp'
 import {DatePicker, TimeSelect, Slider, Tag, Input, Button, Select, Option} from 'element-ui'
 import BwTable from '../../components/BwTable/BwTable'
 import BwCard from '../../components/BwCard/BwCard'
+import swal from 'sweetalert2'
 export default {
   name:'LovManage',
   components: {
@@ -122,9 +119,8 @@ export default {
           this.findTruckBookDetail();
       }
     //   if(this.$route.params.data.proformaInvoice != null){
-    //       this.findTruckBookDetail();
+          this.getById();
     //   }
-    this.getListId();
   },
    data() {
     return {
@@ -135,13 +131,13 @@ export default {
         }
       },
       dataHead:'',
+      truckBookDetailList:'',
       isVisible: this.visible,
       hiddenOder: true,
       hiddenTabAction: true,
       hiddenButtonEdit: true,
       checkButton: false,
       tableData: [],
-      tableData1: [],
       propsToSearch:[],
       tableColumns: [
                     {
@@ -161,60 +157,55 @@ export default {
                     },
                     
       ],
+      tableData1: [],
       tableColumns1: [
                     {
                          prop: 'material',
                          label: 'Meterial.', 
-                         minWidth: 50,
-                         type:'input'
+                         minWidth: 120,
                     },
                     {
                          prop: 'codeNote',
                          label: 'Code/Note', 
-                         minWidth: 50,
-                         type:'input'
+                         minWidth: 130,
                     },
                     {
                          prop: 'logNo',
                          label: 'Lot No.', 
-                         minWidth: 50,
-                         type:'input'
+                         minWidth: 100,
                     },
                     {
                          prop: 'scNo',
                          label: 'SC No.', 
-                         minWidth: 50,
-                         type:'input'
+                         minWidth: 100,
+                         
                     },
                     {
                          prop: 'bags',
                          label: 'Bags', 
-                         minWidth: 50,
-                         type:'input'
+                         minWidth: 100,
+
                     },
                     {
                          prop: 'kgs',
                          label: 'Kgs', 
-                         minWidth: 50,
-                         type:'input'
+                         minWidth: 100,
                     },
                     {
                          prop: 'pallet',
                          label: 'Pallet', 
-                         minWidth: 50,
-                         type:'input'
+                         minWidth: 120,
                     },
                     {
                          prop: 'palletType',
                          label: 'Pallet type', 
-                         minWidth: 50,
-                         type:'input'
+                         type:'select',
+                         minWidth: 130
                     },
                     {
                          prop: 'remark',
                          label: 'Remark', 
-                         minWidth: 50,
-                         type:'input'
+                         minWidth: 120,
                     },                    
       ],
 
@@ -235,17 +226,18 @@ export default {
         async findTruckBookDetail() {
             let res = await(await Api()).findTruckBookDetail(this.$route.params.data.proformaInvoice);
             this.dataHead = res.data[0];
+            console.log("this.mtdrList >>>",res.data);
+            console.log("this.dataHead >>>",res.data[0]);
             this.tableData = res.data;
         },
-        async getListId() {
+        async getById() {            
             let res = await(await Api()).getListId(this.$route.params.data.proformaInvoice);
-            this.tableData1 = res.data;
-        }   
-        
-        
-        
-        
-        
+            console.log("this.truckBookDetailList >>>",res.data.truckBookingDtlRes);
+            this.truckBookDetailList = res.data[0].truckBookingDtlRes
+            let test = this.truckBookDetailList.length;
+            this.tableData1 = test.data;
+            
+        }      
       }
 
 

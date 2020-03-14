@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="row" >
-            <div class="col-4 card">
+            <div class="col-3 card">
                 <div class="row mt-3">
                     <div class="col-6 text-center">
                         Proforma Invoice No.<br>
@@ -81,21 +81,21 @@
                     </div>
                 </div>
             </div>
-            <div class="col-8">
-                <div class="col-md-12 card">
+            <div class="col-9">
+                <div  class="col-md-12 card" v-for="(item,index) in truckBookDetailList" :key="item.truckBookingDetailId">
                     <div class="row justify-content-center mt-3 mb-3" >
                         <div class="col-3 mt-3">Truck Type :<label></label></div>
                         <div class="col-3 mt-3">Transporter :<label></label></div>
-                        <div class="col-3 mt-3">Container No. :<label>{{this.truckBookDetailList[0].ctnNo}}</label></div>
+                        <div class="col-3 mt-3">Container No. :<label>{{item.ctnNo}}</label></div>
                         <div class='col'>
-                            <button @click='addData' type="button" class="btn-sm btn btn-success pull-right">
+                            <button @click='addData(index)' type="button" class="btn-sm btn btn-success pull-right">
                             <span class="btn-label"><i class="nc-icon nc-simple-add"></i></span> เพิ่มข้อมูล
                             </button>
                         </div>
                     </div>
                     <div>
                         <BwTable 
-                        :tableData='tableData1'
+                        :tableData='item.mtdr'
                         :tableColumns='tableColumns1'
                         :propsToSearch='propsToSearch'
                         ></BwTable>
@@ -171,55 +171,90 @@ export default {
                     {
                          prop: 'material',
                          label: 'Meterial.', 
-                         minWidth: 50,
-                         type:'input'
+                         minWidth: 120,
+                         type:'select',
+                         options: [{
+                                value: 'PB-1-COMMON',
+                                label: 'PB-1-COMMON'
+                                }, {
+                                value: 'PB-2-COMMON',
+                                label: 'PB-2-COMMON'
+                                }, {
+                                value: 'PB-3-COMMON',
+                                label: 'PB-3-COMMON'
+                        }],
                     },
                     {
                          prop: 'codeNote',
                          label: 'Code/Note', 
-                         minWidth: 50,
-                         type:'input'
+                         minWidth: 130,
+                         type:'input',
                     },
                     {
                          prop: 'logNo',
                          label: 'Lot No.', 
-                         minWidth: 50,
+                         minWidth: 100,
                          type:'input'
                     },
                     {
                          prop: 'scNo',
                          label: 'SC No.', 
-                         minWidth: 50,
-                         type:'input'
+                         minWidth: 100,
+                         type:'input',
+                         inputType:'number'
+                         
                     },
                     {
                          prop: 'bags',
                          label: 'Bags', 
-                         minWidth: 50,
-                         type:'input'
+                         minWidth: 100,
+                         type:'input',
+                         inputType:'number'
+
                     },
                     {
                          prop: 'kgs',
                          label: 'Kgs', 
-                         minWidth: 50,
-                         type:'input'
+                         minWidth: 100,
+                         type:'input',
+                         inputType:'number'
                     },
                     {
                          prop: 'pallet',
                          label: 'Pallet', 
-                         minWidth: 50,
-                         type:'input'
+                         minWidth: 120,
+                         type:'select',
+                         options: [{
+                                value: '1',
+                                label: '1'
+                                }, {
+                                value: '2',
+                                label: '2'
+                                }, {
+                                value: '3',
+                                label: '3'
+                        }],
                     },
                     {
                          prop: 'palletType',
                          label: 'Pallet type', 
-                         minWidth: 50,
-                         type:'input'
+                         type:'select',
+                         minWidth: 130,
+                         options: [{
+                                value: 'PB-1-COMMON',
+                                label: 'PB-1-COMMON'
+                                }, {
+                                value: 'PB-2-COMMON',
+                                label: 'PB-2-COMMON'
+                                }, {
+                                value: 'PB-3-COMMON',
+                                label: 'PB-3-COMMON'
+                        }],
                     },
                     {
                          prop: 'remark',
                          label: 'Remark', 
-                         minWidth: 50,
+                         minWidth: 120,
                          type:'input'
                     },                    
       ],
@@ -238,8 +273,8 @@ export default {
         goBack() {
             this.$router.push("mtdr")
         },
-        addData() {
-            this.tableData1.push({material:'',codeNote:'',logNo:'',scNo:'',bags:'',kgs:'',pallet:'',palletType:'',remark:''})
+        addData(id) {
+            this.truckBookDetailList[id].mtdr.push({material:'',codeNote:'',logNo:'',scNo:'',bags:'',kgs:'',pallet:'',palletType:'',remark:''})
         },
         async findTruckBookDetail() {
             let res = await(await Api()).findTruckBookDetail(this.$route.params.data.proformaInvoice);
@@ -251,7 +286,10 @@ export default {
         async getById() {            
             let res = await(await Api()).getById(this.$route.params.data.proformaInvoice);
             console.log("this.truckBookDetailList >>>",res.data.truckBookingDtlRes);
-            this.truckBookDetailList = res.data.truckBookingDtlRes;
+            this.truckBookDetailList = res.data.truckBookingDtlRes.map((data)=>{
+                data.mtdr = new Array()
+                return data
+            });
             let test = this.truckBookDetailList.length;
             console.log(test);
             this.tableData1 = test.data;

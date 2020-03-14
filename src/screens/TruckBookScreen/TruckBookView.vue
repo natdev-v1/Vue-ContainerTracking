@@ -11,10 +11,10 @@
                         class="btn-md btn btn-default pull-left"
                         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
                         ย้อนกลับ</button><br>
-                        <label>To :</label>
+                        <label>To :  {{getTo}}</label>
                     </div>
                     <div class="col-4 text-center"><br>
-                      <label>Booking No. :</label>
+                      <label>Booking No. : {{getBooking}}</label>
                       </div>
                       <div class='col-4'>
                       </div>
@@ -81,6 +81,7 @@ import {DatePicker, TimeSelect, Slider, Tag, Input, Button, Select, Option} from
 import BwTable from '../../components/BwTable/BwTable'
 import BwCard from '../../components/BwCard/BwCard'
 import swal from 'sweetalert2'
+import {get} from 'lodash'
 export default {
   name:'TruckBookDetail',
   components: {
@@ -92,6 +93,14 @@ export default {
       if(this.$route.params.data.proformaInvoice != null){
           this.findTruckBookDetail();
       }
+  },
+  computed: {
+    getTo(){
+      return get(this.tableData[0],"soldTo") || ''
+    },
+    getBooking(){
+      return get(this.tableData[0],"proformaInvoice") || ''
+    }
   },
    data() {
     return {
@@ -149,75 +158,57 @@ export default {
                          prop: 'ctnSize',
                          label: 'Ctn Size', 
                          minWidth: 100,
-                         type:'input'
                     },
                     {
                          prop: 'ctnNo',
                          label: 'Ctn No.', 
                          minWidth: 100,
-                         type:'input'
                     },
                     {
                          prop: 'sealNo',
                          label: 'Seal No.', 
                          minWidth: 100,
-                         type:'input'
                     },
                     {
                          prop: 'place',
                          label: 'Place', 
                          minWidth: 100,
-                         type:'input'
                     },
                     {
                          prop: 'nw',
                          label: 'N.W', 
                          minWidth: 100,
-                         type:'input'
                     },
                     {
                          prop: 'gw',
                          label: 'G.W', 
                          minWidth: 100,
-                         type:'input'
                     },
                     {
                          prop: 'tare',
                          label: 'Tare', 
                          minWidth: 100,
-                         type:'input'
                     },
                     {
                          prop: 'vgm',
                          label: 'VGM', 
                          minWidth: 100,
-                         type:'input'
                     },
                     {
                          prop: 'bag',
                          label: 'Bag', 
                          minWidth: 100,
-                         type:'input'
                     },
                     {
                          prop: 'pallet',
                          label: 'Pallet', 
                          minWidth: 100,
-                         type:'input'
                     },
                     {
                          prop: 'm3',
                          label: 'M3', 
                          minWidth: 100,
-                         type:'input'
-                    },
-                    {
-                         prop: 'status',
-                         label: '#', 
-                         minWidth: 100,
-                         type:'button',
-                         onClick:'onClick',
-                    },                    
+                    },                
       ],
       onClickDelete:{
 
@@ -240,8 +231,10 @@ export default {
             this.$router.push("truckBookData")
         },
         async findTruckBookDetail() {
-            let res = await(await Api()).findTruckBookDetail(this.$route.params.data.proformaInvoice);
-            this.tableData = res.data;
+            let truckBookDetail = await(await Api()).findTruckBookDetail(this.$route.params.data.proformaInvoice);
+            this.tableData = truckBookDetail.data
+            let getById = await(await Api()).getById(this.$route.params.data.proformaInvoice);
+            this.tableDataAdd= getById.data.truckBookingDtlRes;
         }, 
       }
 }

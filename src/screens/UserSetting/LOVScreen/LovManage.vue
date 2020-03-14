@@ -71,6 +71,7 @@
       :tableData='tableData'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
+      @onDelete='onDelete'
       ></BwTable>
     </div>
   </div>
@@ -177,9 +178,11 @@ export default {
           this.$router.push('lov')
         },
         
-        onDelete(data) {
-          console.log(data);
-          this.$router.push({ name: "LovManage", params: { lovHeaderId: data.lovHeaderId } });
+        async onDelete(data) {
+          console.log('>>>>>>',data);
+          
+          let res = await (await Api()).lovDelete(data.lovDetailId)
+          this.$router.go(-1);
         },
         goBack(){
           this.$router.push("lov")

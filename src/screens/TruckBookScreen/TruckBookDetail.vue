@@ -11,10 +11,10 @@
                         class="btn-md btn btn-default pull-left"
                         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
                         ย้อนกลับ</button><br>
-                        <label>To :</label>
+                        <label>To : {{getTo}}</label>
                     </div>
                     <div class="col-4 text-center"><br>
-                      <label>Booking No. :</label>
+                      <label>Booking No. : {{getBooking}}</label>
                       </div>
                       <div class='col-4'>
                       <button
@@ -70,12 +70,13 @@
                         :tableData='tableDataAdd'
                         :tableColumns='tableColumnsAdd'
                         :propsToSearch='propsToSearch'
-                        :hiddenButtonDelete='hiddenButtonDelete'
+                        :hiddenButtonDelete='true'
+                        :hiddenTabAction='true'
                         ></BwTable>
                     </div>
                     <div class="col">
                       <button
-                        @click='validate'
+                        @click='onSaveData'
                         type="button"
                         class="btn-md btn btn-success pull-right"
                         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
@@ -90,32 +91,35 @@
     <BwModal 
        :dialogVisible="dialogVisible" 
        :onConfirm="onConfirm"
+       :onDialogVisible="()=>dialogVisible = false"
       >
                <div class="form-group">
-          <label>Email address</label>
-          <fg-input  type="email"
-                     name="email"
-                     v-validate="modelValidations.size"
-                     :error="getError('email')"
-                     v-model="model.size">
+          <label>Container size</label>
+            <el-select v-model="model.ctnSize" placeholder="Select">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+         </el-select>
+        </div>
+        <div class="form-group">
+          <label>CTN No.</label>
+          <fg-input  type="text"
+                     name="ctnNo"
+                     v-validate="modelValidations.ctnNo"
+                     v-model="model.ctnNo"
+                     :error="getError('ctnNo')">
           </fg-input>
         </div>
         <div class="form-group">
-          <label>Password</label>
-          <fg-input  type="password"
-                     name="password"
-                     v-validate="modelValidations.ctnCode"
-                     v-model="model.ctnCode"
-                     :error="getError('password')">
-          </fg-input>
-        </div>
-        <div class="form-group">
-          <label>Confirm Password</label>
-          <fg-input  type="password"
-                     name="confirm"
-                     v-validate="modelValidations.sealCode"
-                     v-model="model.sealCode"
-                     :error="getError('confirm')">
+          <label>Seal No.</label>
+          <fg-input  type="text"
+                     name="sealNo"
+                     v-validate="modelValidations.sealNo"
+                     v-model="model.sealNo"
+                     :error="getError('sealNo')">
           </fg-input>
         </div>
     </BwModal>
@@ -144,6 +148,14 @@ export default {
           this.findTruckBookDetail();
       }
   },
+  computed: {
+    getTo(){
+      return get(this.tableData[0],"soldTo") || ''
+    },
+    getBooking(){
+      return get(this.tableData[0],"proformaInvoice") || ''
+    }
+  },
    data() {
     return {
         selects: {
@@ -151,25 +163,28 @@ export default {
           {value: 'Test2', label: 'Test2'},
           {value: 'Test3', label: 'Test3'},
           ]
-        },
+        }, options: [{
+          value: '40',
+          label: '40'
+        }, {
+          value: '50',
+          label: '50'
+        }],
         dialogVisible:false,
          model: {
-          size: '',
-          ctnCode: '',
-          sealCode: ''
+          ctnSize: '',
+          ctnNo: '',
+          sealNo: ''
         },
         modelValidations: {
-          size: {
+          ctnSize: {
             required: true,
-            email: true
           },
           ctnCode: {
             required: true,
-            min: 5
           },
           sealCode: {
             required: true,
-            confirmed: 'password'
           }
         },
       props: {
@@ -182,7 +197,6 @@ export default {
       hiddenOder: true,
       hiddenTabAction: true,
       hiddenButtonEdit: true,
-      hiddenButtonDelete: true,
       checkButton: false,
       tableData: [],
       tableDataAdd: [],
@@ -220,19 +234,16 @@ export default {
                          prop: 'ctnSize',
                          label: 'Ctn Size', 
                          minWidth: 100,
-                         type:'input'
                     },
                     {
                          prop: 'ctnNo',
                          label: 'Ctn No.', 
                          minWidth: 100,
-                         type:'input'
                     },
                     {
                          prop: 'sealNo',
                          label: 'Seal No.', 
                          minWidth: 100,
-                         type:'input'
                     },
                     {
                          prop: 'place',
@@ -245,50 +256,42 @@ export default {
                          label: 'N.W', 
                          minWidth: 100,
                          type:'input'
+
                     },
                     {
                          prop: 'gw',
                          label: 'G.W', 
                          minWidth: 100,
                          type:'input'
+
                     },
                     {
                          prop: 'tare',
                          label: 'Tare', 
-                         minWidth: 100,
+                         minWidth: 100,                     
                          type:'input'
+
                     },
                     {
                          prop: 'vgm',
                          label: 'VGM', 
                          minWidth: 100,
-                         type:'input'
                     },
                     {
                          prop: 'bag',
                          label: 'Bag', 
                          minWidth: 100,
-                         type:'input'
                     },
                     {
                          prop: 'pallet',
                          label: 'Pallet', 
                          minWidth: 100,
-                         type:'input'
                     },
                     {
                          prop: 'm3',
                          label: 'M3', 
                          minWidth: 100,
-                         type:'input'
-                    },
-                    {
-                         prop: 'status',
-                         label: '#', 
-                         minWidth: 100,
-                         type:'button',
-                         onClick:'onClick',
-                    },                    
+                    },                   
       ],
       onClickDelete:{
 
@@ -299,46 +302,31 @@ export default {
     };
   },
     methods: {
-      onConfirm(){
-        this.tableDataAdd.push({ctnSize:'',ctnNo:'',sealNo:'',place:'',nw:'',gw:'',tare:'',vgm:'',bag:'',pallet:'',m3:''})
-      },
-      validate() {
-          this.onSaveData()
-        },
         getError (fieldName) {
         return this.errors.first(fieldName)
       },
-      validate () {
+      onConfirm () {
         this.$validator.validateAll().then(isValid => {
-          this.$emit('on-submit', this.registerForm, isValid)
+          //this.$emit('on-submit', this.registerForm, isValid)
+          console.log(isValid)
+          if(isValid){
+              this.tableDataAdd.push({...this.model,place:415,nw:53,gw:12,tare:24,vgm:95,bag:103,pallet:40,m3:110})
+              this.clearForm()
+              this.dialogVisible = false
+          }
+
         })
         },
-      // showSwal(type){
-      //   swal({
-      //       title: 'รายละเอียด',
-      //       html: '<div class="form-group">' +
-      //       '<input id="input-field" type="text" class="form-control" placeholder="ขนาดตู้"/>' +
-      //       '<br>'+
-      //          '<input id="input-field" type="text" class="form-control" placeholder="Ctn.No" />'+
-      //       '<br>'+
-      //          '<input id="input-field" type="text" class="form-control" placeholder="Seal No."/>'+
-      //       '</div>',
-      //       showCancelButton: true,
-      //       confirmButtonClass: 'btn btn-success btn-fill',
-      //       cancelButtonClass: 'btn btn-danger btn-fill',
-      //       buttonsStyling: false
-            
-      //     }).then(function (result) {
-      //       swal({
-      //         type: 'success',
-      //         html: 'เพิ่มข้อมูลสำเร็จ',
-      //         confirmButtonClass: 'btn btn-success btn-fill',
-      //         buttonsStyling: false
-
-      //       })
-      //     }).catch(swal.noop)
-      // },
         search() {
+        },
+        clearForm(){
+        this.model=
+          { 
+          ctnSize: '',
+          ctnNo: '',
+          sealNo: ''
+          }
+          
         },
         validateedit() {
           this.editLov()
@@ -356,8 +344,11 @@ export default {
         
         },
         async onSaveData(){
-          let dataSave = await (await CallHttp()).saveTruckBook(this.form)
-              this.$router.push("ttruckBookDetail")
+         let to = get(this.tableData[0],"soldTo")
+         let proformaInvoice=get(this.tableData[0],"proformaInvoice")
+        
+          let dataSave = await (await Api()).saveTruckBook({bookingNo:proformaInvoice,to,proformaInvoice},this.tableDataAdd)
+              this.$router.go(-1)
         }    
       }
 }

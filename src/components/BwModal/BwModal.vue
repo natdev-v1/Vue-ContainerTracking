@@ -3,11 +3,11 @@
   :title="title"
   :visible.sync="dialogVisible"
   width="30%"
-  >
+  :before-close="handleClose">
   <slot></slot>
   <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">Cancel</el-button>
-    <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+    <el-button @click="onDialogVisible">Cancel</el-button>
+    <el-button type="primary" @click="onConfirm">Confirm</el-button>
   </span>
 </el-dialog>
 </template>
@@ -28,10 +28,21 @@ Vue.use(Button)
             title:{
                 type:String,
                 default:'' 
+            },
+            onDialogVisible:{
+                type:Function,
+                default:()=>{}
+            },
+            onConfirm:{
+                type:Function,
+                default:()=>{}
             }
         },
          methods: {
-   
+             handleClose(data){
+              this.onDialogVisible()
+              
+             }
         }
     }
 </script>

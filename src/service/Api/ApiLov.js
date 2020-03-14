@@ -20,6 +20,10 @@ export default (Api)=>{
       // let {lovHeaderId,lovKey,descripton} = data
       return await Api.post('/api/lov/list-data-detail',{lovHeaderId,lovKey,descripton})
     }
+    const lovDelete = async (lovDetailId) =>{
+      // let {lovHeaderId,lovKey,descripton} = data
+      return await Api.post('/api/lov/delete',{lovDetailId})
+    }
     
     return {
         getListLov,
@@ -27,6 +31,7 @@ export default (Api)=>{
         getListLovData,
         getListLovDetail,
         saveLovDetail,
-        editLov
+        editLov,
+        lovDelete
     }
 }
