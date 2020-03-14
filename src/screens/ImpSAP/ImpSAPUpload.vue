@@ -75,10 +75,9 @@ import Api from '../../service/CallHttp'
            
             },
             async  submitForm() {
-       
             let formData = new FormData();
-             formData.append('fileName', this.$refs.file.name);
-              formData.append('fileUpload', this.$refs.file.files[0]);
+             formData.append('fileName', this.$refs.file.files[0].name);
+             formData.append('fileUpload', this.$refs.file.files[0]);
              formData.append('status', "ON_PROCESS");
                console.log(" this.formData", this.formData);
                let {data} = await(await Api()).uploadFile(formData)

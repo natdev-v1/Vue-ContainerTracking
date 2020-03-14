@@ -295,7 +295,8 @@
       handleDelete (index, row) {
         console.log("index",index);
         console.log("row",this.deleteBy);
-
+        console.log("row",row);
+        
 
         let indexToDelete = this.tableData.findIndex((tableRow) => {return tableRow[this.deleteBy] === row[this.deleteBy]})
         if (indexToDelete >= 0) {

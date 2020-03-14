@@ -66,7 +66,10 @@ import Api from '../../service/CallHttp'
             },
             async getAll() {
                 let {data} = await(await Api()).getListFile()
-                this.tableData = data.sapListZTPHdr;
+                this.tableData = data.sapListZTPHdr.map((data)=>{
+                    data.uploadDate = this.$moment(data.uploadDate).format('DD/MM/YYYY')
+                    return data
+                });
            
             },
                  

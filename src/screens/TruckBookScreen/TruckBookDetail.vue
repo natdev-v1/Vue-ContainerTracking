@@ -18,7 +18,7 @@
                       </div>
                       <div class='col-4'>
                       <button
-                      @click='addData'
+                      @click='dialogVisible = true'
                         type="button" round outline 
                         class="btn-md btn btn-success pull-right"
                         ><span class="btn-label"><i class="nc-icon nc-simple-add"></i></span>
@@ -87,6 +87,38 @@
             </div>
         </div>
     </div>
+    <BwModal 
+       :dialogVisible="dialogVisible" 
+       :onConfirm="onConfirm"
+      >
+               <div class="form-group">
+          <label>Email address</label>
+          <fg-input  type="email"
+                     name="email"
+                     v-validate="modelValidations.size"
+                     :error="getError('email')"
+                     v-model="model.size">
+          </fg-input>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <fg-input  type="password"
+                     name="password"
+                     v-validate="modelValidations.ctnCode"
+                     v-model="model.ctnCode"
+                     :error="getError('password')">
+          </fg-input>
+        </div>
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <fg-input  type="password"
+                     name="confirm"
+                     v-validate="modelValidations.sealCode"
+                     v-model="model.sealCode"
+                     :error="getError('confirm')">
+          </fg-input>
+        </div>
+    </BwModal>
 </div>
 
 </template>
@@ -97,15 +129,18 @@ import {DatePicker, TimeSelect, Slider, Tag, Input, Button, Select, Option} from
 import BwTable from '../../components/BwTable/BwTable'
 import BwCard from '../../components/BwCard/BwCard'
 import swal from 'sweetalert2'
+import BwModal from '../../components/BwModal/BwModal'
+import {get} from 'lodash'
 export default {
   name:'TruckBookDetail',
   components: {
       BwTable,
       BwCard,
+      BwModal,
       [Select.name]: Select,
   },
   async created() {
-      if(this.$route.params.data.proformaInvoice != null){
+      if(get(this.$route.params.data,"proformaInvoice")){
           this.findTruckBookDetail();
       }
   },
@@ -116,6 +151,26 @@ export default {
           {value: 'Test2', label: 'Test2'},
           {value: 'Test3', label: 'Test3'},
           ]
+        },
+        dialogVisible:false,
+         model: {
+          size: '',
+          ctnCode: '',
+          sealCode: ''
+        },
+        modelValidations: {
+          size: {
+            required: true,
+            email: true
+          },
+          ctnCode: {
+            required: true,
+            min: 5
+          },
+          sealCode: {
+            required: true,
+            confirmed: 'password'
+          }
         },
       props: {
         visible: {
@@ -244,8 +299,19 @@ export default {
     };
   },
     methods: {
+      onConfirm(){
+        this.tableDataAdd.push({ctnSize:'',ctnNo:'',sealNo:'',place:'',nw:'',gw:'',tare:'',vgm:'',bag:'',pallet:'',m3:''})
+      },
       validate() {
           this.onSaveData()
+        },
+        getError (fieldName) {
+        return this.errors.first(fieldName)
+      },
+      validate () {
+        this.$validator.validateAll().then(isValid => {
+          this.$emit('on-submit', this.registerForm, isValid)
+        })
         },
       // showSwal(type){
       //   swal({
@@ -280,12 +346,14 @@ export default {
         goBack() {
             this.$router.push("truckBookData")
         },
-        addData() {
-            this.tableDataAdd.push({ctnSize:'',ctnNo:'',sealNo:'',place:'',nw:'',gw:'',tare:'',vgm:'',bag:'',pallet:'',m3:''})
-        },
         async findTruckBookDetail() {
-            let res = await(await Api()).findTruckBookDetail(this.$route.params.data.proformaInvoice);
+          let proformaInvoice = get(this.$route.params.data,"proformaInvoice")
+        
+            if(proformaInvoice){
+            let res = await(await Api()).findTruckBookDetail(proformaInvoice);
             this.tableData = res.data;
+            }
+        
         },
         async onSaveData(){
           let dataSave = await (await CallHttp()).saveTruckBook(this.form)
