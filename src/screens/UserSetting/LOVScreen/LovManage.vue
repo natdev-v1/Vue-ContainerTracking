@@ -188,7 +188,7 @@ export default {
           this.$router.push("lov")
         },
         addData(){
-          this.tableData.push({lovCode:'',descTh1:'',descTh2:'',descEn1:'',descEn2:'',orderNo:''})
+          this.tableData.push({lovKey:this.form.lovKey ,lovCode:'',descTh1:'',descTh2:'',descEn1:'',descEn2:'',orderNo:''})
         },
         async getListLovData() {
           let res = await(await Api()).getListLovData(this.$route.params.lovHeaderId.lovHeaderId)
@@ -200,8 +200,13 @@ export default {
         },
         async getListLovDetail() {
           let res = await(await Api()).getListLovDetail(this.$route.params.lovHeaderId.lovHeaderId,this.$route.params.lovHeaderId.lovKey,this.$route.params.lovHeaderId.descripton)
-     
+          
+            
           this.tableData = res.data;
+
+
+          
+            console.log();
         },
         async editLov() {//{lovHeaderId,lovKey,descripton,fwLovDetailReqs}
  
