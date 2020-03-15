@@ -12,7 +12,7 @@ export default [
   {
     name: 'Truck Booking',
     icon: 'nc-icon nc-delivery-fast',
-    path: '/truckbook'
+    path: '/truckBook/truckBookData'
   },
   {
     name: 'mtdr',
