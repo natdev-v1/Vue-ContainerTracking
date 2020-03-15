@@ -61,7 +61,7 @@ import Axios from 'axios';
         let {token} = await (await Api()).generatToken(this.form.username,this.form.password)
         if(token){
             localStorage.setItem('token',token)
-            this.$router.push({ path: "/importData" }) 
+            this.$router.push({ path: "/admin" }) 
         }
       }
     },
