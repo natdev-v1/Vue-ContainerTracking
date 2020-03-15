@@ -22,10 +22,10 @@
                   <br>
 
                   <p-checkbox>
-                    Subscribe to newsletter
+                    Remember
                   </p-checkbox>
 
-                  <p-button native-type="submit" slot="footer" type="warning" round block class="mb-3">Get started</p-button>
+                  <p-button class="btn btn-primary"  native-type="submit" slot="footer" style="background-color:#65B4B5" type="button" round block>Get started</p-button>
                 </card>
               </form>
             </div>
