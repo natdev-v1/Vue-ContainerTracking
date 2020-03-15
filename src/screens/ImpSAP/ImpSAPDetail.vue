@@ -22,7 +22,7 @@
       </div>
     </div>
     <BwTable
-      @onActionDetail='DetailSap'
+    
       :hiddenButtonEdit='hiddenButtonEdit'
       :hiddenButtonDelete='hiddenButtonDelete'
       :tableData='tableData'
@@ -71,9 +71,12 @@ export default {
     },
     async getByIdH() {
       let { data} = await (await Api()).getListFileHeader(this.$route.params.data.ztpHeadId);
-        this.form.uploadDate = data.sapListZTPHdr[0].uploadDate
+        // this.form.uploadDate = data.sapListZTPHdr[0].uploadDate
         this.form.createdBy = data.sapListZTPHdr[0].createdBy
- 
+        this.form.uploadDate =this.$moment(data.sapListZTPHdr[0].uploadDate).format('DD/MM/YYYY')
+
+
+         
     }
   },
 

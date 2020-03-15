@@ -45,7 +45,7 @@
         <button
          @click='search'
           type="button"
-          class="btn btn-success"
+   class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-zoom-split"></i></span>
           ค้นหา</button>
       </div>
