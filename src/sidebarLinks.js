@@ -55,6 +55,12 @@ export default [
     ]
   },
   {
+    name: 'MasterData',
+    icon: 'nc-icon nc-bus-front-12',
+    path: '/masterData'
+    
+  },
+  {
     name: 'User Setting',
     icon: 'nc-icon nc-settings-gear-65',
     children: [

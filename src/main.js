@@ -21,6 +21,8 @@ import initProgress from './progressbar';
 import routes from './routes/routes'
 
 // library imports
+// Icon
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import './assets/sass/paper-dashboard.scss'
 import './assets/sass/demo.scss'
@@ -37,6 +39,7 @@ Vue.use(VueNotify)
 Vue.use(SideBar, {sidebarLinks: sidebarLinks})
 Vue.use(VeeValidate)
 Vue.use(VueMoment)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 locale.use(lang)
 // overwrite defaults
 // Vue.use(VueLoading)

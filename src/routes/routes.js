@@ -50,7 +50,7 @@ import SweetAlert from 'src/components/Dashboard/Views/Components/SweetAlert.vue
 import Notifications from 'src/components/Dashboard/Views/Components/Notifications.vue'
 import Icons from 'src/components/Dashboard/Views/Components/Icons.vue'
 import Typography from 'src/components/Dashboard/Views/Components/Typography.vue'
-
+import MasterData from '../screens/MasterData/MasterData.vue'
 // Forms pages
 const RegularForms  = () => import(/* webpackChunkName: "forms" */ 'src/components/Dashboard/Views/Forms/RegularForms.vue')
 const ExtendedForms = () => import(/* webpackChunkName: "forms" */ 'src/components/Dashboard/Views/Forms/ExtendedForms.vue');
@@ -412,7 +412,18 @@ let registerPage = {
   name: 'Register',
   component: Register
 }
-
+let masterData = {
+  path: '/masterData',
+  component: DashboardLayout,
+  redirect: '/masterData/listData',
+  children: [
+    {
+      path: 'listData',
+      name: 'MasterData',
+      component: MasterData
+    }
+  ]
+}
 let lockPage = {
   path: '/lock',
   name: 'Lock',
@@ -440,6 +451,7 @@ const routes = [
   importSAP,
   MTDR,
   Report,
+  masterData,
   datasetting,
   componentsMenu,
   formsMenu,
