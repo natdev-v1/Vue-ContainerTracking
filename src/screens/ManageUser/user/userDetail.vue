@@ -12,17 +12,11 @@
       <div class="col-6">
      
         <button 
-          @click='validateEdit'
-          v-if="isButton"
+          @click='checkApi'
      class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
           
-        <button 
-          @click='validate'
- class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
-        ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
-          บันทึก12 </button>
       
       </div>
     </div>
@@ -117,7 +111,7 @@ import BwTable from '../../../components/BwTable/BwTable'
 import BwCard from '../../../components/BwCard/BwCard'
 import swal from 'sweetalert2'
 import {Wizard, WizardTab} from 'src/components/UIComponents'
-import {find} from 'lodash'
+import {find,get} from 'lodash'
 
 export default {
   name:'LovManage',
@@ -125,10 +119,16 @@ export default {
       BwTable,
       BwCard
   },
+  computed:{
+     checkApi(){
+       return get(this.$route.params.dataUser,'userId')? this.editUser: this.saveUser
+     }
+  },
   async created() {
         this.getListUserDetail(); 
-        if(this.$route.params.dataUser.userId)
-           this.getById();   
+        if( get(this.$route.params.dataUser,'userId')){
+             this.getById();   
+        }
            this.isbutton = true  
   },
    data() {
@@ -212,6 +212,7 @@ export default {
           required: true,        
         }
       },
+      userId:false
     };
   },
     methods: {
@@ -222,7 +223,7 @@ export default {
           this.editUser()
         },
         async saveUser(){
-          let dataSave = await (await Api()).saveUser(this.$route.params.userId.userId,this.form.surname,this.form.email,this.form.name,this.form.userName,this.form.password,this.tableData)
+          let dataSave = await (await Api()).saveUser(this.form.surname,this.form.email,this.form.name,this.form.userName,this.form.password,this.tableData)
 
           this.$router.push('user')
             swal('Good job!', 'You clicked the finish button!', 'success')
@@ -231,7 +232,8 @@ export default {
           this.$router.push("user")
         },
        async editUser(){
-          let dataSave = await (await Api()).saveUser(this.$route.params.userId.userId,this.form.surname,this.form.email,this.form.name,this.form.userName,this.form.password,this.tableData)
+         console.log(this.$route.params.dataUser.userId)
+          let dataSave = await (await Api()).EditUser(this.$route.params.dataUser.userId,this.form.surname,this.form.email,this.form.name,this.form.userName,this.form.password,this.tableData)
 
           this.$router.push('user')
             swal('Good job!', 'You clicked the finish button!', 'success')
