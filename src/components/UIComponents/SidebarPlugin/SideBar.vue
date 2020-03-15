@@ -43,6 +43,11 @@
   // console.log("productIcon",images.productIcon);
   
   export default {
+     data() {
+        return {
+          productIcon:images.productIcon
+        }
+      },
     props: {
       title: {
         type: String,
@@ -50,11 +55,7 @@
         description: 'Sidebar title'
       },
       
-      data() {
-        return {
-          productIcon:images.productIcon
-        }
-      },
+
       backgroundColor: {
         type: String,
         default: 'black',
