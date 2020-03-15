@@ -1,9 +1,7 @@
 <template>
     <bw-card title='Organize Table'>
            <div class="row  mt-3 mb-3">
-    <div class="col-4">
-        <bw-time-picker ></bw-time-picker>
-    </div>
+        <bw-time-picker setClass="col-3" ></bw-time-picker>
        <div class="col-2"> 
            <button class="btn  btn-sm" style="background-color: #1CAF9A; color: #fff;" type="button"><i  aria-hidden="true" class="fa fa-search"></i> ค้นหา </button>
  

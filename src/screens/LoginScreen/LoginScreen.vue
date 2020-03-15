@@ -4,8 +4,8 @@
     <div class="wrapper wrapper-full-page">
       <div class="full-page login-page section-image">
         <!--   you can change the color of the filter page using: data-color="blue | azure | green | orange | red | purple" -->
-        <div class="content">
-          <div class="container">
+        <div class="d-flex content justify-content-center">
+          <div class="col-lg-10">
             <div class="col-lg-4 col-md-6 ml-auto mr-auto">
               <form @submit.prevent="login">
                 <card type="login">
