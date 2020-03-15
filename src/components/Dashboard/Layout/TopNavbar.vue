@@ -52,16 +52,34 @@
           </a>
           <a class="dropdown-item" href="#">Action</a>
           <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="">Something else here</a>
         </drop-down>
-        <li class="nav-item">
+             <drop-down icon="nc-icon nc-bell-55" tag="li"
+                   position="right"
+                   direction="none"
+                   class="nav-item btn-rotate dropdown">
+          <a slot="title"
+             slot-scope="{isOpen}"
+             class="nav-link dropdown-toggle"
+             data-toggle="dropdown"
+             aria-haspopup="true"
+             :aria-expanded="isOpen">
+            <i class="nc-icon nc-settings-gear-65"></i>
+            <p>
+              <span class="d-lg-none d-md-block">Some Actions</span>
+            </p>
+          </a>
+          <a class="dropdown-item" href="#"><i class="fa fa-user-circle" aria-hidden="true"></i> นามสมชาย ใจดี</a>
+          <a class="dropdown-item" href="login"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+        </drop-down>
+        <!-- <li class="nav-item">
           <a class="nav-link btn-rotate" href="#pablo">
             <i class="nc-icon nc-settings-gear-65"></i>
             <p>
               <span class="d-lg-none d-md-block">Account</span>
             </p>
           </a>
-        </li>
+        </li> -->
       </ul>
     </template>
   </navbar>
@@ -81,6 +99,7 @@
       }
     },
     methods: {
+
       capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1)
       },
