@@ -1,6 +1,6 @@
 export default {
  
-        productIcon:require("./../assets/img/TPACIcon.png")
+        productIcon:require("../assets/img/TPACIcon.png")
   
    
 

@@ -8,7 +8,7 @@
          aria-label="sidebar mini logo"
          href="https://www.creative-tim.com/product/vue-paper-dashboard-2-pro">
           <div class="logo-img">
-              <img src="productIcon" alt="">
+              <img :src="productIcon" alt="">
           </div>
       </a>
       <a class="simple-text logo-normal"
@@ -39,7 +39,7 @@
 </template>
 <script>
   import 'perfect-scrollbar/dist/css/perfect-scrollbar.css'
-  import images from './../../../theme/images.js'
+  import images from './../../../theme/images'
   // console.log("productIcon",images.productIcon);
   
   export default {
