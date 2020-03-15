@@ -19,8 +19,8 @@
           <div class="copyright">
             &copy; Coded with
             <i class="fa fa-heart heart"></i> by
-            <a href="https://binarcode.com" target="_blank" rel="noopener">BinarCode</a>.
-            Designed by <a href="https://www.creative-tim.com/?ref=pdf-vuejs" target="_blank" rel="noopener">Creative Tim</a>.
+            <a href="http://baiwa.co.th/" target="_blank" rel="noopener">Baiwa</a>.
+            Designed by <a href="http://baiwa.co.th/" target="_blank" rel="noopener">Baiwa</a>.
           </div>
         </div>
       </div>

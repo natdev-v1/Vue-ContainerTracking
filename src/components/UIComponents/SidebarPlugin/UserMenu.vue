@@ -1,6 +1,6 @@
 <template>
   <div class="user">
-    <div class="photo">
+    <!-- <div class="photo">
       <img src="static/img/faces/face-2.jpg" alt="user avatar"/>
     </div>
     <div class="info">
@@ -35,7 +35,7 @@
           </ul>
         </collapse-transition>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>

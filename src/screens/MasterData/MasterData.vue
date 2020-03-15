@@ -6,7 +6,8 @@
             <a href="#test" class="head-card">
                 <div class="card shadow rounded" routerLink="/masterdata/master001" style="width: 11rem;height: 9rem;">
                 <div class="card-body text-center">
-                    <font-awesome-icon  size="6x"  :icon="item.icon" />
+                    <!-- <font-awesome-icon  size="6x"  :icon="item.icon" /> -->
+                    <i aria-hidden="true" :class="`fa ${item.icon} colors`"></i>
                     <h6 class="fonu" style="margin-top: 13px">{{item.title}}</h6>
                 </div>
                 </div>
@@ -19,55 +20,110 @@
 
 <script>
 import BwCard from '../../components/BwCard/BwCard'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
     export default {
          components:{
             BwCard
          },
+        //  <i class="far fa-building"></i>
          data() {
              return {
                  listData:[{
-                  icon :faSpinner,
-                  title:'Title',
-                   onClick(){
-                     alert(555)
-                   }
+                  icon :'fa-building',
+                  title:'Company',
+                 
                  },
                  {
-                  icon :faSpinner,
-                 title:'Title',
-                  onClick(){
-                      alert(555)  
-                   }
+                  icon :"fa-product-hunt",
+                 title:'Product Type',
+               
                  },
                  {
-                  icon :faSpinner,
-                  title:'Title',
-                    onClick(){
-                       
-                   }
+                  icon :'fa-tree colors',
+                  title:'Plant',
+                  
                  },{
-                  icon :faSpinner,
-                  title:'Title',
-                     onClick(){
-                       alert(555) 
-                   }
+                  icon :'fa-bookmark-o colors',
+                  title:'Process',
+                    
                  },
                  {
-                  icon :faSpinner,
-                  title:'Title',
-                  onClick(){
-                       alert(555) 
-                   }
+                  icon :'fa-spinner colors',
+                  title:'Container Loading',
+                 
                  },
                   {
-                  icon :faSpinner,
-                  title:'Title',
-                    onClick(){
-                        alert(555)
-                   }
-                 }
+                  icon :'fa-rocket colors',
+                  title:'Original And Destination',
+                   
+                 },
+                   {
+                  icon :'fa-sitemap colors',
+                  title:'Truck Type',
+                  
+                 },
+                   {
+                  icon :'fa-scribd colors',
+                  title:'Transporter',
+                   
+                 },
+                   {
+                  icon :'fa-check-circle colors',
+                  title:'Organize',
+                   
+                 },
+                   {
+                  icon :'fa-newspaper-o colors',
+                  title:' SC No.',
+                   
+                 },
+                   {
+                  icon :'fa-superpowers colors',
+                  title:'Remark',
+                   
+                 },
+                   {
+                  icon :'fa-codepen colors',
+                  title:'Pallet Type',
+                  
+                 },
+                   {
+                  icon :'fa-file-code-o colors',
+                  title:'Pallet Vendor',
+                   
+                 },
+                   {
+                  icon :'fa-ravelry colors',
+                  title:'Salutation',
+                  
+                 },
+                   {
+                  icon :'fa-ravelry colors',
+                  title:'Salutation',
+                   
+                 },
+                   {
+                  icon :'fa-opera colors',
+                  title:' RM Description & RM Code',
+                    
+                 },
+                   {
+                  icon :'fa-opera colors',
+                  title:'FG Code',
+                   
+                 },
+                   {
+                  icon :'fa-opera colors',
+                  title:'FG Note(Color)',
+                    
+                 },
+                   {
+                  icon :'fa-opera colors',
+                  title:'Material',
+                   
+                 },
+                  
+
                  ]
              }
          },

@@ -23,8 +23,8 @@
       <div class="copyright pull-right">
         &copy; Coded with
         <i class="fa fa-heart heart"></i> by
-        <a href="https://binarcode.com" target="_blank" rel="noopener">BinarCode</a>.
-        <span>Designed by <a href="https://www.creative-tim.com/?ref=pdf-vuejs" rel="noopener" target="_blank">Creative Tim</a>.</span>
+        <a href="http://baiwa.co.th/" target="_blank" rel="noopener">Baiwa</a>.
+        <span>Designed by <a href="http://baiwa.co.th/" rel="noopener" target="_blank">Baiwa</a>.</span>
       </div>
     </div>
   </footer>
