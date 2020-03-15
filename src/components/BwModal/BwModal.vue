@@ -6,8 +6,8 @@
   :before-close="handleClose">
   <slot></slot>
   <span slot="footer" class="dialog-footer">
-    <el-button @click="onDialogVisible">Cancel</el-button>
-    <el-button type="primary" @click="onConfirm">Confirm</el-button>
+    <el-button class="btn  btn-sm"  @click="onDialogVisible">Cancel</el-button>
+    <el-button class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;" @click="onConfirm">Confirm</el-button>
   </span>
 </el-dialog>
 </template>

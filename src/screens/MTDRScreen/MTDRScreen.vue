@@ -3,7 +3,7 @@
     <div class="row justify-content-center mt-3 mb-3">
         <div class="col-4">
                 <fg-input label="Plant">
-                  <el-select class="select-success"
+                  <el-select 
                              size="large"
                              placeholder="Select"
                              v-model="selects.simple">
@@ -29,8 +29,7 @@
       <div class='col-4 mt-3' >
           <button
           @click='search'
-          type="button"
-          class="btn btn-success"
+        class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           ค้นหา </button>
       </div> 
@@ -129,7 +128,7 @@ export default {
           this.tableData = data.map((data)=>{
           data.btnText = data.status == 'N'?'Create MTDR':'View'
           data.text = data.status == 'N'?'On Process':'Success'
-          data.btnStyle = {backgroundColor:'#65B4B5'}
+          data.btnStyle = {backgroundColor:'#1CAF9A'}
           data.onClick = ()=> {
             if(data.btnText == 'Create MTDR'){
               this.addMTDR(data)
