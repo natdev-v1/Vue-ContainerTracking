@@ -20,11 +20,13 @@
 
     <div class="col-2 mt-4">
        
+        <div class='pull-left mr-3'>
+            <p-checkbox :checked="false">มี</p-checkbox>          
+        </div>            
         <div class='pull-left'>
-            <p-checkbox :checked="false">มี</p-checkbox>
             <p-checkbox :checked="false">ไม่มี</p-checkbox>
-        </div>
           
+        </div>
     </div>
 
     <div class="col-2 mt-3">
@@ -102,12 +104,12 @@ export default {
                     {
                          prop: 'proformaInvoice',
                          label: 'Performa Invoice', 
-                         minWidth: 150,
+                         minWidth: 230,
                     },
                     {
                          prop: 'billingDocument',
                          label: 'Billing Document	Sales', 
-                         minWidth: 200,
+                         minWidth: 230,
                     },
                     {
                          prop: 'saleDocument',
@@ -117,7 +119,7 @@ export default {
                     {
                          prop: 'deliverlyDocument',
                          label: 'Deliverly Document', 
-                         minWidth: 180,
+                         minWidth: 230,
                     },
                     {
                          prop: 'customerPONo',
