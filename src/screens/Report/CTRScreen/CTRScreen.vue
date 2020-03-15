@@ -25,7 +25,7 @@
          <div class="col-md-4">
             <fg-input>
                 <h6 class="card-title">Start Date : </h6>
-                  <el-select class="select-danger"
+                  <el-select
                              size="large"
                              placeholder="Single Select"
                              v-model="selects.simple">
@@ -42,12 +42,12 @@
           <div class="col-md-4">
             <fg-input>
                 <h6 class="card-title">End Date : </h6>
-                  <el-select class="select-danger"
+                  <el-select 
                              size="large"
                              placeholder="Single Select"
                              v-model="selects.simple">
                     <el-option v-for="option in selects.countries"
-                               class="select-danger"
+                             
                                :value="option.value"
                                :label="option.label"
                                :key="option.label">
@@ -116,18 +116,17 @@
     <div class="row justify-content-center mt-3 mb-3">
         <div class="col-md-4">
                 <button
-          type="button"
-          class="btn btn-success"
+   class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-send"></i></span>
           Report</button>
           <button
-          type="button"
-          class="btn btn-success"
+     class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-settings-gear-65"></i></span>
           Edit</button>
           <button
           type="button"
-          class="btn btn-default"
+          class="btn btn-default  btn-sm"
+       
         ><span class="btn-label"><i class="nc-icon nc-simple-remove"></i></span>
           Close</button>
           </div>

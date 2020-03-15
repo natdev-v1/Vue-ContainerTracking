@@ -5,8 +5,7 @@
       <div class="col-6">
              <button
          @click='goBack'
-          type="button"
-          class="btn btn-info"
+      class="btn  btn-sm" style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
           ย้อนกลับ</button>
       </div>
@@ -14,17 +13,16 @@
      
         <button 
           @click='validateEdit'
-          type="button"
-          class="btn btn-success pull-right"
+          v-if="isButton"
+     class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
           
         <button 
           @click='validate'
-          type="button"
-          class="btn btn-success pull-right"
+ class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
-          บันทึก </button>
+          บันทึก12 </button>
       
       </div>
     </div>
@@ -102,8 +100,6 @@
     <div class="col-md-12 card">
    <div>
       <BwTable 
-      
-    
       :hiddenCheckbox='hiddenCheckbox'
       :tableData='tableData'
       :lableEdit='lableButton'
@@ -132,7 +128,8 @@ export default {
   async created() {
         this.getListUserDetail(); 
         if(this.$route.params.dataUser.userId)
-           this.getById();     
+           this.getById();   
+           this.isbutton = true  
   },
    data() {
     return {

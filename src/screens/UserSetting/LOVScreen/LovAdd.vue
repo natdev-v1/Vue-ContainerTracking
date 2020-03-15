@@ -4,22 +4,19 @@
       <div class="col-6">
              <button
          @click='goBack'
-          type="button"
-          class="btn btn-default"
+    class="btn  btn-sm " style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
           ย้อนกลับ</button>
       </div>
            <div class="col-6">
         <button
          @click='goBack'
-          type="button"
-          class="btn btn-danger pull-right"
+        class="btn  btn-sm pull-right" style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-simple-remove"></i></span>
           ยกเลิก</button>
         <button
           @click='validate'
-          type="button"
-          class="btn btn-success pull-right"
+      class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
       </div>

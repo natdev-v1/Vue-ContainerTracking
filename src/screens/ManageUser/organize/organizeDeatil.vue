@@ -4,16 +4,14 @@
       <div class="col-6">
              <button
          @click='goBack'
-          type="button"
-          class="btn btn-default"
+         class="btn btn-sm " style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
           ย้อนกลับ</button>
       </div>
       <div class="col-6">
         <button
           @click='validate'
-          type="button"
-          class="btn btn-success pull-right"
+ class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
       </div>
@@ -45,7 +43,7 @@
     <div class='row mb-3'>
         <div class='col'>
             
-            <button @click='addData' type="button" class="btn btn-success pull-right">
+            <button @click='addData'  class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;">
             <span class="btn-label">
             <i class="nc-icon nc-simple-add">
             </i></span> เพิ่มข้อมูล

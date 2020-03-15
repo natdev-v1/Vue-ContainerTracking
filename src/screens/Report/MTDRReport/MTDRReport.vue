@@ -13,12 +13,12 @@
         <div class="col-md-4">
             <fg-input>
                 <h6 class="card-title">Destiantion : </h6>
-                  <el-select class="select-danger"
+                  <el-select 
                              size="large"
                              placeholder="Single Select"
                              v-model="selects.simple">
                     <el-option v-for="option in selects.countries"
-                               class="select-danger"
+                             
                                :value="option.value"
                                :label="option.label"
                                :key="option.label">
@@ -32,12 +32,12 @@
         <div class="col-md-4">
             <fg-input>
                 <h6 class="card-title">Original : </h6>
-                  <el-select class="select-danger"
+                  <el-select 
                              size="large"
                              placeholder="Single Select"
                              v-model="selects.simple">
                     <el-option v-for="option in selects.countries"
-                               class="select-danger"
+                             
                                :value="option.value"
                                :label="option.label"
                                :key="option.label">
@@ -60,7 +60,7 @@
             <button
          @click='search'
           type="button"
-          class="btn btn-success"
+     class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-zoom-split"></i></span>
           ค้นหา</button>
           </div>

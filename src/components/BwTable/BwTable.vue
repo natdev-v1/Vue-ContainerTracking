@@ -1,7 +1,7 @@
 <template>
   <div class="col-sm-12">
      <el-col v-if=" Object.keys(onClickTopBtn).length" :xs="1" align='end'>
-       <button  @click="onClickTopBtn.onClick" type="button" class="btn btn-success"><i class="nc-icon nc-simple-add"></i> {{onClickTopBtn.text}}</button>
+       <button  @click="onClickTopBtn.onClick" class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;"><i class="nc-icon nc-simple-add"></i> {{onClickTopBtn.text}}</button>
          <!-- <el-button @click="onClickTopBtn.onClick" type="primary">{{onClickTopBtn.text}}</el-button> -->
      </el-col>
       
@@ -90,7 +90,7 @@
                     <p-button  type="info "  size="sm" icon v-if="hiddenButtonDetail" @click="handleDetail(props.$index, props.row)">
                   <i class="nc-icon nc-zoom-split icon-bold"></i> 
                 </p-button>
-                <p-button type="success" size="sm" icon v-if="hiddenButtonEdit" @click="handleEdit(props.$index, props.row)">
+                <p-button class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;" icon v-if="hiddenButtonEdit" @click="handleEdit(props.$index, props.row)">
                   <i class="fa fa-edit"></i> 
                 </p-button>
                 <p-button type="danger" size="sm"  v-if="hiddenButtonDelete"  icon @click="handleDelete(props.$index, props.row)">
