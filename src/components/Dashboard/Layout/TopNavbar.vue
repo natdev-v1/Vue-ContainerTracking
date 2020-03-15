@@ -70,7 +70,7 @@
             </p>
           </a>
           <a class="dropdown-item" href="#"><i class="fa fa-user-circle" aria-hidden="true"></i> นามสมชาย ใจดี</a>
-          <router-link class="dropdown-item"  to="/"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</router-link>
+          <a class="dropdown-item" @click="nextPage"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
         </drop-down>
         <!-- <li class="nav-item">
           <a class="nav-link btn-rotate" href="#pablo">
@@ -99,7 +99,9 @@
       }
     },
     methods: {
-
+      nextPage(){
+        this.$router.replace({path:'/'})
+      },
       capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1)
       },
@@ -125,6 +127,7 @@
   }
 
 </script>
-<style>
-
+<style scoped>
 </style>
+
+
