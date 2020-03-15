@@ -5,8 +5,9 @@
       @onActionEdit='onEditLov'
       :hiddenOder='hiddenOder'
       :hiddenTabAction='hiddenTabAction'
+       :hiddenButtonDelete='hiddenButtonDelete'
       :hiddenButtonEdit='hiddenButtonEdit'
-      :hiddenButtonDelete='hiddenButtonDelete'
+     
   
       :textCustom='textCustom'
       :onClickTopBtn='onClickAdd'
