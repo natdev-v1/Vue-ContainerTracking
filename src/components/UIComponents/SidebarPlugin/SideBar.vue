@@ -42,7 +42,7 @@
     props: {
       title: {
         type: String,
-        default: 'Vue PDP Pro',
+        default: 'Container Tracking',
         description: 'Sidebar title'
       },
       backgroundColor: {

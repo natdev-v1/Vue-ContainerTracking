@@ -72,7 +72,7 @@
                                   </el-select>
                               <p-button v-else-if="column.type ==='button'" v-on:click="scope.row[column.onClick]()" :style="scope.row[column.btnStyle]" v-model="scope.row[column.prop]">{{scope.row[column.btnText]}}</p-button>
                                 <p-checkbox v-else-if="column.type ==='checkbox'" v-model="scope.row[column.prop]"></p-checkbox>
-                          <h6 v-else >{{scope.row[column.prop]}}</h6>
+                          <p v-else >{{scope.row[column.prop]}}</p>
                       </template>
             </el-table-column>
             <el-table-column
@@ -84,7 +84,7 @@
               <template slot-scope="props"  >
              <el-col v-if=" Object.keys(onClickTopCuttom).length" :xs="1" align='end'>
      
-  <button  type="button"  @click="()=>onClickTopCuttom.onClick(props.row)" v-if="hiddenButtonCustom" class="btn btn-primary btn-sm"> {{onClickTopCuttom.text}}</button>
+  <button  type="button"   @click="()=>onClickTopCuttom.onClick(props.row)" v-if="hiddenButtonCustom" class="btn btn-primary btn-sm"> {{onClickTopCuttom.text}}</button>
      </el-col>
          
                     <p-button type="info" size="sm" icon v-if="hiddenButtonDetail" @click="handleDetail(props.$index, props.row)">

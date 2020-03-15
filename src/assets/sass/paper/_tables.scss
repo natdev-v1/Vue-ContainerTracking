@@ -22,7 +22,10 @@
             left: 4px;
         }
     }
-
+    p {
+        margin-top: 0;
+        margin-bottom: 0rem;
+    }
     .btn{
         margin: 0;
     }
@@ -30,7 +33,9 @@
     small,.small{
       font-weight: 300;
     }
-
+    thead{
+        color: #016;
+    }
     .card-tasks .card-body &{
         margin-bottom: 0;
 
@@ -78,7 +83,7 @@
    > thead > tr > td,
    > tbody > tr > td,
    > tfoot > tr > td{
-       padding: 12px 7px;
+       padding: 1px 0px;
        vertical-align: middle;
    }
 
@@ -139,7 +144,7 @@
        font-size: $font-size-h4;
    }
     .td-name{
-        min-width: 200px;
+        min-width: 50px;
     }
     .td-number{
         text-align: right;

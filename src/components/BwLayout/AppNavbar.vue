@@ -1,7 +1,7 @@
 <template>
   <navbar navbar-menu-classes="navbar-right" v-model="showMenu">
     <div class="navbar-wrapper">
-      <a class="navbar-brand" href="#pablo">Vue Paper Dashboard 2 PRO</a>
+      <a class="navbar-brand" href="#pablo">Container Tracking</a>
     </div>
     <template slot="navbar-menu">
       <router-link to="/admin" class="nav-item" tag="li">
