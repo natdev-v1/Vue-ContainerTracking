@@ -223,7 +223,10 @@ export default {
           this.editUser()
         },
         async saveUser(){
-          let dataSave = await (await Api()).saveUser(this.form.surname,this.form.email,this.form.name,this.form.userName,this.form.password,this.tableData)
+          let dataSave = await (await Api()).saveUser(this.form.surname,this.form.email,this.form.name,this.form.userName,this.form.password,this.tableData.map((data)=>{
+           if(data.check)
+              return data.roleCode
+          }))
 
           this.$router.push('user')
             swal('Good job!', 'You clicked the finish button!', 'success')
@@ -233,7 +236,10 @@ export default {
         },
        async editUser(){
          console.log(this.$route.params.dataUser.userId)
-          let dataSave = await (await Api()).EditUser(this.$route.params.dataUser.userId,this.form.surname,this.form.email,this.form.name,this.form.userName,this.form.password,this.tableData)
+          let dataSave = await (await Api()).EditUser(this.$route.params.dataUser.userId,this.form.surname,this.form.email,this.form.name,this.form.userName,this.form.password,this.tableData.map((data)=>{
+           if(data.check)
+              return data.roleCode
+          }))
 
           this.$router.push('user')
             swal('Good job!', 'You clicked the finish button!', 'success')

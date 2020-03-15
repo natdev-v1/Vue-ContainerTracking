@@ -13,14 +13,14 @@ export default async ()=>{
      const baseUrl =   'http://baiwadev.thddns.net:9440/'
      const CTUrl = baseUrl+'CTBackend/'
      const localUrl = 'http://localhost:8081/CTBackend/'
-     const API = await ApiMain(localUrl)
-     const APIToken = await  ApiMain(localUrl,
+     const API = await ApiMain(CTUrl)
+     const APIToken = await  ApiMain(CTUrl,
      {
-      authorization:"Bearer "+"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwb3N0ODg4Iiwic2NvcGVzIjoiIiwib3JnYW5pemF0aW9uIjoiQ2hhaW5nbWFpIiwiaWF0IjoxNTg0Mjk1NzQwLCJleHAiOjE1ODQ0Njg1NDB9.l-Q4mcM7Ihjmu-1doiWl0-4-tUFIAC5kktwZn_k6cnM",
+      authorization:"Bearer "+localStorage.getItem('token'),
      })
-     const APIUploadFile = await  ApiMain(localUrl,
+     const APIUploadFile = await  ApiMain(CTUrl,
       {
-       authorization:"Bearer "+"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwb3N0ODg4Iiwic2NvcGVzIjoiIiwib3JnYW5pemF0aW9uIjoiQ2hhaW5nbWFpIiwiaWF0IjoxNTg0Mjk1NzQwLCJleHAiOjE1ODQ0Njg1NDB9.l-Q4mcM7Ihjmu-1doiWl0-4-tUFIAC5kktwZn_k6cnM",
+       authorization:"Bearer "+localStorage.getItem('token'),
        'Content-Type': 'multipart/form-data'
       })
      return {
