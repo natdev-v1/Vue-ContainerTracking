@@ -4,10 +4,11 @@
        :data-active-color="activeColor">
     <div class="logo">
       <a class="simple-text logo-mini"
+      src=""
          aria-label="sidebar mini logo"
          href="https://www.creative-tim.com/product/vue-paper-dashboard-2-pro">
           <div class="logo-img">
-              <img :src="logo" alt="">
+              <img src="productIcon" alt="">
           </div>
       </a>
       <a class="simple-text logo-normal"
@@ -38,12 +39,21 @@
 </template>
 <script>
   import 'perfect-scrollbar/dist/css/perfect-scrollbar.css'
+  import images from './../../../theme/images.js'
+  // console.log("productIcon",images.productIcon);
+  
   export default {
     props: {
       title: {
         type: String,
         default: 'Container Tracking',
         description: 'Sidebar title'
+      },
+      
+      data() {
+        return {
+          productIcon:images.productIcon
+        }
       },
       backgroundColor: {
         type: String,
