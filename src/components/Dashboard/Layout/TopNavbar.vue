@@ -70,7 +70,7 @@
             </p>
           </a>
           <a class="dropdown-item" href="#"><i class="fa fa-user-circle" aria-hidden="true"></i> นามสมชาย ใจดี</a>
-          <a class="dropdown-item"  href="/"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+          <router-link class="dropdown-item"  to="/"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</router-link>
         </drop-down>
         <!-- <li class="nav-item">
           <a class="nav-link btn-rotate" href="#pablo">
