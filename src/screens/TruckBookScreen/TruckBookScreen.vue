@@ -3,11 +3,14 @@
       <div class="row justify-content-center mt-3 mb-3">
     <div class="col-4">
         <div class="form-group">
-          <fg-input
+          <label for="">Performa Invoice :</label>
+          <input type="text" class="form-control">
+          <!-- <fg-input
             label="Performa Invoice :"
             placeholder="กรอก Performa Invoice"
+            
           >
-          </fg-input>
+          </fg-input> -->
         </div>
     </div>
     

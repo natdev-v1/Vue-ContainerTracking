@@ -14,12 +14,17 @@ export default(Api)=>{
     const saveTruckBook = async (proformaInvoice,items)=>{
         return await Api.post('/api/truckBooking/save',{...proformaInvoice,items})
     }
+    const getDropdown = async (lovKey)=>{
+        return await Api.post('/api/lov/list-data-detail',{lovKey:"PLAET_TYPE"})
+    }
 
     return {
         findTruckBook,
         findTruckBookDetail,
         getById,
         findTruckBookView,
-        saveTruckBook
+        saveTruckBook,
+        getDropdown
     }
 }
+
