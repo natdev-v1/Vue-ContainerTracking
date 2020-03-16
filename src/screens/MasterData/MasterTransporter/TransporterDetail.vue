@@ -53,6 +53,7 @@
       <BwTable 
       :hiddenTabAction='true'
       :hiddenButtonDelete='true'
+      :hiddenButtonEdit='true'
       :tableData='tableData'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
