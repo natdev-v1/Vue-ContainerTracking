@@ -174,7 +174,7 @@ export default {
                          label: 'Meterial.', 
                          minWidth: 120,
                          type:'select',
-                         options: this.dataDrop
+                         options: []
                     },
                     {
                          prop: 'codeNote',
@@ -216,23 +216,14 @@ export default {
                          label: 'Pallet', 
                          minWidth: 120,
                          type:'select',
-                        options: [{}],
+                          options: [],
                     },
                     {
                          prop: 'palletType',
                          label: 'Pallet type', 
                          type:'select',
                          minWidth: 130,
-                         options: [{
-                                value: 'PB-1-COMMON',
-                                label: 'PB-1-COMMON'
-                                }, {
-                                value: 'PB-2-COMMON',
-                                label: 'PB-2-COMMON'
-                                }, {
-                                value: 'PB-3-COMMON',
-                                label: 'PB-3-COMMON'
-                        }],
+                         options: [] ,
                     },
                     {
                          prop: 'remark',
@@ -265,10 +256,9 @@ export default {
             console.log("this.mtdrList >>>",res.data);
             console.log("this.dataHead >>>",res.data[0]);
             // let {dd} = res.data.material
-             this.dataDrop = res.data.map((data)=>{
-                data.value = data.material
-                data.label = data.material
-                return data
+            this.tableColumns1[0].options = res.data.map((data,idx)=>{
+            
+                return {value : idx ,label : data.material}
             });
             console.log("this.dataDrop",this.dataDrop);
             
