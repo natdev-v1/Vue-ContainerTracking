@@ -8,7 +8,7 @@
                     <button
                         @click='goBack'
                         type="button"
-                        class="btn-sm btn btn-default pull-left"
+                        class="btn btn-default pull-left"
                         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
                         ย้อนกลับ</button><br>
                         <label>To : {{getTo}}</label>
@@ -20,7 +20,7 @@
                       <button
                       @click='dialogVisible = true'
                         type="button" round outline 
-                        class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
+                        class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
                  
                         ><span class="btn-label"><i class="nc-icon nc-simple-add"></i></span>
                         เพิ่มข้อมูล </button>
@@ -79,7 +79,7 @@
                       <button
                         @click='onSaveData'
                         type="button"
-                     class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
+                     class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
                         
                         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
                         บันทึก </button>

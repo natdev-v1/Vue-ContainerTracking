@@ -8,7 +8,7 @@
                     <button
                         @click='goBack'
                         type="button"
-                        class="btn-sm btn btn-default pull-left"
+                        class=" btn btn-default pull-left"
                         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
                         ย้อนกลับ</button><br>
                         <label>To :  {{getTo}}</label>
