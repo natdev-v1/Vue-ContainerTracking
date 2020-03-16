@@ -2,6 +2,7 @@
     <BwCard title='Role Table'>
       <BwTable
         @onActionEdit='onEditRole'
+          :hiddenPagging="true"
         :hiddenButtonEdit='hiddenButtonEdit'
         :hiddenButtonCustom='hiddenButtonCustom'
         :hiddenTabAction='hiddenTabAction'

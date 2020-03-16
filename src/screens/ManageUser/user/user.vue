@@ -7,8 +7,7 @@
       :hiddenTabAction='hiddenTabAction'
        :hiddenButtonDelete='hiddenButtonDelete'
       :hiddenButtonEdit='hiddenButtonEdit'
-     
-  
+      :hiddenPagging="true"
       :textCustom='textCustom'
       :onClickTopBtn='onClickAdd'
       :tableData='tableData'

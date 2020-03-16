@@ -3,6 +3,7 @@
       <BwTable 
       @onActionEdit='EditOrg'
       :hiddenOder='hiddenOder'
+        :hiddenPagging="true"
       :hiddenTabAction='hiddenTabAction'
       :onClickTopBtn='onClickAdd'
       :hiddenButtonEdit='hiddenButtonEdit'
