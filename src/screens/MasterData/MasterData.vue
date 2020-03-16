@@ -11,6 +11,7 @@
                     <h6 class="fonu" style="margin-top: 13px">{{item.title}}</h6>
                 </div>
                 </div>
+                
             </a>
         </div>
           </div>
@@ -31,6 +32,10 @@ import BwCard from '../../components/BwCard/BwCard'
                  listData:[{
                   icon :'fa-building',
                   title:'Company',
+                  // onClick: this.nextPageCompany,
+                  onClick(){
+                    this.nextPageCompany
+                  }
                  
                  },
                  {
@@ -65,6 +70,7 @@ import BwCard from '../../components/BwCard/BwCard'
                    {
                   icon :'fa-scribd colors',
                   title:'Transporter',
+                  onClick: this.nextPageTransporter,
                    
                  },
                    {
@@ -128,8 +134,11 @@ import BwCard from '../../components/BwCard/BwCard'
              }
          },
          methods:{
-             nextPage(text){
-                 this.$router.push(text)
+             nextPageCompany(){
+               this.$router.push("company")
+             },
+             nextPageTransporter(){
+               this.$router.push("transporter")
              }
          }
     }
