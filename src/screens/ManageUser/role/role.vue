@@ -11,7 +11,7 @@
         :tableData='tableData'
         :tableColumns='tableColumns'
         :propsToSearch='propsToSearch'
-        
+            @onDelete='onDelete'
       ></BwTable>
     </BwCard>
 
@@ -94,9 +94,7 @@ export default {
       this.tableData = data; 
     },
          async onDelete(data) {
-          console.log('>>>>>>',data);
-          
-          let res = await (await Api()).lovDelete(data.roleId)
+          let res = await (await Api()).roleIdDelete(data.roleId)
   
         },
   }
