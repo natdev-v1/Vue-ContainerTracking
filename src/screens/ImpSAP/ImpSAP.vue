@@ -16,10 +16,11 @@
     </div>
     </div>
       <BwTable 
-     @onActionDetail='DetailSap'
+      @onActionDetail='DetailSap'
+      :hiddenPagging="true"
       :hiddenOder='hiddenOder'
       :hiddenTabAction='hiddenTabAction'
-     :hiddenButtonDetail='hiddenButtonDetail'
+      :hiddenButtonDetail='hiddenButtonDetail'
       :hiddenButtonEdit='hiddenButtonEdit'
       :hiddenButtonDelete='hiddenButtonDelete'
       :tableData='tableData'

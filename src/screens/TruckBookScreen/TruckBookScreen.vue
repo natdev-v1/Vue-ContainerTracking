@@ -55,6 +55,7 @@
         <div>
           <BwTable 
           @onActionEdit='onTruckBookEdit'
+          :hiddenPagging="true"
           :onEdit='addTruckBook'
           :hiddenButtonEdit='hiddenButtonEdit'
           :hiddenButtonCustom='hiddenButtonCustom'
