@@ -433,7 +433,7 @@ let masterData = {
       component: Company
     },
     {
-      path: 'companydetail',
+      path: 'companyDetail',
       name: 'CompanyDetail',
       component: CompanyDetail
     },

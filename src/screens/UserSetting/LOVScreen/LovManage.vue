@@ -16,7 +16,7 @@
           ยกเลิก</button>
         <button v-if="!checkButton"
           @click='validate'
-          class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
+          class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
         <button v-if="checkButton"
