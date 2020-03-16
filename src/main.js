@@ -66,7 +66,18 @@ const router = new VueRouter({
     }
   }
 })
-
+router.beforeEach((to, from, next) => {
+  console.log(">>>>to",to)
+  console.log(">>>>from",from)
+  console.log(">>>>next",next)
+  console.log(localStorage.getItem('token'))
+  if(to.name !== 'Login' && !localStorage.getItem('token')){ 
+    next({ name: 'Login' })
+  }
+  else{
+    next()
+  }
+})
 initProgress(router);
 
 /* eslint-disable no-new */

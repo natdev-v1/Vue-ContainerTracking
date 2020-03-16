@@ -100,6 +100,7 @@
     },
     methods: {
       nextPage(){
+        localStorage.removeItem('token')
         this.$router.replace({path:'/'})
       },
       capitalizeFirstLetter(string) {
