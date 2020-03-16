@@ -51,6 +51,8 @@ import Notifications from 'src/components/Dashboard/Views/Components/Notificatio
 import Icons from 'src/components/Dashboard/Views/Components/Icons.vue'
 import Typography from 'src/components/Dashboard/Views/Components/Typography.vue'
 import MasterData from '../screens/MasterData/MasterData.vue'
+import Company from '../screens/MasterData/MasterCompany/Company.vue'
+import Transporter from '../screens/MasterData/MasterTransporter/Transporter.vue'
 // Forms pages
 const RegularForms  = () => import(/* webpackChunkName: "forms" */ 'src/components/Dashboard/Views/Forms/RegularForms.vue')
 const ExtendedForms = () => import(/* webpackChunkName: "forms" */ 'src/components/Dashboard/Views/Forms/ExtendedForms.vue');
@@ -421,7 +423,17 @@ let masterData = {
       path: 'listData',
       name: 'MasterData',
       component: MasterData
-    }
+    },
+    {
+      path: 'company',
+      name: 'Company',
+      component: Company
+    },
+    {
+      path: 'transporter',
+      name: 'Transporter',
+      component: Transporter
+    },
   ]
 }
 let lockPage = {
