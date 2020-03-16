@@ -78,7 +78,7 @@ export default {
   async created() { 
       
       if(this.$route.params.id != null){
-          this.getByIdCustomer(this.$route.params.id);
+          this.getByIdCustomer();
       }
   },
    data() {
@@ -133,13 +133,13 @@ export default {
         goBack(){
           this.$router.go(-1)
         },
-        async getByIdCustomer(id){   
+        async getByIdCustomer(){   
             // id = this.$route.params.id
-            let {data} = await(await Api()).getByIdCustomer(id)
-            console.log("asdsadsadas",id);
+            let {data} = await(await Api()).getByIdCustomer(this.$route.params.id)
+            // console.log("asdsadsadas",id);
             
-            // this.form.customerCode = data.customerCode
-            // this.form.customerName = data.customerName
+            this.form.customerCode = data.customerCode
+            this.form.customerName = data.customerName
             
         },
         async getListUser(){
