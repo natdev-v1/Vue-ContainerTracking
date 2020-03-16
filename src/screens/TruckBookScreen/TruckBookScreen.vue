@@ -5,7 +5,7 @@
         <div class="form-group">
           <fg-input
             label="Performa Invoice :"
-            placeholder="*กรอก Performa Invoice"
+            placeholder="กรอก Performa Invoice"
           >
           </fg-input>
         </div>
