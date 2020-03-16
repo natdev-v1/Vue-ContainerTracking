@@ -45,7 +45,7 @@
     <div class="row mt-3">
       <div class="col-md-6 ml-auto mr-auto">
         <div class="form-group">
-          <h4>{{this.$route.params.data.roleId}}</h4>
+          <!-- <h4>{{this.$route.params.data.roleId}}</h4> -->
           <!-- <label>Category : </label> -->
           <fg-input
             v-model="form.roleCategory"
@@ -86,22 +86,23 @@ export default {
         //     this.form.constantId = constantId
         //   this.form.constantKey = constantKey
         //   this.form.constantValue = constantValue
-        console.log("this.$route.params.data.roleId",this.$route.params.data.roleId);
+        // console.log("this.$route.params.data.roleId",this.$route.params.data.roleId);
         
-  // if(this.$route.params.data.roleId){
-  //  this.getListRoleData();
-  // }
+  if(this.$route.params.data != null){
+   this.getListRoleData();
+  }
      
         
   },
-   data() {
-    return {
-      props: {
+   props: {
         visible: {
           type: Boolean,
           default: false
         }
       },
+   data() {
+    return {
+     
       checkButton:false,
       isVisible: this.visible,
       form: {
@@ -144,7 +145,7 @@ export default {
         // },
    
         async onSaveData(){
-          if(this.$route.params.roleId.roleId != null){
+          if(this.$route.params.data != null){
             let dataSave = await (await CallHttp()).saveRole(this.form)
           }
            let dataSave = await (await CallHttp()).saveRole(this.form)
@@ -154,7 +155,7 @@ export default {
           this.$router.push("role")
         },
         async getListRoleData() {
-          let res = await(await CallHttp()).getListRoleData(this.$route.params.roleId.roleId)
+          let res = await(await CallHttp()).getListRoleData(this.$route.params.data.roleId)
           console.log(res.data);
           this.form = res.data;
           // if(this.$route.params.roleId.roleId !=  null){
