@@ -176,7 +176,7 @@ export default {
           console.log('>>>>>>',data);
           
           let res = await (await Api()).lovDelete(data.lovDetailId)
-          this.$router.go(-1);
+ 
         },
         goBack(){
           this.$router.go(-1)

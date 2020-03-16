@@ -6,7 +6,7 @@
         :hiddenButtonCustom='hiddenButtonCustom'
         :hiddenTabAction='hiddenTabAction'
         :hiddenOder='hiddenOder'
-
+    :hiddenButtonDelete='true'
         :onClickTopBtn='onClickAdd'
         :tableData='tableData'
         :tableColumns='tableColumns'
@@ -92,7 +92,13 @@ export default {
     async getList(){
       let {data} = await(await Api()).getListRole()
       this.tableData = data; 
-    }
+    },
+         async onDelete(data) {
+          console.log('>>>>>>',data);
+          
+          let res = await (await Api()).lovDelete(data.roleId)
+  
+        },
   }
 };
 </script>
