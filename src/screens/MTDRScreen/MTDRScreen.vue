@@ -55,7 +55,7 @@ import {DatePicker, TimeSelect, Slider, Tag, Input, Button, Select, Option} from
 import BwTable from '../../components/BwTable/BwTable'
 import BwCard from '../../components/BwCard/BwCard'
 export default {
-  name:'LovManage',
+  name:'MTDRScreen',
   components: {
       BwTable,
       BwCard,

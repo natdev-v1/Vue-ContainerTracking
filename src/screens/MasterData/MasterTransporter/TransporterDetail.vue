@@ -19,28 +19,31 @@
     <div class="row justify-content-center mt-3 mb-3">
       <div class="col-4">
         <div class="form-group">
-          <label>Code  </label>
+          <label>Code  :  *  </label>
           <fg-input
-            v-model="form.orgCode"
+            v-model="form.customerCode"
             placeholder="ใส่รหัส"
-            v-validate="formValidations.orgCode">
+            v-validate="formValidations.customerCode">
           </fg-input>
         </div>
       </div>
       <div class="col-4">
           <div class="form-group">
-          <label>Description  </label>
+          <label>Description  :  *  </label>
+          {{this.form.customerCode}}
           <fg-input
-            v-model="form.orgDescription"
+            v-model="form.customerName"
             placeholder="ใส่คำอธิบาย"
-            v-validate="formValidations.orgDescription">
+            v-validate="formValidations.customerName">
           </fg-input>
           </div>
       </div> 
     </div>
+    <hr>
     <div class='row mb-3'>
+        <div class="col">รายละเดียด</div>
         <div class='col'>
-            <button @click='addData'  class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;">
+            <button class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;">
             <span class="btn-label">
             <i class="nc-icon nc-simple-add">
             </i></span> เพิ่มข้อมูล
@@ -49,13 +52,12 @@
     </div>
     <div>
       <BwTable 
-      :hiddenOder='hiddenOder'
-      :hiddenTabAction='hiddenTabAction'
-      :hiddenButtonDelete='hiddenButtonDelete'
+      :hiddenTabAction='true'
+      :hiddenButtonDelete='true'
       :tableData='tableData'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
-      deleteBy="departId"
+      deleteBy=""
       ></BwTable>
     </div>
   </div>
@@ -74,7 +76,10 @@ export default {
       BwCard
   },
   async created() { 
-      this.getListOrg();
+      
+      if(this.$route.params.id != null){
+          this.getByIdCustomer(this.$route.params.id);
+      }
   },
    data() {
     return {
@@ -86,27 +91,27 @@ export default {
       },
       isVisible: this.visible,
       form: {
-        orgId:"",
-        orgCode: "",
-        orgDescription: ""  
+          customerCode:"",
+          customerName:"",
+        
       },
-      hiddenOder: true,
-      hiddenTabAction: true,
-      hiddenButtonDelete: true,
       tableData: [],
-      propsToSearch:["orgCode"],
+      propsToSearch:[],
       tableColumns: [
                     {
-                         prop: 'departCode',
-                         label: 'Department Code', 
+                         prop: '',
+                         label: 'ชื่อผู้ใช้งาน', 
                          minWidth: 200,
-                         type:'input'
                     },
                     {
-                         prop: 'departDesc',
-                         label: 'Department Description', 
+                         prop: '',
+                         label: 'ชื่อ-นามสกุล', 
                          minWidth: 200,
-                         type:'input'
+                    },
+                    {
+                         prop: '',
+                         label: 'บทบาท', 
+                         minWidth: 200,
                     },
       ],
       formValidations: {
@@ -123,26 +128,23 @@ export default {
     methods: {
    
         validate() {
-          this.saveOrg()
+          
         },
         goBack(){
-          this.$router.push("organize")
+          this.$router.go(-1)
         },
-        addData(){
-          this.tableData.push({departCode:'',departDesc:''})
+        async getByIdCustomer(id){   
+            // id = this.$route.params.id
+            let {data} = await(await Api()).getByIdCustomer(id)
+            console.log("asdsadsadas",id);
+            
+            // this.form.customerCode = data.customerCode
+            // this.form.customerName = data.customerName
+            
         },
-        async getListOrg() {
-            let id = this.$route.params.orgId.orgId
-            const res = await(await Api()).getListOrg(id)
-            this.form.orgCode = res.data.orgCode
-            this.form.orgDescription = res.data.orgDescription
-            this.tableData = res.data.departDetail 
-        },
-        async saveOrg() {
-    
-               let dataSave = await (await Api()).saveOrg(this.$route.params.orgId.orgId,this.form.orgCode,this.form.orgDescription,this.tableData)
-               swal('Good job!', 'You clicked the finish button!', 'success')
-               this.$router.push('organize') 
+        async getListUser(){
+            let {data} = await(await Api()).getListUser()
+            this.tableData = data;
         }
       }
 

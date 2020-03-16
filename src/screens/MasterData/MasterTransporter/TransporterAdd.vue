@@ -10,11 +10,6 @@
       </div>
       <div class="col-6">
         <button
-          @click='goBack'
-          class="btn pull-right" style=" color: #fff;"
-        ><span class="btn-label"><i class="nc-icon nc-simple-remove"></i></span>
-          ยกเลิก</button>
-        <button
           @click='validate'
           class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
@@ -24,19 +19,21 @@
     <div class="row justify-content-center mt-3 mb-3">
       <div class="col-4">
         <div class="form-group">
-          <label>LovKey  *  :   </label>
+          <label>Code  :  *  </label>
           <fg-input
-            v-model="form.lovKey"
-            placeholder="กรุณากรอก LovKey"
-            v-validate="formValidations.lovKey"
+            v-model="form.customerCode"
+            placeholder="กรุณากรอก Code"
+            v-validate="formValidations.customerCode"
           ></fg-input>
         </div>
+      </div>
+      <div class="col-4">
         <div class="form-group">
-          <label>Descripton  *  :  </label>
+          <label>Description  :  * </label>
           <fg-input
-            v-model="form.descripton"
+            v-model="form.customerName"
             placeholder="กรุณากรอก descripton"
-            v-validate="formValidations.descripton"
+            v-validate="formValidations.customerName"
           ></fg-input>
         </div>
       </div>
@@ -65,16 +62,21 @@ export default {
       },
       isVisible: this.visible,
       form: {
-        lovHeaderId:"",
-        lovKey: "",
-        descripton: "",  
+        transporterCustomerId:"",
+        customerCode: "",
+        customerName: "",
+        customerBranch: "",
+        contractNo:"",
+        rentalArea:"",
+        remark:"",
+        compCode:"",
       },
 
       formValidations: {
-        lovKey: {
+        customerCode: {
           required: true,
         },
-        descripton: {
+        customerName: {
           required: true,        
         },
       },
@@ -82,20 +84,18 @@ export default {
   },
     methods: {
         validate() {
-          this.onSaveData()
+          this.SaveData()
         },
    
-       async onSaveData(){
-          let dataSave = await (await Api()).saveLov(this.form)
-          swal('Good job!', 'You clicked the finish button!', 'success')
+       async SaveData(){
+          let dataSave = await (await Api()).saveTransporter(this.form)
+          swal('You clicked the finish button!','success')
           this.$router.go(-1)
         },
         goBack(){
           this.$router.go(-1)
         }
       }
-
-
 }
 </script>
 

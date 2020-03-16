@@ -1,9 +1,9 @@
 <template>
     <bw-card>
       <BwTable 
-        @onEdit='onEditLov'
-        :hiddenTabAction='hiddenTabAction'
-        :onClickTopCuttom='onClickTopCuttom'
+        @onActionEdit='editTransporter'
+        :hiddenTabAction='true'
+        :hiddenButtonEdit='true'
         :onClickTopBtn='onClickAdd'
         :tableData='tableData'
         :tableColumns='tableColumns'
@@ -26,49 +26,28 @@ import Api from '../../../service/CallHttp'
         BwCard
         },
         created () {
-            this.getList();
+            this.getListTransporter();
         },
         computed: { 
             
         }, 
-        methods: {
-            nextPage() {
-                this.$router.push("");
-            },
-            onEdit(data) {
-                console.log(data);
-                this.$router.push({ name: "", params: { data: data} });
-            },
-            async getList() {
-                let {data} = await(await Api()).getList()
-                this.tableData = data;
-            },                
-        },
-       
         data() {
             return {
-                from: {
-                    lovKey:''
-                },
-                hiddenTabAction: true,
-                hiddenButtonCustom: true,
                 tableData: [],
-                row:'row',
-                col:'col-md-12',
-                propsToSearch:["lovKey", "descripton"],
+                propsToSearch:[],
                 tableColumns: [
                     {
-                         prop: '',
+                         prop: 'customerCode',
                          label: 'Code', 
                          minWidth: 200,
                     },
                     {
-                         prop: '',
+                         prop: 'customerName',
                          label: 'Description', 
                          minWidth: 200,
                     },
                     {
-                         prop: '',
+                         prop: 'numUser',
                          label: 'จำนวนผู้ใช้', 
                          minWidth: 200,
                     },
@@ -80,7 +59,21 @@ import Api from '../../../service/CallHttp'
                 },    
             }
         },
+        methods: {
+            nextPage() {
+                this.$router.push("transporteradd");
+            },
+            editTransporter(data) {
+                console.log(data);
+                this.$router.push({ name: "TransporterDetail", params: { id: data.transporterCustomerId} });
+            },
+            async getListTransporter() {
+                let {data} = await(await Api()).getListTransporter()
+                this.tableData = data;
+            },               
+        },
         mounted() {
+            
             
         },
     }
