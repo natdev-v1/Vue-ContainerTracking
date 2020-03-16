@@ -43,7 +43,7 @@
   import AppFooter from '../../components/BwLayout/AppFooter'
   import Api from '../../service/CallHttp'
   import Images from '../../theme/images'
-
+import swal from 'sweetalert2'
 import Axios from 'axios';
   export default {
     components: {
@@ -66,6 +66,12 @@ import Axios from 'axios';
         if(token){
             localStorage.setItem('token',token)
             this.$router.push({ path: "/admin" }) 
+        }else{
+         swal({
+            title: `รหัสผ่านไม่ถูกต้อง`,
+            buttonsStyling: true,
+            confirmButtonClass: 'btn btn-success btn-fill'
+          })
         }
       }
     },

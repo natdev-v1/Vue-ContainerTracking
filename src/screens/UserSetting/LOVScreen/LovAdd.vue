@@ -87,7 +87,7 @@ export default {
    
        async onSaveData(){
           let dataSave = await (await Api()).saveLov(this.form)
-          swal('Good job!', 'You clicked the finish button!', 'success')
+          swal('บันทึกสำเร็จ', '', 'success')
           this.$router.go(-1)
         },
         goBack(){
