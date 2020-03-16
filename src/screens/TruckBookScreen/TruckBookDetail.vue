@@ -8,7 +8,7 @@
                     <button
                         @click='goBack'
                         type="button"
-                        class="btn-md btn btn-default pull-left btn-sm"
+                        class="btn-sm btn btn-default pull-left"
                         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
                         ย้อนกลับ</button><br>
                         <label>To : {{getTo}}</label>
@@ -334,7 +334,7 @@ export default {
           this.editLov()
         },
         goBack() {
-            this.$router.push("truckBookData")
+            this.$router.go(-1)
         },
         async findTruckBookDetail() {
           let proformaInvoice = get(this.$route.params.data,"proformaInvoice")
