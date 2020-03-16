@@ -141,6 +141,7 @@ export default {
       },
       dataHead:'',
       truckBookDetailList:'',
+     dataDrop:[],
       isVisible: this.visible,
       hiddenOder: true,
       hiddenTabAction: true,
@@ -173,16 +174,7 @@ export default {
                          label: 'Meterial.', 
                          minWidth: 120,
                          type:'select',
-                         options: [{
-                                value: 'PB-1-COMMON',
-                                label: 'PB-1-COMMON'
-                                }, {
-                                value: 'PB-2-COMMON',
-                                label: 'PB-2-COMMON'
-                                }, {
-                                value: 'PB-3-COMMON',
-                                label: 'PB-3-COMMON'
-                        }],
+                         options: this.dataDrop
                     },
                     {
                          prop: 'codeNote',
@@ -224,16 +216,7 @@ export default {
                          label: 'Pallet', 
                          minWidth: 120,
                          type:'select',
-                         options: [{
-                                value: '1',
-                                label: '1'
-                                }, {
-                                value: '2',
-                                label: '2'
-                                }, {
-                                value: '3',
-                                label: '3'
-                        }],
+                        options: [{}],
                     },
                     {
                          prop: 'palletType',
@@ -281,7 +264,16 @@ export default {
             this.dataHead = res.data[0];
             console.log("this.mtdrList >>>",res.data);
             console.log("this.dataHead >>>",res.data[0]);
+            // let {dd} = res.data.material
+             this.dataDrop = res.data.map((data)=>{
+                data.value = data.material
+                data.label = data.material
+                return data
+            });
+            console.log("this.dataDrop",this.dataDrop);
+            
             this.tableData = res.data;
+            
         },
         async getById() {            
             let res = await(await Api()).getById(this.$route.params.data.proformaInvoice);
