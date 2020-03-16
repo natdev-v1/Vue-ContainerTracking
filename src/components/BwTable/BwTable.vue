@@ -86,7 +86,7 @@
      
   <button  type="button"   @click="()=>onClickTopCuttom.onClick(props.row)" v-if="hiddenButtonCustom" class="btn btn-primary btn-sm"> {{onClickTopCuttom.text}}</button>
      </el-col>
-         <button type="button" class="btn btn-outline-default btn-round btn-default btn-sm" icon v-if="hiddenButtonDetail" @click="handleDetail(props.$index, props.row)">     <i class="nc-icon nc-zoom-split icon-bold"></i> </button>
+         <button type="button" class="btn btn-outline-default  btn-default btn-sm" icon v-if="hiddenButtonDetail" @click="handleDetail(props.$index, props.row)">     <i class="nc-icon nc-zoom-split icon-bold"></i> </button>
                     <!-- <p-button class="btn btn-outline-secondary" size="sm" icon v-if="hiddenButtonDetail" @click="handleDetail(props.$index, props.row)" outline round>
                   <i class="nc-icon nc-zoom-split icon-bold"></i> 
                 </p-button> -->
