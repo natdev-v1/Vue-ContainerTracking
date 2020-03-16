@@ -124,6 +124,7 @@ export default {
       [Select.name]: Select,
   },
   async created() {
+      this.getDropdownList()
       if(this.$route.params.data.proformaInvoice != null){
           this.findTruckBookDetail();
       }
@@ -216,8 +217,7 @@ export default {
                          prop: 'pallet',
                          label: 'Pallet', 
                          minWidth: 120,
-                         type:'select',
-                          options: [],
+                        type:'input',
                     },
                     {
                          prop: 'palletType',
@@ -268,6 +268,15 @@ export default {
             
             this.tableData = res.data;
             
+        },
+
+        async getDropdownList(){
+            let res = await(await Api()).getDropdownList();
+        
+             this.tableColumns1[7].options = res.data.map((data,idx)=>{
+            
+                return {value : idx ,label : data.lovCode}
+            });
         },
         async getById() {            
             let res = await(await Api()).getById(this.$route.params.data.proformaInvoice);
