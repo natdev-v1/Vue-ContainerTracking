@@ -19,7 +19,7 @@
      @onActionDetail='DetailSap'
       :hiddenOder='hiddenOder'
       :hiddenTabAction='hiddenTabAction'
-    :hiddenButtonDetail='hiddenButtonDetail'
+      :hiddenButtonDetail='hiddenButtonDetail'
       :hiddenButtonEdit='hiddenButtonEdit'
       :hiddenButtonDelete='hiddenButtonDelete'
       :tableData='tableData'

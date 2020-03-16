@@ -82,21 +82,19 @@
               class-name="td-actions"
               label="Actions">
               <template slot-scope="props"  >
-             <el-col v-if=" Object.keys(onClickTopCuttom).length" :xs="1" align='end'>
-     
-  <button  type="button"   @click="()=>onClickTopCuttom.onClick(props.row)" v-if="hiddenButtonCustom" class="btn btn-primary btn-sm"> {{onClickTopCuttom.text}}</button>
-     </el-col>
-         <p-button type="button" class="btn btn-outline-default  btn-default btn-sm" icon v-if="hiddenButtonDetail" @click="handleDetail(props.$index, props.row)">     <i class="nc-icon nc-zoom-split icon-bold"></i> </p-button>
-                    <!-- <p-button class="btn btn-outline-secondary" size="sm" icon v-if="hiddenButtonDetail" @click="handleDetail(props.$index, props.row)" outline round>
-                  <i class="nc-icon nc-zoom-split icon-bold"></i> 
-                </p-button> -->
-                <p-button  class="btn btn-outline-default  btn-default btn-sm"  icon v-if="hiddenButtonEdit" @click="handleEdit(props.$index, props.row)">
+                <el-col v-if=" Object.keys(onClickTopCuttom).length" :xs="1" align='end'>
+                <button  type="button"   @click="()=>onClickTopCuttom.onClick(props.row)" v-if="hiddenButtonCustom" class="btn btn-outline-primary btn-sm"> {{onClickTopCuttom.text}}</button>
+                </el-col>
+                <p-button type="button" class="btn btn-outline-default  btn-default btn-sm" icon v-if="hiddenButtonDetail" @click="handleDetail(props.$index, props.row)">     <i class="nc-icon nc-zoom-split icon-bold"></i> </p-button>
+                      <!-- <p-button class="btn btn-outline-secondary" size="sm" icon v-if="hiddenButtonDetail" @click="handleDetail(props.$index, props.row)" outline round>
+                    <i class="nc-icon nc-zoom-split icon-bold"></i> 
+                  </p-button> -->
+                <p-button  class="btn btn-outline-primary  btn-default btn-sm"  icon v-if="hiddenButtonEdit" @click="handleEdit(props.$index, props.row)">
                   <i class="fa fa-edit"></i> 
                 </p-button>
-                <p-button  class="btn btn-outline-default  btn-default btn-sm"  v-if="hiddenButtonDelete"  icon @click="handleDelete(props.$index, props.row)">
+                <p-button  class="btn btn-outline-danger  btn-default btn-sm"  v-if="hiddenButtonDelete"  icon @click="handleDelete(props.$index, props.row)">
                   <i class="nc-icon nc-box"></i>
                 </p-button>
-               
               </template>
            
             </el-table-column> 
