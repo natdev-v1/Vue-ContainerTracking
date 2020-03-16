@@ -4,20 +4,20 @@
         <div class="col-2">
         <button
           @click='goBack'
-       class="btn btn-sm pull-right" style=" color: #fff;"
+       class="btn  pull-right" style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
           ย้อนกลับ</button>
             </div>
       <div class="col-10">
         <button
          @click='goBack'
-   class="btn  btn-sm pull-right" style=" color: #fff;"
+   class="btn  pull-right" style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-simple-remove"></i></span>
           ยกเลิก</button>
         <button
           @click='validate'
           v-if="!checkButton"
-  class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
+  class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
         <!-- <button v-if="checkButton"

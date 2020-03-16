@@ -5,7 +5,7 @@
       <div class="col-6">
              <button
          @click='goBack'
-      class="btn  btn-sm" style=" color: #fff;"
+      class="btn  " style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
           ย้อนกลับ</button>
       </div>
@@ -13,7 +13,7 @@
      
         <button 
           @click='checkApi'
-     class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
+     class="btn btn-primary  pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
           
