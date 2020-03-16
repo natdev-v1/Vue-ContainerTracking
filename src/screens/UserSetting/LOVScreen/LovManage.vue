@@ -4,14 +4,14 @@
       <div class="col-6">
         <button
           @click='goBack'
-          class="btn  btn-sm " style=" color: #fff;"
+          class="btn " style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
           กลับ</button>
       </div>
       <div class="col-6">
         <button
           @click='goBack'
-          class="btnbtn-sm pull-right" style="color: #fff;"
+          class="btn pull-right" style="color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-simple-remove"></i></span>
           ยกเลิก</button>
         <button v-if="!checkButton"
@@ -21,7 +21,7 @@
           บันทึก </button>
         <button v-if="checkButton"
           @click='validateedit'
-          class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
+          class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-ruler-pencil"></i></span>
           แก้ไข </button>
       </div>
@@ -49,7 +49,7 @@
     </div>
     <div class='row mb-3'>
         <div class='col'>
-            <button @click='addData'  class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;">
+            <button @click='addData'  class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;">
             <span class="btn-label">
             <i class="nc-icon nc-simple-add">
             </i></span> เพิ่มข้อมูล

@@ -1,7 +1,7 @@
 <template>
   <div class="col-sm-12">
      <el-col v-if=" Object.keys(onClickTopBtn).length" :xs="1" align='end'>
-       <button  @click="onClickTopBtn.onClick" class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;"><i class="nc-icon nc-simple-add"></i> {{onClickTopBtn.text}}</button>
+       <button  @click="onClickTopBtn.onClick" class="btn btn-primary " style="background-color: #1CAF9A; color: #fff;"><i class="nc-icon nc-simple-add"></i> {{onClickTopBtn.text}}</button>
          <!-- <el-button @click="onClickTopBtn.onClick" type="primary">{{onClickTopBtn.text}}</el-button> -->
      </el-col>
       

@@ -5,7 +5,7 @@
         <button
           @click='goBack'
           type="button"
- class="btn  btn-sm pull-left" style=" color: #fff;"
+ class="btn pull-left" style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
           ย้อนกลับ</button>
             </div>
@@ -13,19 +13,19 @@
         <button
          @click='goBack'
           type="button"
-        class="btn  btn-sm pull-right" style=" color: #fff;"
+        class="btn pull-right" style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-simple-remove"></i></span>
           ยกเลิก</button>
         <button
           @click='validate'
           v-if="!checkButton"
           type="button"
-       class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
+       class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
         <button v-if="checkButton"
           @click='validateEdit'
-  class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
+  class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
        
         ><span class="btn-label"><i class="nc-icon nc-ruler-pencil"></i></span>
           แก้ไข </button>
