@@ -55,7 +55,7 @@ export default {
   computed: {},
   methods: {
         goBack(){
-          this.$router.push("sap")
+          this.$router.go(-1)
         },
     nextPage() {
       this.$router.push("organizeDeatil");

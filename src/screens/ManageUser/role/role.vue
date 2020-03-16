@@ -87,7 +87,7 @@ export default {
     },
     onEditRole(data) {
       console.log(data)
-      this.$router.push({ name: 'roleDetail', params: { roleId: data }  });
+      this.$router.push({ name: 'roleDetail', params: { data: data }  });
     },
     async getList(){
       let {data} = await(await Api()).getListRole()

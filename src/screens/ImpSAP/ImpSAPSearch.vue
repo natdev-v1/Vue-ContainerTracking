@@ -50,7 +50,7 @@ import Api from '../../service/CallHttp'
         }, 
         methods: {
                  goBack(){
-          this.$router.push("sap")
+     this.$router.go(-1)
         },
             nextPage() {
                 this.$router.push("organizeDeatil");

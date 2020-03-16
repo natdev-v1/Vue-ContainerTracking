@@ -45,7 +45,8 @@
     <div class="row mt-3">
       <div class="col-md-6 ml-auto mr-auto">
         <div class="form-group">
-          <label>Category : </label>
+          <h4>{{this.$route.params.data.roleId}}</h4>
+          <!-- <label>Category : </label> -->
           <fg-input
             v-model="form.roleCategory"
             placeholder="*กรุณากรอก Category"
@@ -85,8 +86,12 @@ export default {
         //     this.form.constantId = constantId
         //   this.form.constantKey = constantKey
         //   this.form.constantValue = constantValue
-
-        this.getListRoleData();
+        console.log("this.$route.params.data.roleId",this.$route.params.data.roleId);
+        
+  // if(this.$route.params.data.roleId){
+  //  this.getListRoleData();
+  // }
+     
         
   },
    data() {
