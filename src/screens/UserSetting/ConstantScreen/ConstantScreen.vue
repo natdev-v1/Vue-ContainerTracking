@@ -11,6 +11,8 @@
         :tableData='tableData'
         :tableColumns='tableColumns'
         :propsToSearch='propsToSearch'
+        :hiddenPagging="true"
+        
         
       ></BwTable>
     </BwCard>
