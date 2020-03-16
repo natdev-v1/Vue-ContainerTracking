@@ -186,7 +186,8 @@ export default {
                          prop: 'logNo',
                          label: 'Lot No.', 
                          minWidth: 100,
-                         type:'input'
+                        type:'select',
+                         options: []
                     },
                     {
                          prop: 'scNo',
@@ -260,7 +261,10 @@ export default {
             
                 return {value : idx ,label : data.material}
             });
-            console.log("this.dataDrop",this.dataDrop);
+             this.tableColumns1[2].options = res.data.map((data,idx)=>{
+            
+                return {value : idx ,label : data.batch}
+            });
             
             this.tableData = res.data;
             

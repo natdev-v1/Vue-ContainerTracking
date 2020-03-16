@@ -3,8 +3,8 @@
       <div class="row">
           <div v-for="(item,index) in listData" :key="index" class='d-flex  justify-content-center' @click="item.onClick">
           <div class="col-3">
-            <a href="#test" class="head-card">
-                <div class="card shadow rounded" routerLink="/masterdata/master001" style="width: 11rem;height: 9rem;">
+            <a class="head-card">
+                <div class="card shadow rounded" style="width: 11rem;height: 9rem;">
                 <div class="card-body text-center">
                     <!-- <font-awesome-icon  size="6x"  :icon="item.icon" /> -->
                     <i aria-hidden="true" :class="`fa ${item.icon} colors`"></i>
@@ -33,10 +33,7 @@ import BwCard from '../../components/BwCard/BwCard'
                   icon :'fa-building',
                   title:'Company',
                   // onClick: this.nextPageCompany,
-                  onClick(){
-                    this.nextPageCompany
-                  }
-                 
+                     onClick: this.nextPageCompany,
                  },
                  {
                   icon :"fa-product-hunt",
