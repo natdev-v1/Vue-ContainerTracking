@@ -10,8 +10,8 @@ export default (Api)=>{
         return await Api.get(`${'api/transporter/get-by-id-customer'}/${id}`)
         //api/transporter/get-by-id-customer 
     }
-    const getListUser = async()=>{
-        return await Api.get('api/transporter/list-user')
+    const getListUser = async(id)=>{
+        return await Api.get(`${'api/transporter/list-user'}/${id}`)
     }
     return {
         getListTransporter,

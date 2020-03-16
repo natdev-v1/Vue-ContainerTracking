@@ -1,84 +1,91 @@
 <template>
-<div><h5>55555</h5></div>
+    <BwCard title='Company Table'>
+      <BwTable
+        @onActionEdit='onEditCompany'
+        :hiddenPagging="true"
+        :hiddenButtonEdit='hiddenButtonEdit'
+        :hiddenButtonCustom='hiddenButtonCustom'
+        :hiddenTabAction='hiddenTabAction'
+        :hiddenOder='hiddenOder'
+        :hiddenButtonDelete='true'
+        :onClickTopBtn='onClickAdd'
+        :tableData='tableData'
+        :tableColumns='tableColumns'
+        :propsToSearch='propsToSearch'
+        @onDelete='onDelete'
+      ></BwTable>
+    </BwCard>
+
 </template>
-
 <script>
+import BwCard from "../../../components/BwCard/BwCard.vue";
+import BwTable from "../../../components/BwTable/BwTable.vue";
+import Api from '../../../service/CallHttp'
+export default {
+  name: "company",
+  components: {
+    BwTable,
+    BwCard,
+  },
+  async created() {
+    // console.log(save);
+    // this.tableData = await this.$store.getters.callApiGetConstant;
+    // console.log(await this.$store.getters.callApiGetConstant);
+    this.getList();
+    
+  },
+  data() {
+    return {
+      onActionEdit: true,
+      hiddenButtonEdit: true,
+      hiddenButtonCustom: true,
+      hiddenTabAction: true,
+      hiddenOder: true,
+      
 
-    export default {
-        name:'Company',
-        components:{
-        
+      tableData: [],
+      title: "company_table",
+      lableButton: "จัดการข้อมูล",
+      propsToSearch: [
+          "companyId",
+          "code",
+          "description"
+      ],
+      tableColumns: [
+        {
+          prop: "code",
+          label: "Code",
+          minWidth: 200
         },
-        created () {
-            this.getAll();
+        {
+          prop: "description",
+          label: "Description",
+          minWidth: 200
         },
-        computed: { 
-            
-        }, 
-        methods: {
-              nextPageSearch() {
-                this.$router.push("company");
-            },
-          nextPageUpload() {
-                this.$router.push("sapUpload");
-            },
-            nextPage() {
-                this.$router.push("organizeDeatil");
-            },
-            DetailSap(data) {
-              
-                this.$router.push({ name: "sapDetail", params: { data: data} });
-            },
-            async getAll() {
-                let {data} = await(await Api()).getListFile()
-                this.tableData = data.sapListZTPHdr.map((data)=>{
-                    data.uploadDate = this.$moment(data.uploadDate).format('DD/MM/YYYY')
-                    return data
-                });
-           
-            },
-                 
+      ],
+         onClickAdd: {
+        onClick: this.nextPage,
+        text: "Add"
+      }
+    };
+  },
+
+  methods: {
+    nextPage() {
+      this.$router.push("companyDetail");
+    },
+    onEditCompany(data) {
+      this.$router.push({ name: 'CompanyDetail', params: { data: data }  });
+    },
+    async getList(){
+      let {data} = await(await Api()).getListCompany()
+      this.tableData = data; 
+    },
+    async onDelete(data) {
+        let res = await (await Api()).companyIdDelete(data.companyId)
         },
-       
-        data() {
-            return {
-                hiddenOder: true,
-                hiddenButtonDetail:true,
-                hiddenTabAction: true,
-                hiddenButtonEdit: false,
-                hiddenButtonDelete: false,
-                tableData: [],
-                propsToSearch:["orgCode", "orgDescription"],
-                tableColumns: [
-                    {
-                         prop: 'fileName',
-                         label: 'File Name', 
-                         minWidth: 200,
-                    },
-                    {
-                         prop: 'uploadDate',
-                         label: 'Upload Date', 
-                         minWidth: 200,
-                    },
-                    {
-                         prop: 'createdBy',
-                         label: 'Upload By', 
-                         minWidth: 200,
-                    },
-                    
-                ],
-                onClickAdd: {
-                onClick: this.nextPage,
-                text: "Add"
-                },
-            }
-        },
-        mounted() {
-            
-        },
-    }
+  }
+};
 </script>
-
-<style scoped>
-
+<style lang="scss">
 </style>

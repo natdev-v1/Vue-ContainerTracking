@@ -30,7 +30,6 @@
       <div class="col-4">
           <div class="form-group">
           <label>Description  :  *  </label>
-          {{this.form.customerCode}}
           <fg-input
             v-model="form.customerName"
             placeholder="ใส่คำอธิบาย"
@@ -41,7 +40,7 @@
     </div>
     <hr>
     <div class='row mb-3'>
-        <div class="col">รายละเดียด</div>
+        <div class="col">รายละเอียด</div>
         <div class='col'>
             <button class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;">
             <span class="btn-label">
@@ -80,6 +79,9 @@ export default {
       if(this.$route.params.id != null){
           this.getByIdCustomer();
       }
+      if(this.$route.params.id != null){
+          this.getListUser();
+      }
   },
    data() {
     return {
@@ -91,34 +93,39 @@ export default {
       },
       isVisible: this.visible,
       form: {
-          customerCode:"",
-          customerName:"",
-        
+          transporterCustomerId:this.$route.params.id,
+          customerCode: "",
+          customerName: "",
+          customerBranch: "",
+          contractNo:"",
+          rentalArea:"",
+          remark:"",
+          compCode:"",
       },
       tableData: [],
       propsToSearch:[],
       tableColumns: [
                     {
-                         prop: '',
+                         prop: 'userName',
                          label: 'ชื่อผู้ใช้งาน', 
                          minWidth: 200,
                     },
                     {
-                         prop: '',
+                         prop: 'dataName',
                          label: 'ชื่อ-นามสกุล', 
                          minWidth: 200,
                     },
                     {
-                         prop: '',
+                         prop: 'role',
                          label: 'บทบาท', 
                          minWidth: 200,
                     },
       ],
       formValidations: {
-        orgCode: {
+        customerCode: {
           required: true,
         },
-        orgDescription: {
+        customerName: {
           required: true,        
         },
       },
@@ -128,23 +135,29 @@ export default {
     methods: {
    
         validate() {
-          
+            this.saveTransporter();
         },
         goBack(){
-          this.$router.go(-1)
+            this.$router.go(-1)
         },
         async getByIdCustomer(){   
-            // id = this.$route.params.id
             let {data} = await(await Api()).getByIdCustomer(this.$route.params.id)
-            // console.log("asdsadsadas",id);
-            
             this.form.customerCode = data.customerCode
             this.form.customerName = data.customerName
             
         },
         async getListUser(){
-            let {data} = await(await Api()).getListUser()
-            this.tableData = data;
+            let {data} = await(await Api()).getListUser(this.$route.params.id)
+            this.tableData = data.map((data)=>{
+            data.dataName = data.name +" "+ data.surname
+            data.role = "-"
+            return data;
+            })  
+        },
+        async saveTransporter(){
+            let dataSave = await (await Api()).saveTransporter(this.form)
+            swal('You clicked the finish button!','success')
+            this.$router.go(-1)
         }
       }
 

@@ -131,7 +131,7 @@ export default {
               this.$router.push("constant")
         },
         goBack(){
-          this.$router.push("constant")
+          this.$router.go(-1)
         },
         async getListConstantData() {
           let res = await(await CallHttp()).getListConstantData(this.$route.params.constantId.constantId)
