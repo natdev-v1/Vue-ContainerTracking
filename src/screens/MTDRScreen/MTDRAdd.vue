@@ -8,13 +8,13 @@
                          <button
                         @click='goBack'
                         type="button"
-                        class="btn-sm btn btn-default pull-left"
+                        class="btn btn-default pull-left"
                         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
                         ย้อนกลับ</button>
                         <button
                         @click='saveMTDR'
                         type="button"
-                        class="btn-sm btn btn-success pull-right"
+                        class="btn btn-success pull-right"
                         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
                         บันทึก </button>
                     </div>
@@ -88,7 +88,7 @@
                         <div class="col-3 mt-3">Transporter :<label></label></div>
                         <div class="col-3 mt-3">Container No. :<label>{{item.ctnNo}}</label></div>
                         <div class='col'>
-                            <button @click='addData(index)' type="button" class="btn-sm btn btn-success pull-right">
+                            <button @click='addData(index)' type="button" class="btn btn-success pull-right">
                             <span class="btn-label"><i class="nc-icon nc-simple-add"></i></span> เพิ่มข้อมูล
                             </button>
                         </div>

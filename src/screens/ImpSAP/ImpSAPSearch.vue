@@ -1,22 +1,29 @@
 <template>
     <bw-card title='Organize Table'>
-           <div class="row  mt-2 mb-3">
-           <div class="col-4">
-   <button   @click='goBack' type="button" class="btn btn-default btn-sm"><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
-              กลับ
-         </button>
-    </div>
-    <div class="col-4 mt-2">
-   <fg-input  placeholder="Proforma Invoice"      ></fg-input>
-    </div>
-       <div class="col-2">
-           <button class="btn" style="background-color: #1CAF9A; color: #fff;" type="button"><i  aria-hidden="true" class="fa fa-search"></i> ค้นหา </button>
- 
-    </div>
-   
-    </div>
+      <div class="row  mt-2 mb-3">
+      <div class="col-4">
+      <button
+      @click='goBack' 
+      type="button" 
+      class="btn btn-default">
+      <span class="btn-label">
+      <i class="nc-icon nc-minimal-left"></i></span>
+      กลับ
+      </button>
+      </div>
+      <div class="col-4 mt-2">
+        <fg-input  placeholder="Proforma Invoice"      ></fg-input>
+      </div>
+      <div class="col-2">
+        <button 
+        class="btn" style="background-color: #1CAF9A; color: #fff;" 
+        type="button"><i  aria-hidden="true" class="fa fa-search">
+        </i> ค้นหา
+        </button>
+      </div>
+      </div>
       <BwTable 
-     @onActionDetail='DetailSap'
+      @onActionDetail='DetailSap'
       :hiddenOder='hiddenOder'
       :hiddenTabAction='hiddenTabAction'
       :hiddenButtonDetail='hiddenButtonDetail'
