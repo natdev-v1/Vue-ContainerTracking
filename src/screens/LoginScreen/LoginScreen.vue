@@ -13,10 +13,10 @@
                   <div class="text-center">
                      <img :src="proIcon" style="width:150px; height:120px;" >
                   </div>
-                  <fg-input class="mt-3" v-model="form.username" addon-left-icon="nc-icon nc-single-02"
+                  <fg-input class="mt-3" v-model="form.username"  v-validate="modelValidations.username" addon-left-icon="nc-icon nc-single-02"
                             placeholder="First Name..."></fg-input>
 
-                  <fg-input v-model="form.password" addon-left-icon="nc-icon nc-key-25" placeholder="Password"
+                  <fg-input   v-validate="modelValidations.password" v-model="form.password" addon-left-icon="nc-icon nc-key-25" placeholder="Password"
                             type="password"></fg-input>
 
                   <br>
@@ -25,7 +25,7 @@
                     Remember
                   </p-checkbox>
 
-                  <p-button class="btn btn-primary"  native-type="submit" slot="footer" style="background-color:#65B4B5" type="button" round block>Get started</p-button>
+                  <p-button class="btn btn-primary"  native-type="submit" slot="footer" style="background-color:#65B4B5" type="button" round block>login</p-button>
                 </card>
               </form>
             </div>
@@ -54,6 +54,11 @@ import Axios from 'axios';
       [Button.name]: Button
     },
     methods: {
+       validate () {
+        this.$validator.validateAll().then(isValid => {
+          this.$emit('on-submit', this.registerForm, isValid)
+        })
+      },
       toggleNavbar() {
         document.body.classList.toggle('nav-open')
       },
@@ -69,14 +74,24 @@ import Axios from 'axios';
         }else{
          swal({
             title: `รหัสผ่านไม่ถูกต้อง`,
-            buttonsStyling: true,
-            confirmButtonClass: 'btn btn-success btn-fill'
+            buttonsStyling: false,
+            confirmButtonClass: 'btn btn-defulet btn-fill'
           })
         }
       }
     },
     data() {
       return {
+          modelValidations: {
+          username: {
+            required: true,
+            email: true
+          },
+          password: {
+            required: true,
+            min: 5
+          }
+        },
         form: {
           username: '',
           password: ''
