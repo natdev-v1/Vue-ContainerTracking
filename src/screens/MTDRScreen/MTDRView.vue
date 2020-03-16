@@ -86,6 +86,7 @@
                     </div>
                     <div>
                         <BwTable 
+                      
                         :tableData='item.mtdritems'
                         :tableColumns='tableColumns1'
                         :propsToSearch='propsToSearch'

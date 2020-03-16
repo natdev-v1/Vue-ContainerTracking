@@ -37,6 +37,7 @@
     <div>
       <BwTable 
       @onEdit='addMTDR'
+        :hiddenPagging="true"
       :textCustom='textCustom'
       :hiddenButtonCustom='hiddenButtonCustom'
       :hiddenOder='hiddenOder'

@@ -13,12 +13,12 @@ export default async ()=>{
      const baseUrl =   'http://baiwadev.thddns.net:9440/'
      const CTUrl = baseUrl+'CTBackend/'
      const localUrl = 'http://localhost:8081/CTBackend/'
-     const API = await ApiMain(CTUrl)
-     const APIToken = await  ApiMain(CTUrl,
+     const API = await ApiMain(localUrl)
+     const APIToken = await  ApiMain(localUrl,
      {
       authorization:"Bearer "+localStorage.getItem('token'),
      })
-     const APIUploadFile = await  ApiMain(CTUrl,
+     const APIUploadFile = await  ApiMain(localUrl,
       {
        authorization:"Bearer "+localStorage.getItem('token'),
        'Content-Type': 'multipart/form-data'
