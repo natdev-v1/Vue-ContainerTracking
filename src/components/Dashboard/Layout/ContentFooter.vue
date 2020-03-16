@@ -21,9 +21,7 @@
         </ul>
       </nav>
       <div class="copyright pull-right">
-        &copy; Coded with
-        <i class="fa fa-heart heart"></i> by
-        <a href="http://baiwa.co.th/" target="_blank" rel="noopener">Baiwa</a>.
+      
         <span>Designed by <a href="http://baiwa.co.th/" rel="noopener" target="_blank">Baiwa</a>.</span>
       </div>
     </div>
