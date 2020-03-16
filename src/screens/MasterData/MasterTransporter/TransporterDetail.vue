@@ -3,18 +3,17 @@
     <div class="row mt-3">
       <div class="col-6">
         <button
-         @click='goBack'
-         class="btn  " style=" color: #fff;"
-        ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
-          กลับ
+        @click='goBack'
+        class="btn  " style=" color: #fff;"
+        ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>กลับ
         </button>
       </div>
       <div class="col-6">
         <button
-          @click='validate'
- class="btn btn-primary  pull-right" style="background-color: #1CAF9A; color: #fff;"
-        ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
-          บันทึก </button>
+        @click='validate'
+        class="btn btn-primary  pull-right" style="background-color: #1CAF9A; color: #fff;"
+        ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>บันทึก
+        </button>
       </div>
     </div>
     <div class="row justify-content-center mt-3 mb-3">
@@ -24,8 +23,7 @@
           <fg-input
             v-model="form.orgCode"
             placeholder="ใส่รหัส"
-            v-validate="formValidations.orgCode"
-          >
+            v-validate="formValidations.orgCode">
           </fg-input>
         </div>
       </div>
@@ -35,15 +33,13 @@
           <fg-input
             v-model="form.orgDescription"
             placeholder="ใส่คำอธิบาย"
-            v-validate="formValidations.orgDescription"
-          >
+            v-validate="formValidations.orgDescription">
           </fg-input>
           </div>
       </div> 
     </div>
     <div class='row mb-3'>
         <div class='col'>
-            
             <button @click='addData'  class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;">
             <span class="btn-label">
             <i class="nc-icon nc-simple-add">
@@ -72,7 +68,7 @@ import BwCard from '../../../components/BwCard/BwCard'
 import swal from 'sweetalert2'
 import {Wizard, WizardTab} from 'src/components/UIComponents'
 export default {
-  name:'organizeDeatil',
+  name:'TransporterDeatil',
   components: {
       BwTable,
       BwCard

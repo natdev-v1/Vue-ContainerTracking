@@ -3,14 +3,15 @@
       <div class="row">
           <div v-for="(item,index) in listData" :key="index" class='d-flex  justify-content-center' @click="item.onClick">
           <div class="col-3">
-            <a href="#test" class="head-card">
-                <div class="card shadow rounded" routerLink="/masterdata/master001" style="width: 11rem;height: 9rem;">
+            <a class="head-card">
+                <div class="card shadow rounded" style="width: 11rem;height: 9rem;">
                 <div class="card-body text-center">
                     <!-- <font-awesome-icon  size="6x"  :icon="item.icon" /> -->
                     <i aria-hidden="true" :class="`fa ${item.icon} colors`"></i>
                     <h6 class="fonu" style="margin-top: 13px">{{item.title}}</h6>
                 </div>
                 </div>
+                
             </a>
         </div>
           </div>
@@ -31,7 +32,8 @@ import BwCard from '../../components/BwCard/BwCard'
                  listData:[{
                   icon :'fa-building',
                   title:'Company',
-                 
+                  // onClick: this.nextPageCompany,
+                     onClick: this.nextPageCompany,
                  },
                  {
                   icon :"fa-product-hunt",
@@ -65,6 +67,7 @@ import BwCard from '../../components/BwCard/BwCard'
                    {
                   icon :'fa-scribd colors',
                   title:'Transporter',
+                  onClick: this.nextPageTransporter,
                    
                  },
                    {
@@ -128,8 +131,11 @@ import BwCard from '../../components/BwCard/BwCard'
              }
          },
          methods:{
-             nextPage(text){
-                 this.$router.push(text)
+             nextPageCompany(){
+               this.$router.push("company")
+             },
+             nextPageTransporter(){
+               this.$router.push("transporter")
              }
          }
     }

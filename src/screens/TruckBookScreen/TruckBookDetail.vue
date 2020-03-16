@@ -102,7 +102,7 @@
                 v-for="item in options"
                 :key="item.value"
                 :label="item.label"
-                :value="item.value">
+                :value="item.label">
               </el-option>
          </el-select>
         </div>
@@ -146,6 +146,7 @@ export default {
       [Select.name]: Select,
   },
   async created() {
+    this.getDropdownList();
       if(get(this.$route.params.data,"proformaInvoice")){
           this.findTruckBookDetail();
       }
@@ -165,13 +166,9 @@ export default {
           {value: 'Test2', label: 'Test2'},
           {value: 'Test3', label: 'Test3'},
           ]
-        }, options: [{
-          value: '40',
-          label: '40'
-        }, {
-          value: '50',
-          label: '50'
-        }],
+        },
+        
+        options: [],
         dialogVisible:false,
          model: {
           ctnSize: '',
@@ -197,6 +194,7 @@ export default {
       },
       isVisible: this.visible,
       hiddenOder: true,
+
       hiddenTabAction: true,
       hiddenButtonEdit: true,
       checkButton: false,
@@ -327,7 +325,8 @@ export default {
           ctnSize: '',
           ctnNo: '',
           sealNo: ''
-          }
+          }	
+
           
         },
         validateedit() {
@@ -336,6 +335,16 @@ export default {
         goBack() {
             this.$router.go(-1)
         },
+        async getDropdownList(){
+          let dataDropdown = await (await Api()).getDropdown()     
+          console.log("data1111",dataDropdown.data);
+             this.options = dataDropdown.data.map((data,idx)=>{
+            
+                return {value : idx ,label : data.lovCode}
+            });       
+        } ,
+
+    
         async findTruckBookDetail() {
           let proformaInvoice = get(this.$route.params.data,"proformaInvoice")
         

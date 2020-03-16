@@ -124,6 +124,7 @@ export default {
       [Select.name]: Select,
   },
   async created() {
+      this.getDropdownList()
       if(this.$route.params.data.proformaInvoice != null){
           this.findTruckBookDetail();
       }
@@ -186,7 +187,8 @@ export default {
                          prop: 'logNo',
                          label: 'Lot No.', 
                          minWidth: 100,
-                         type:'input'
+                        type:'select',
+                         options: []
                     },
                     {
                          prop: 'scNo',
@@ -215,8 +217,7 @@ export default {
                          prop: 'pallet',
                          label: 'Pallet', 
                          minWidth: 120,
-                         type:'select',
-                          options: [],
+                        type:'input',
                     },
                     {
                          prop: 'palletType',
@@ -260,10 +261,22 @@ export default {
             
                 return {value : idx ,label : data.material}
             });
-            console.log("this.dataDrop",this.dataDrop);
+             this.tableColumns1[2].options = res.data.map((data,idx)=>{
+            
+                return {value : idx ,label : data.batch}
+            });
             
             this.tableData = res.data;
             
+        },
+
+        async getDropdownList(){
+            let res = await(await Api()).getDropdownList();
+        
+             this.tableColumns1[7].options = res.data.map((data,idx)=>{
+            
+                return {value : idx ,label : data.lovCode}
+            });
         },
         async getById() {            
             let res = await(await Api()).getById(this.$route.params.data.proformaInvoice);
