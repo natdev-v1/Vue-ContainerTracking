@@ -156,7 +156,7 @@ export default {
       hiddenButtonDelete: true,
       checkButton: false,
       lableButton: "จัดการข้อมูล",
-      tableData: ["",""],
+      tableData: [],
       propsToSearch:["lovCode"],
       tableColumns: [
           {
