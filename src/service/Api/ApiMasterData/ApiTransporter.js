@@ -13,10 +13,14 @@ export default (Api)=>{
     const getListUser = async(id)=>{
         return await Api.get(`${'api/transporter/list-user'}/${id}`)
     }
+    const deleteUser = async(id)=>{
+        return await Api.get(`${'api/transporter/delete-user'}/${id}`)
+    }
     return {
         getListTransporter,
         saveTransporter,
         getByIdCustomer,
-        getListUser
+        getListUser,
+        deleteUser
     }
 }

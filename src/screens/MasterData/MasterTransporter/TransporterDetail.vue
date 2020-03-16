@@ -56,7 +56,7 @@
       :tableData='tableData'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
-      deleteBy=""
+      deleteBy="userId"
       ></BwTable>
     </div>
   </div>
@@ -148,6 +148,7 @@ export default {
         },
         async getListUser(){
             let {data} = await(await Api()).getListUser(this.$route.params.id)
+            console.log("asdasdasdasd",data);
             this.tableData = data.map((data)=>{
             data.dataName = data.name +" "+ data.surname
             data.role = "-"
