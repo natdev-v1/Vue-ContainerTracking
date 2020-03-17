@@ -154,7 +154,7 @@ export default {
                     {
                          prop: 'material',
                          label: 'Material', 
-                         minWidth: 100,
+                         minWidth: 180,
                     },
                     {
                          prop: 'batch',
@@ -164,7 +164,7 @@ export default {
                     {
                          prop: 'quantity',
                          label: 'Quantity', 
-                         minWidth: 100,
+                         minWidth: 80,
                     },
                     
       ],
