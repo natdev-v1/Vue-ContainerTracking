@@ -1,5 +1,6 @@
 <template>
   <div class="col-md-12 card">
+
     <div class="row mt-3">
       <div class="col-6">
         <button
@@ -77,8 +78,10 @@ export default {
       BwTable,
       BwCard
   },
-  async created() { 
+  async created() {
+    if(this.$route.params.data != null){
       this.getListOrg();
+    } 
   },
    data() {
     return {
@@ -97,7 +100,7 @@ export default {
       hiddenOder: true,
       hiddenTabAction: true,
       tableData: [],
-      propsToSearch:["orgCode"],
+      propsToSearch:[],
       tableColumns: [
                     {
                          prop: 'departCode',
@@ -135,15 +138,14 @@ export default {
           this.tableData.push({departCode:'',departDesc:''})
         },
         async getListOrg() {
-            let res = await(await Api()).getListOrg(this.$route.params.data.orgId)
+          let res = await(await Api()).getListOrg(this.$route.params.data.orgId)
           console.log(res.data);
           this.form = res.data;
         },
         async saveOrg() {
-    
-               let dataSave = await (await Api()).saveOrg(this.$route.params.orgId.orgId,this.form.orgCode,this.form.orgDescription,this.tableData)
-               swal('Good job!', 'You clicked the finish button!', 'success')
-               this.$router.push('organize') 
+          let dataSave = await (await Api()).saveOrg(this.$route.params.data.orgId,this.form.orgCode,this.form.orgDescription,this.tableData)
+          swal('You clicked the finish button!', 'success')
+          this.$router.push('organize') 
         }
       }
 
