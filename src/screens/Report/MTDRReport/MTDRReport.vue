@@ -1,7 +1,7 @@
 <template>
 <bw-card title='MTDR'>
   <div class="col-md-12">
-    <div class="row justify-content-center mt-3 mb-3">
+    <div class="row justify-content-center mb-3">
         <div class="col-md-4">
             <div class="form-group">
               <label>Loading Date :</label>

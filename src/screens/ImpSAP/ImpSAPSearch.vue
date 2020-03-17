@@ -1,6 +1,6 @@
 <template>
-    <bw-card title='Organize'>
-      <div class="row  mt-2 mb-3">
+    <bw-card title='Import Data'>
+      <div class="row mb-3">
       <div class="col-4">
       <button
       @click='goBack' 
