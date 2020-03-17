@@ -66,7 +66,7 @@ export default {
       ],
          onClickAdd: {
         onClick: this.nextPage,
-        text: "Add"
+        text: "เพิ่มข้อมูล"
       }
     };
   },

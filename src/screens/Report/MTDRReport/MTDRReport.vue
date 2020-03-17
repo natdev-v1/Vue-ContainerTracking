@@ -2,17 +2,40 @@
   <div class="col-md-12 card">
     <div class="row justify-content-center mt-3 mb-3">
         <div class="col-md-4">
-            <h6 class="card-title">Loading Date : </h6>
             <div class="form-group">
-              <el-date-picker v-model="datePicker" type="date" placeholder="Pick a day"
+              <label>Loading Date :</label>
+              <el-date-picker v-model="datePicker" type="date" placeholder="    Date"
                               :picker-options="pickerOptions1"
                               lable="Loading Date: ">
               </el-date-picker>
             </div>
           </div>
+          
+        <div class="col-md-4">
+            
+          </div>
+    </div>
+
+    <div class="row justify-content-center mt-3 mb-3">
         <div class="col-md-4">
             <fg-input>
-                <h6 class="card-title">Destiantion : </h6>
+                <label>Original :</label>
+                  <el-select 
+                             size="large"
+                             placeholder="Single Select"
+                             v-model="selects.simple">
+                    <el-option v-for="option in selects.countries"
+                             
+                               :value="option.value"
+                               :label="option.label"
+                               :key="option.label">
+                    </el-option>
+                  </el-select>
+                </fg-input>
+          </div>
+          <div class="col-md-4">
+            <fg-input>
+                <label>Destiantion :</label>
                   <el-select 
                              size="large"
                              placeholder="Single Select"
@@ -30,33 +53,28 @@
 
     <div class="row justify-content-center mt-3 mb-3">
         <div class="col-md-4">
-            <fg-input>
-                <h6 class="card-title">Original : </h6>
-                  <el-select 
-                             size="large"
-                             placeholder="Single Select"
-                             v-model="selects.simple">
-                    <el-option v-for="option in selects.countries"
-                             
-                               :value="option.value"
-                               :label="option.label"
-                               :key="option.label">
-                    </el-option>
-                  </el-select>
-                </fg-input>
-          </div>
+            <div class="form-group">
+              <label>JOB INV. No. :</label>
+                <input
+                  type="text" 
+                  class="form-control" 
+                  placeholder=" "
+                >
+            </div>
+        </div>
         <div class="col-md-4">
-            <h6 class="card-title">PO No.Ref.Doc. :</h6>
-            <fg-input ></fg-input>
-          </div>
+            <div class="form-group">
+              <label>PO No.Ref.Doc. :</label>
+                <input
+                  type="text" 
+                  class="form-control" 
+                  placeholder=" "
+                >
+            </div>
+        </div>
     </div>
-
     <div class="row justify-content-center mt-3 mb-3">
-        <div class="col-md-4">
-            <h6 class="card-title">PO No.Ref.Doc. :</h6>
-            <fg-input ></fg-input>
-          </div>
-        <div class="col-md-4 mt-3">
+    <div class="col-md-4-center mt-3">
             <button
          @click='search'
           type="button"
@@ -65,7 +83,6 @@
           ค้นหา</button>
           </div>
     </div>
-
     <div>
       <BwTable 
       @onEdit='addMTDR'
@@ -86,7 +103,7 @@ import {DatePicker, TimeSelect, Slider, Tag, Input, Button, Select, Option} from
 import BwTable from '../../../components/BwTable/BwTable'
 import BwCard from '../../../components/BwCard/BwCard'
 export default {
-  name:'LovManage',
+  name:'MTDRReport',
   components: {
       BwTable,
       BwCard,
@@ -98,8 +115,8 @@ export default {
    data() {
     return {
       selects: {
-          countries: [{value: 'PC01', label: 'PC01'},
-          {value: 'PC02', label: 'PC02'},
+          countries: [{value: 'Test01', label: 'Test01'},
+          {value: 'Test02', label: 'Test02'},
           ]
       },
       props: {

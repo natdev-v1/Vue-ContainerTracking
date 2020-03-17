@@ -17,13 +17,12 @@
                       <label>Booking No. : {{getBooking}}</label>
                       </div>
                       <div class='col-4'>
-                      <button
-                      @click='dialogVisible = true'
-                        type="button" round outline 
-                        class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
-                 
-                        ><span class="btn-label"><i class="nc-icon nc-simple-add"></i></span>
-                        เพิ่มข้อมูล </button>
+                        <button
+                        @click='onSaveData'
+                        type="button"
+                     class="btn btn-success pull-right"
+                        ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
+                        บันทึก </button>
                       </div>
                 </div> 
             </div>
@@ -77,12 +76,11 @@
                     </div>
                     <div class="col">
                       <button
-                        @click='onSaveData'
-                        type="button"
-                     class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
-                        
-                        ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
-                        บันทึก </button>
+                      @click='dialogVisible = true'
+                        type="button" round outline 
+                        class="btn btn-success pull-right"          
+                        ><span class="btn-label"><i class="nc-icon nc-simple-add"></i></span>
+                        เพิ่มข้อมูล </button>
                     </div>
                     
                 </div>

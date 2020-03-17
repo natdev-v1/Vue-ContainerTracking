@@ -30,7 +30,7 @@
           <button
           @click='search'
         class="btn btn-primary" style="background-color: #1CAF9A; color: #fff;"
-        ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
+        ><span class="btn-label"><i class="nc-icon nc-zoom-split"></i></span>
           ค้นหา </button>
       </div> 
     </div>

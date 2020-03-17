@@ -20,15 +20,9 @@
           @click='validate'
           v-if="!checkButton"
           type="button"
-       class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
+       class="btn btn-success pull-right" 
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
-        <!-- <button v-if="checkButton"
-          @click='validate'
-  class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
-       
-        ><span class="btn-label"><i class="nc-icon nc-ruler-pencil"></i></span>
-          แก้ไข </button> -->
       </div>
     </div>
     <div class="row mt-3">
