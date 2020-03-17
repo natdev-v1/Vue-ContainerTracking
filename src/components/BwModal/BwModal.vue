@@ -2,7 +2,7 @@
 <el-dialog
   :title="title"
   :visible.sync="dialogVisible"
-  width="80%"
+  :width="width"
   :before-close="handleClose">
   <slot></slot>
   <span slot="footer" class="dialog-footer">
@@ -28,6 +28,10 @@ Vue.use(Button)
             title:{
                 type:String,
                 default:'' 
+            },
+            width:{
+                type:String,
+                default:""
             },
             onDialogVisible:{
                 type:Function,

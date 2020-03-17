@@ -64,9 +64,84 @@
       ></BwTable>
     </div>
     <BwModal 
-    :dialogVisible="dialogVisible" 
+    :title="title"
+    :width="width"
+    :dialogVisible="dialogVisible"
     :onConfirm="onConfirm"
     :onDialogVisible="()=>dialogVisible = false">
+    <dir class="row">
+        <dir class="col-6">
+          <div class="form-group">
+            <label>ชื่อ *</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="ชื่อ"
+              v-validate="formValidations.customerName"
+            >
+          </div>
+        </dir>
+        <dir class="col-6">
+          <div class="form-group">
+            <label>Username *</label>
+            <input
+              type="text" 
+              class="form-control" 
+              placeholder="Username"
+              v-validate="formValidations.customerName"
+            >
+          </div>
+        </dir>
+    </dir>
+    <dir class="row">
+      <dir class="col-6">
+        <div class="form-group">
+          <label>นามสกุล *</label>
+          <input
+            type="text" 
+            class="form-control" 
+            placeholder="นามสกุล"
+            v-validate="formValidations.customerName"
+          >
+        </div>
+      </dir>
+      <dir class="col-6">
+        <div class="form-group">
+          <label>Password *</label>
+          <input
+            type="password" 
+            class="form-control" 
+            placeholder="Password"
+            v-validate="formValidations.customerName"
+          >
+        </div>
+      </dir>
+    </dir>
+    <dir class="row">
+      <dir class="col-6">
+        <div class="form-group">
+          <label>Email * </label>
+          <input
+            type="text" 
+            class="form-control" 
+            placeholder="Email"
+            v-validate="formValidations.customerName"
+          >
+        </div>
+      </dir>
+      <dir class="col-6">
+        <div class="form-group">
+          <label>Confirm Password *</label>
+          <input
+            type="password" 
+            class="form-control" 
+            placeholder="Confirm Password"
+            v-validate="formValidations.customerName"
+          >
+        </div>
+      </dir>
+    </dir>
+    <hr>
     <!-- <div class="form-group">
       <label>CTN No.</label>
         <fg-input  type="text"
@@ -131,6 +206,8 @@ export default {
           remark:"",
           compCode:"",
       },
+      title:'สร้างผู้ใช้งาน',
+      width:'60%',
       options: [],
         dialogVisible:false,
          model: {

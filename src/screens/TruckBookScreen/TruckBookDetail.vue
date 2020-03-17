@@ -90,7 +90,8 @@
             </div>
         </div>
     </div>
-    <BwModal 
+    <BwModal
+       :width="width" 
        :dialogVisible="dialogVisible" 
        :onConfirm="onConfirm"
        :onDialogVisible="()=>dialogVisible = false"
@@ -194,7 +195,7 @@ export default {
       },
       isVisible: this.visible,
       hiddenOder: true,
-
+      width:"30%",
       hiddenTabAction: true,
       hiddenButtonEdit: true,
       checkButton: false,
