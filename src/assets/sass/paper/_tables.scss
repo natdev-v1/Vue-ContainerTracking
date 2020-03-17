@@ -23,8 +23,8 @@
         }
     }
     p {
-        margin-top: 6px;
-        margin-bottom: 6px;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
     .btn{
         margin: 0;
@@ -83,6 +83,7 @@
    > thead > tr > td,
    > tbody > tr > td,
    > tfoot > tr > td{
+    font-size: 12px;
        padding: 1px 0px;
        vertical-align: middle;
    }
