@@ -1,5 +1,5 @@
 <template>
-    <bw-card title='Organize Table'>
+    <bw-card title='Organize'>
       <div class="row  mt-2 mb-3">
       <div class="col-4">
       <button

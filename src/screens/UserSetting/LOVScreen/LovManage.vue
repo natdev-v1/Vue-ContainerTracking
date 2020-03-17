@@ -1,6 +1,6 @@
 <template>
-  <div class="col-md-12 card">
-    <div class="row mt-3">
+<bw-card title='Lov'>
+    <div class="row">
       <div class="col-6">
         <button
           @click='goBack'
@@ -68,7 +68,7 @@
         @onDelete='onDelete'
       ></BwTable>
     </div>
-  </div>
+</bw-card>
 </template>
 
 <script>

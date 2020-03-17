@@ -1,6 +1,6 @@
 <template>
-  <div class="col-md-12 card">
-      <div class="row mt-3">
+  <bw-card title='Role'>
+      <div class="row">
       <div class="col-6">
              <button
          @click='goBack'
@@ -15,7 +15,7 @@
         ><span class="btn-label"><i class="nc-icon nc-simple-remove"></i></span>
           ยกเลิก</button>
         <button 
-          @click='validate'
+          @click='checkButton'
      class="btn btn-primary  pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
@@ -30,7 +30,7 @@
           <fg-input
            ref="name"
             v-model="form.roleCode"
-            placeholder="*กรุณากรอก Code"
+            placeholder="กรอก Code"
             v-validate="formValidations.roleCode"
           >
           </fg-input>
@@ -40,9 +40,10 @@
     <div class="row mt-3">
       <div class="col-md-6 ml-auto mr-auto">
         <div class="form-group">
+          <label>Category : </label>
           <fg-input
             v-model="form.roleCategory"
-            placeholder="*กรุณากรอก Category"
+            placeholder="กรอก Category"
             v-validate="formValidations.roleCategory"
           >
           </fg-input>
@@ -55,7 +56,7 @@
           <label>Description : </label>
           <fg-input
             v-model="form.roleDesc"
-            placeholder="*กรุณากรอก Descripton"
+            placeholder="กรอก Descripton"
             v-validate="formValidations.roleDesc"
           >
           </fg-input>
@@ -63,14 +64,16 @@
       </div>
     </div>
     
-  </div>
+  </bw-card>
 </template>
 
 <script>
 import CallHttp from '../../../service/CallHttp'
+import BwCard from '../../../components/BwCard/BwCard'
 export default {
   
   components: {
+    BwCard
   },
     async created() {
         

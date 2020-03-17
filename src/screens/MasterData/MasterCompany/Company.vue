@@ -1,5 +1,5 @@
 <template>
-    <BwCard title='Company Table'>
+    <bw-card title='Company'>
       <BwTable
         @onActionEdit='onEditCompany'
         :hiddenPagging="true"
@@ -15,7 +15,7 @@
         @onDelete='onDelete'
         deleteBy="companyId"
       ></BwTable>
-    </BwCard>
+    </bw-card>
 
 </template>
 <script>

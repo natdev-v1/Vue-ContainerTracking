@@ -1,6 +1,7 @@
 <template>
-  <div class="col-md-12 card">
-    <div class="row mt-3">
+<bw-card title='Transporter'>
+  <div class="col-md-12">
+    <div class="row">
       <div class="col-6">
         <button
         @click='goBack'
@@ -152,6 +153,7 @@
     </div>
     </BwModal>
   </div>
+</bw-card>
 </template>
 
 <script>

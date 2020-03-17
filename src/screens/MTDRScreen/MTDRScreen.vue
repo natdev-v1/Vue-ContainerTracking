@@ -1,5 +1,6 @@
 <template>
-  <div class="col-md-12 card">
+<bw-card title='MTDR'>
+  <div class="col-md-12">
     <div class="row justify-content-center mt-3 mb-3">
         <div class="col-4">
                 <fg-input label="Plant">
@@ -46,6 +47,7 @@
       ></BwTable>
     </div>
   </div>
+</bw-card>
 </template>
 
 <script>

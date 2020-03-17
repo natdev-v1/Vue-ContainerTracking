@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-12 ">
-  <div class="col-md-12 card">
-    <div class="row mt-3">
+  <div class="col-md-12 card"><br><h5><label>User</label></h5>
+    <div class="row">
       <div class="col-6">
              <button
          @click='goBack'

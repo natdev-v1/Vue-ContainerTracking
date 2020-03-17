@@ -1,5 +1,5 @@
 <template>
-    <bw-card title='Lov Table'>
+    <bw-card title='Lov'>
       <BwTable 
         @onEdit='onEditLov'
         :hiddenOder='hiddenOder'

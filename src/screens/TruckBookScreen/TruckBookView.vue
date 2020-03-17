@@ -2,7 +2,7 @@
 <div class="row" >
     <div class="col-12">
         <div class="row card" >
-            <div class="col-12">
+            <div class="col-12"><br><h5><label>Truck Booking</label></h5>
                 <div class='row mt-1'>
                   <div class="col-4 text-center">
                     <button

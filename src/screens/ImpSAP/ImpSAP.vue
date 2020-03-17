@@ -1,5 +1,5 @@
 <template>
-    <bw-card title='Organize Table'>
+    <bw-card title='Organize'>
            <div class="row  mt-3 mb-3">
         <bw-time-picker setClass="col-3" ></bw-time-picker>
        <div class="col-3 text-right"> 

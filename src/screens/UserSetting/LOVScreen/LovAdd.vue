@@ -1,6 +1,6 @@
 <template>
-  <div class="col-md-12 card">
-    <div class="row mt-3">
+<bw-card title='Lov'>
+    <div class="row">
       <div class="col-6">
         <button
           @click='goBack'
@@ -41,16 +41,18 @@
         </div>
       </div>
     </div>
-  </div>
+</bw-card>
 </template>
 
 <script>
 import Api from '../../../service/CallHttp'
 import swal from 'sweetalert2'
 import {Wizard, WizardTab} from 'src/components/UIComponents'
+import BwCard from '../../../components/BwCard/BwCard'
 export default {
   name:'LovAdd',
   components: {
+    BwCard
   },
   async created() {
         

@@ -1,5 +1,5 @@
 <template>
-    <bw-card>
+    <bw-card title='Transporter'>
       <BwTable 
         @onActionEdit='editTransporter'
         :hiddenTabAction='true'

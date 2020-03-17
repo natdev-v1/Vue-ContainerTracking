@@ -2,7 +2,7 @@
      <div class="row">
     <div class="col-md-12 card">
       <div class="card-header">
-        <div class="category">{{title}}</div>
+        <h4><div class="category">{{title}}</div></h4>
       </div>
       <div class="card-body ">
             <slot></slot>

@@ -1,5 +1,6 @@
 <template>
-  <div class="col-md-12 card">
+<bw-card title='VGM (EMC)_Report'>
+  <div class="col-md-12">
     <div class="row mt-3 mb-3">
         <div class="col-4">
             <button
@@ -29,6 +30,7 @@
       ></BwTable>
     </div>
   </div>
+</bw-card>
 </template>
 
 <script>

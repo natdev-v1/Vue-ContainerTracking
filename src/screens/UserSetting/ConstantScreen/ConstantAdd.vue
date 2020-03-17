@@ -1,6 +1,6 @@
 <template>
-  <div class="col-md-12 card">
-      <div class="row mt-3">
+  <bw-card title='Constant'>
+      <div class="row">
         <div class="col-2">
         <button
           @click='goBack'
@@ -60,14 +60,16 @@
       </div>
     </div>
     
-  </div>
+</bw-card>
 </template>
 
 <script>
 import CallHttp from '../../../service/CallHttp'
+import BwCard from '../../../components/BwCard/BwCard'
 export default {
   
   components: {
+    BwCard
   },
     async created() {
  

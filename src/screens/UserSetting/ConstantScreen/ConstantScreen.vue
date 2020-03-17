@@ -1,5 +1,5 @@
 <template>
-    <BwCard title='Constant Table'>
+    <BwCard title='Constant'>
       <BwTable
         @onActionEdit='onEditConstant'
         :hiddenButtonEdit='hiddenButtonEdit'

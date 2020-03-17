@@ -1,5 +1,5 @@
 <template>
-    <bw-card title='Organize Table'>
+    <bw-card title='Organize'>
       <BwTable 
       @onActionEdit='EditOrg'
       :hiddenOder='hiddenOder'

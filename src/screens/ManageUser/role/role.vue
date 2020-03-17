@@ -1,5 +1,5 @@
 <template>
-    <BwCard title='Role Table'>
+    <BwCard title='Role'>
       <BwTable
         @onActionEdit='onEditRole'
         :hiddenPagging="true"

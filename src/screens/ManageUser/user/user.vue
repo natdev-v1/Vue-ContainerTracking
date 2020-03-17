@@ -1,5 +1,5 @@
 <template>
-    <bw-card title='Lov Table'>
+    <bw-card title='User'>
     <!-- <button v-on:click="addForm()">5555</button> -->
       <BwTable 
       @onActionEdit='onEditLov'

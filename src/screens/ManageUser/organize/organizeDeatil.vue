@@ -1,7 +1,7 @@
 <template>
-  <div class="col-md-12 card">
+  <bw-card title='Organize'>
 
-    <div class="row mt-3">
+    <div class="row">
       <div class="col-6">
         <button
          @click='goBack'
@@ -63,7 +63,7 @@
       deleteBy="departId"
       ></BwTable>
     </div>
-  </div>
+</bw-card>
 </template>
 
 <script>
