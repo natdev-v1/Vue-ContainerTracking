@@ -13,6 +13,7 @@
         :tableColumns='tableColumns'
         :propsToSearch='propsToSearch'
             @onDelete='onDelete'
+             deleteBy="data"
       ></BwTable>
     </BwCard>
 
