@@ -4,26 +4,26 @@
         <div class="col-4">
                 <fg-input label="Plant">
                   <el-select 
-                             size="large"
-                             placeholder="Select"
-                             v-model="selects.simple">
+                    size="large"
+                    placeholder="Select"
+                    v-model="selects.simple">
                     <el-option v-for="option in selects.countries"
-                               class="select-danger"
-                               :value="option.value"
-                               :label="option.label"
-                               :key="option.label">
+                    class="select-danger"
+                    :value="option.value"
+                    :label="option.label"
+                    :key="option.label">
                     </el-option>
                   </el-select>
                 </fg-input>
               </div>
       <div class="col-4">
         <div class="form-group">
-          <fg-input
-            label="JOB/INV. Number"
+          <label>JOB/INV. Number</label>
+          <input
+            type="text" 
+            class="form-control" 
             placeholder="JOB/INV. Number"
           >
-          </fg-input>
-
         </div>
       </div>
       <div class='col-4 mt-3' >
@@ -38,7 +38,6 @@
       <BwTable 
       @onEdit='addMTDR'
       :hiddenPagging="true"
-      :textCustom='textCustom'
       :hiddenButtonCustom='hiddenButtonCustom'
       :hiddenOder='hiddenOder'
       :tableData='tableData'

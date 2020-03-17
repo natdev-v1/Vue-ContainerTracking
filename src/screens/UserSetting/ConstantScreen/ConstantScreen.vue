@@ -32,6 +32,7 @@ export default {
     // console.log(save);
     // this.tableData = await this.$store.getters.callApiGetConstant;
     // console.log(await this.$store.getters.callApiGetConstant);
+  
     this.getList();
     
   },
@@ -78,7 +79,7 @@ export default {
     },
     onEditConstant(data) {
       console.log(data)
-      this.$router.push({ name: 'ConstantAdd', params: { constantId: data }  });
+      this.$router.push({ name: 'ConstantAdd', params: { constantId: data.constantId }  });
 
     },
     async getList(){

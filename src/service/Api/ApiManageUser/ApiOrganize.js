@@ -8,8 +8,8 @@ export default (Api)=>{
     const saveOrg = async(orgId,orgCode,orgDescription,departDetail)=>{
         return await Api.post('api/org/save',{orgId,orgCode,orgDescription,departDetail})
     }
-    const deleteOrg = async()=>{
-        return await Api.post('api/org/delete')
+    const deleteOrg = async(orgId)=>{
+        return await Api.post('api/org/delete',{orgId})
     }
     return {
         getAllOrg,

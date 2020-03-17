@@ -3,14 +3,15 @@
       <BwTable 
       @onActionEdit='EditOrg'
       :hiddenOder='hiddenOder'
-        :hiddenPagging="true"
+      :hiddenPagging="true"
       :hiddenTabAction='hiddenTabAction'
       :onClickTopBtn='onClickAdd'
       :hiddenButtonEdit='hiddenButtonEdit'
-      :hiddenButtonDelete='hiddenButtonDelete'
+      :hiddenButtonDelete='true'
       :tableData='tableData'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
+      @onDelete='onDelete'
       deleteBy="orgId"
       ></BwTable>
     </bw-card>
@@ -40,11 +41,14 @@ import Api from '../../../service/CallHttp'
             },
             EditOrg(data) {
                 console.log(data);
-                this.$router.push({ name: "organizeDeatil", params: { orgId: data} });
+                this.$router.push({ name: "organizeDeatil", params: { data: data} });
             },
             async getAllOrg() {
                 let {data} = await(await Api()).getAllOrg()
                 this.tableData = data;
+            },
+            async onDelete(data) {
+                let res = await (await Api()).deleteOrg(data.orgId)
             },
                  
         },
@@ -54,7 +58,6 @@ import Api from '../../../service/CallHttp'
                 hiddenOder: true,
                 hiddenTabAction: true,
                 hiddenButtonEdit: true,
-                hiddenButtonDelete: true,
                 tableData: [],
                 propsToSearch:["orgCode", "orgDescription"],
                 tableColumns: [

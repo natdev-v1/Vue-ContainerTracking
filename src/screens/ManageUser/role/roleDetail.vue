@@ -20,12 +20,6 @@
   class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
-        <!-- <button v-if="checkButton"
-          @click='validateEdit'
-          type="button"
-          class="btn btn-success pull-right"
-        ><span class="btn-label"><i class="nc-icon nc-ruler-pencil"></i></span>
-          แก้ไข </button> -->
       </div>
     </div>
     <div class="row mt-3">
@@ -45,8 +39,6 @@
     <div class="row mt-3">
       <div class="col-md-6 ml-auto mr-auto">
         <div class="form-group">
-          <!-- <h4>{{this.$route.params.data.roleId}}</h4> -->
-          <!-- <label>Category : </label> -->
           <fg-input
             v-model="form.roleCategory"
             placeholder="*กรุณากรอก Category"
@@ -80,13 +72,6 @@ export default {
   components: {
   },
     async created() {
- 
-        // let res = await (await CallHttp()).getConstantById(this.$route.params.constantId.constantId)
-        //  let { constantId,constantKey,constantValue } = res.data
-        //     this.form.constantId = constantId
-        //   this.form.constantKey = constantKey
-        //   this.form.constantValue = constantValue
-        // console.log("this.$route.params.data.roleId",this.$route.params.data.roleId);
         
   if(this.$route.params.data != null){
    this.getListRoleData();
@@ -127,11 +112,6 @@ export default {
         validate() {
           this.onSaveData()
         },
-        // validateEdit(){
-          // this.onSaveData()
-        //   this.editRole()
-        // },
-        
 
         async editRole(){
           let res = await(await CallHttp()).editRole(this.form.roleId,this.form.roleCode,this.form.roleCategory,this.form.roleDesc)
@@ -139,11 +119,6 @@ export default {
           this.$router.push("role")
         },
 
-        // async editConstant(data) {
-        //   console.log(data)
-        // this.$router.push({ name: 'ConstantAdd', params: { constantId: data }  });
-        // },
-   
         async onSaveData(){
           if(this.$route.params.data != null){
             let dataSave = await (await CallHttp()).saveRole(this.form)
@@ -158,9 +133,6 @@ export default {
           let res = await(await CallHttp()).getListRoleData(this.$route.params.data.roleId)
           console.log(res.data);
           this.form = res.data;
-          // if(this.$route.params.roleId.roleId !=  null){
-          //     this.checkButton  = true;
-          // }
         }
     }
 }

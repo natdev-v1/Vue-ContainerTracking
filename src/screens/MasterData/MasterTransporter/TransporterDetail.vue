@@ -64,27 +64,92 @@
       ></BwTable>
     </div>
     <BwModal 
-    :dialogVisible="dialogVisible" 
+    :title="title"
+    :width="width"
+    :dialogVisible="dialogVisible"
     :onConfirm="onConfirm"
     :onDialogVisible="()=>dialogVisible = false">
-    <!-- <div class="form-group">
-      <label>CTN No.</label>
-        <fg-input  type="text"
-        name="ctnNo"
-        v-validate="modelValidations.ctnNo"
-        v-model="model.ctnNo"
-        :error="getError('ctnNo')">
-        </fg-input>
+    <hr>
+    <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>ชื่อ *</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="ชื่อ"
+              v-validate="formValidations.customerName"
+            >
+          </div>
         </div>
-    <div class="form-group">
-      <label>Seal No.</label>
-        <fg-input  type="text"
-        name="sealNo"
-        v-validate="modelValidations.sealNo"
-        v-model="model.sealNo"
-        :error="getError('sealNo')">
-        </fg-input>
-    </div> -->
+        <div class="col-6">
+          <div class="form-group">
+            <label>Username *</label>
+            <input
+              type="text" 
+              class="form-control" 
+              placeholder="Username"
+              v-validate="formValidations.customerName"
+            >
+          </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>นามสกุล *</label>
+          <input
+            type="text" 
+            class="form-control" 
+            placeholder="นามสกุล"
+            v-validate="formValidations.customerName"
+          >
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label>Password *</label>
+          <input
+            type="password" 
+            class="form-control" 
+            placeholder="Password"
+            v-validate="formValidations.customerName"
+          >
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Email * </label>
+          <input
+            type="text" 
+            class="form-control" 
+            placeholder="Email"
+            v-validate="formValidations.customerName"
+          >
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label>Confirm Password *</label>
+          <input
+            type="password" 
+            class="form-control" 
+            placeholder="Confirm Password"
+            v-validate="formValidations.customerName"
+          >
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div>
+      <BwTable 
+      :tableData='tableData1'
+      :tableColumns='tableColumns1'
+      :propsToSearch='propsToSearch'
+      ></BwTable>
+    </div>
     </BwModal>
   </div>
 </template>
@@ -131,6 +196,8 @@ export default {
           remark:"",
           compCode:"",
       },
+      title:'สร้างผู้ใช้งาน',
+      width:'60%',
       options: [],
         dialogVisible:false,
          model: {
@@ -150,23 +217,36 @@ export default {
           }
       },
       tableData: [],
+      tableData1: [],
       propsToSearch:[],
       tableColumns: [
-                    {
-                         prop: 'userName',
-                         label: 'ชื่อผู้ใช้งาน', 
-                         minWidth: 200,
-                    },
-                    {
-                         prop: 'dataName',
-                         label: 'ชื่อ-นามสกุล', 
-                         minWidth: 200,
-                    },
-                    {
-                         prop: 'role',
-                         label: 'บทบาท', 
-                         minWidth: 200,
-                    },
+        {
+          prop: 'userName',
+          label: 'ชื่อผู้ใช้งาน', 
+          minWidth: 200,
+        },
+        {
+          prop: 'dataName',
+          label: 'ชื่อ-นามสกุล', 
+          minWidth: 200,
+        },
+        {
+          prop: 'role',
+          label: 'บทบาท', 
+          minWidth: 200,
+        },
+      ],
+      tableColumns1: [
+        {
+          prop: '',
+          label: 'Code', 
+          minWidth: 200,
+        },
+        {
+          prop: '',
+          label: 'Description', 
+          minWidth: 200,
+        },
       ],
       formValidations: {
         customerCode: {

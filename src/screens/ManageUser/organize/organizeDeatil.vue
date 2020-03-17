@@ -1,5 +1,6 @@
 <template>
   <div class="col-md-12 card">
+
     <div class="row mt-3">
       <div class="col-6">
         <button
@@ -55,7 +56,7 @@
       <BwTable 
       :hiddenOder='hiddenOder'
       :hiddenTabAction='hiddenTabAction'
-      :hiddenButtonDelete='hiddenButtonDelete'
+      :hiddenButtonDelete='true'
       :tableData='tableData'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
@@ -77,8 +78,10 @@ export default {
       BwTable,
       BwCard
   },
-  async created() { 
+  async created() {
+    if(this.$route.params.data != null){
       this.getListOrg();
+    } 
   },
    data() {
     return {
@@ -96,9 +99,8 @@ export default {
       },
       hiddenOder: true,
       hiddenTabAction: true,
-      hiddenButtonDelete: true,
       tableData: [],
-      propsToSearch:["orgCode"],
+      propsToSearch:[],
       tableColumns: [
                     {
                          prop: 'departCode',
@@ -130,23 +132,20 @@ export default {
           this.saveOrg()
         },
         goBack(){
-          this.$router.push("organize")
+          this.$router.go(-1)
         },
         addData(){
           this.tableData.push({departCode:'',departDesc:''})
         },
         async getListOrg() {
-            let id = this.$route.params.orgId.orgId
-            const res = await(await Api()).getListOrg(id)
-            this.form.orgCode = res.data.orgCode
-            this.form.orgDescription = res.data.orgDescription
-            this.tableData = res.data.departDetail 
+          let res = await(await Api()).getListOrg(this.$route.params.data.orgId)
+          console.log(res.data);
+          this.form = res.data;
         },
         async saveOrg() {
-    
-               let dataSave = await (await Api()).saveOrg(this.$route.params.orgId.orgId,this.form.orgCode,this.form.orgDescription,this.tableData)
-               swal('Good job!', 'You clicked the finish button!', 'success')
-               this.$router.push('organize') 
+          let dataSave = await (await Api()).saveOrg(this.$route.params.data.orgId,this.form.orgCode,this.form.orgDescription,this.tableData)
+          swal('You clicked the finish button!', 'success')
+          this.$router.push('organize') 
         }
       }
 
