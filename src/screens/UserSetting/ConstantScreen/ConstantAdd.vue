@@ -76,8 +76,10 @@ export default {
         //     this.form.constantId = constantId
         //   this.form.constantKey = constantKey
         //   this.form.constantValue = constantValue
-
-        this.getListConstantData();
+  if(this.$route.params.constantId){
+      this.getListConstantData();
+  }
+      
         
   },
    data() {
@@ -134,10 +136,10 @@ export default {
           this.$router.go(-1)
         },
         async getListConstantData() {
-          let res = await(await CallHttp()).getListConstantData(this.$route.params.constantId.constantId)
+          let res = await(await CallHttp()).getListConstantData(this.$route.params.constantId)
           console.log(res.data);
           this.form = res.data;
-          if(this.$route.params.constantId.constantId !=  null){
+          if(this.$route.params.constantId !=  null){
               this.checkButton  = true;
           }
         }
