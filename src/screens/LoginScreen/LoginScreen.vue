@@ -73,7 +73,9 @@ import Axios from 'axios';
             this.$router.push({ path: "/admin" }) 
         }else{
          swal({
-            title: `รหัสผ่านไม่ถูกต้อง`,
+            title: 'Warning!!!!',
+            text: 'ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง',
+            type: 'warning',
             buttonsStyling: false,
             confirmButtonClass: 'btn btn-defulet btn-fill'
           })
