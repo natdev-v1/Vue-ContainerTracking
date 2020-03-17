@@ -39,7 +39,7 @@
           <fg-input
            ref="name"
             v-model="form.constantKey"
-            placeholder="*กรุณากรอก Constant Key"
+            placeholder="กรอก Constant Key"
             v-validate="formValidations.constantKey"
           >
           </fg-input>
@@ -52,7 +52,7 @@
           <label>Descripton : </label>
           <fg-input
             v-model="form.constantValue"
-            placeholder="*กรุณากรอก Descripton"
+            placeholder="กรอก Descripton"
             v-validate="formValidations.constantValue"
           >
           </fg-input>

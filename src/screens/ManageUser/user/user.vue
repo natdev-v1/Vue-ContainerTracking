@@ -100,7 +100,7 @@ import Api from '../../../service/CallHttp'
                 ],
                 onClickAdd: {
                 onClick: this.nextPage,
-                text: "Add"
+                text: "เพิ่มข้อมูล"
                 },
                
             }

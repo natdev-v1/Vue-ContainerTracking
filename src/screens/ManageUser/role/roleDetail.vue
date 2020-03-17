@@ -1,25 +1,26 @@
 <template>
   <div class="col-md-12 card">
       <div class="row mt-3">
-        <div class="col-2">
-        <button
-          @click='goBack'
-       class="btn  pull-right" style=" color: #fff;"
+      <div class="col-6">
+             <button
+         @click='goBack'
+      class="btn  " style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
           ย้อนกลับ</button>
-            </div>
-      <div class="col-10">
+      </div>
+      <div class="col-6">
         <button
          @click='goBack'
-   class="btn  pull-right" style=" color: #fff;"
+      class="btn  pull-right" style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-simple-remove"></i></span>
           ยกเลิก</button>
-        <button
+        <button 
           @click='validate'
-          v-if="!checkButton"
-  class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
+     class="btn btn-primary  pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
+          
+      
       </div>
     </div>
     <div class="row mt-3">
