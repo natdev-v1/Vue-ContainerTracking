@@ -13,6 +13,7 @@
         :tableColumns='tableColumns'
         :propsToSearch='propsToSearch'
         @onDelete='onDelete'
+        deleteBy="companyId"
       ></BwTable>
     </BwCard>
 
@@ -83,7 +84,7 @@ export default {
     },
     async onDelete(data) {
         let res = await (await Api()).companyIdDelete(data.companyId)
-        },
+    },
   }
 };
 </script>

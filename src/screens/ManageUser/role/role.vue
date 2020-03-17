@@ -2,18 +2,19 @@
     <BwCard title='Role Table'>
       <BwTable
         @onActionEdit='onEditRole'
-          :hiddenPagging="true"
+        :hiddenPagging="true"
         :hiddenButtonEdit='hiddenButtonEdit'
         :hiddenButtonCustom='hiddenButtonCustom'
         :hiddenTabAction='hiddenTabAction'
         :hiddenOder='hiddenOder'
-    :hiddenButtonDelete='true'
+        :hiddenButtonDelete='true'
         :onClickTopBtn='onClickAdd'
         :tableData='tableData'
         :tableColumns='tableColumns'
         :propsToSearch='propsToSearch'
-            @onDelete='onDelete'
-             deleteBy="data"
+        @onDelete='onDelete'
+        deleteBy="roleId"
+
       ></BwTable>
     </BwCard>
 

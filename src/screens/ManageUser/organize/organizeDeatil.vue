@@ -55,7 +55,7 @@
       <BwTable 
       :hiddenOder='hiddenOder'
       :hiddenTabAction='hiddenTabAction'
-      :hiddenButtonDelete='hiddenButtonDelete'
+      :hiddenButtonDelete='true'
       :tableData='tableData'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
@@ -96,7 +96,6 @@ export default {
       },
       hiddenOder: true,
       hiddenTabAction: true,
-      hiddenButtonDelete: true,
       tableData: [],
       propsToSearch:["orgCode"],
       tableColumns: [
@@ -130,17 +129,15 @@ export default {
           this.saveOrg()
         },
         goBack(){
-          this.$router.push("organize")
+          this.$router.go(-1)
         },
         addData(){
           this.tableData.push({departCode:'',departDesc:''})
         },
         async getListOrg() {
-            let id = this.$route.params.orgId.orgId
-            const res = await(await Api()).getListOrg(id)
-            this.form.orgCode = res.data.orgCode
-            this.form.orgDescription = res.data.orgDescription
-            this.tableData = res.data.departDetail 
+            let res = await(await Api()).getListOrg(this.$route.params.data.orgId)
+          console.log(res.data);
+          this.form = res.data;
         },
         async saveOrg() {
     
