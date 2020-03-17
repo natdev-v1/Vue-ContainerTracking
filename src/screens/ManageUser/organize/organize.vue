@@ -29,6 +29,7 @@ import Api from '../../../service/CallHttp'
         },
         created () {
             this.getAllOrg();
+            this.$store.dispatch('setPageTitle','Organize')
         },
         computed: { 
             

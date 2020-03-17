@@ -4,16 +4,16 @@ import { asyncLoading } from 'vuejs-loading-plugin'
 Vue.use(Vuex)
 export const store = new Vuex.Store({
         state: {
-          count: 0
+          titlePage:''
         },
         mutations: {
-          increment (state) {
-            state.count++
+          setPageTitle (state,title) {
+            state.titlePage = title
           }
         },
         actions: {
-            increment (context) {
-              context.commit('increment')
+            setPageTitle (context,title) {
+              context.commit('setPageTitle',title)
             }
           }
 })

@@ -12,7 +12,7 @@
 
         </navbar-toggle-button>
       </div>
-      <a class="navbar-brand" href="#pablo">Container Tracking</a>
+      <a class="navbar-brand" href="#pablo">Container Tracking : {{this.$store.state.titlePage}}</a>
     </div>
 
     <template slot="navbar-menu">
