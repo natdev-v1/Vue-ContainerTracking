@@ -42,7 +42,10 @@
     <div class='row mb-3'>
         <div class="col">รายละเอียด</div>
         <div class='col'>
-            <button class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;">
+            <button 
+            @click='dialogVisible = true'
+            type="button" round outline
+            class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;">
             <span class="btn-label">
             <i class="nc-icon nc-simple-add">
             </i></span> เพิ่มข้อมูล
@@ -60,6 +63,29 @@
       deleteBy="userId"
       ></BwTable>
     </div>
+    <BwModal 
+    :dialogVisible="dialogVisible" 
+    :onConfirm="onConfirm"
+    :onDialogVisible="()=>dialogVisible = false">
+    <!-- <div class="form-group">
+      <label>CTN No.</label>
+        <fg-input  type="text"
+        name="ctnNo"
+        v-validate="modelValidations.ctnNo"
+        v-model="model.ctnNo"
+        :error="getError('ctnNo')">
+        </fg-input>
+        </div>
+    <div class="form-group">
+      <label>Seal No.</label>
+        <fg-input  type="text"
+        name="sealNo"
+        v-validate="modelValidations.sealNo"
+        v-model="model.sealNo"
+        :error="getError('sealNo')">
+        </fg-input>
+    </div> -->
+    </BwModal>
   </div>
 </template>
 
@@ -67,13 +93,15 @@
 import Api from '../../../service/CallHttp'
 import BwTable from '../../../components/BwTable/BwTable'
 import BwCard from '../../../components/BwCard/BwCard'
+import BwModal from '../../../components/BwModal/BwModal'
 import swal from 'sweetalert2'
 import {Wizard, WizardTab} from 'src/components/UIComponents'
 export default {
   name:'TransporterDeatil',
   components: {
       BwTable,
-      BwCard
+      BwCard,
+      BwModal
   },
   async created() { 
       
@@ -102,6 +130,24 @@ export default {
           rentalArea:"",
           remark:"",
           compCode:"",
+      },
+      options: [],
+        dialogVisible:false,
+         model: {
+          ctnSize: '',
+          ctnNo: '',
+          sealNo: ''
+      },
+      modelValidations: {
+          ctnSize: {
+            required: true,
+          },
+          ctnCode: {
+            required: true,
+          },
+          sealCode: {
+            required: true,
+          }
       },
       tableData: [],
       propsToSearch:[],
@@ -160,7 +206,21 @@ export default {
             let dataSave = await (await Api()).saveTransporter(this.form)
             swal('You clicked the finish button!','success')
             this.$router.go(-1)
-        }
+        },
+        getError (fieldName) {
+          return this.errors.first(fieldName)
+        },
+        onConfirm () {
+          this.$validator.validateAll().then(isValid => {
+          //this.$emit('on-submit', this.registerForm, isValid)
+          console.log(isValid)
+          if(isValid){
+              this.tableDataAdd.push({...this.model,place:415,nw:53,gw:12,tare:24,vgm:95,bag:103,pallet:40,m3:110})
+              this.clearForm()
+              this.dialogVisible = false
+          }
+          })
+        },
       }
 
 
