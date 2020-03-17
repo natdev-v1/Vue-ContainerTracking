@@ -12,11 +12,15 @@ export default(Api)=>{
     const getListRole = async(roleCode)=>{
         return await Api.get('api/role/get_all',{roleCode})
     }
-
+    const roleIdDelete = async (roleId) =>{
+    
+        return await Api.post('/api/role/delete',{roleId})
+      }
     return {
         saveRole,
         getListRoleData,
         getListRole,
-        editRole
+        editRole,
+        roleIdDelete
     }
 }

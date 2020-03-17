@@ -1,39 +1,47 @@
 <template>
-    <bw-card title='Organize Table'>
-           <div class="row  mt-3 mb-3">
-    <div class="col-2">
-        
-     <button   @click='goBack' type="button" class="btn btn-default btn-sm"><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
-              กลับ
-         </button>
+  <bw-card title='Import Data'>
+    <div class="row mb-3">
+      <div class="col-2">
+        <button
+          @click='goBack' 
+          type="button" 
+          class="btn btn-default">
+          <span class="btn-label">
+          <i class="nc-icon nc-minimal-left">
+          </i></span>กลับ
+        </button>
+        </div>
+      <div class="col-4">
+        <!-- <div  class="custom-file sm" id="customFile" lang="es">
+          <input  accept=".xlsx , .xls" aria-describedby="fileHelp" class="custom-file-input"  type="file">
+          <label _ngcontent-c9="" class="custom-file-label" for="exampleInputFile"> Select File... </label>
+        </div> -->
+        <input class="file-input" type="file" ref="file" name="file"  >
+      </div>
+      <div class="col-4 pull-right"> 
+        <button 
+          @click="uploadFileExcel" 
+          class="btn btn-primary" 
+          style="background-color: #1CAF9A; color: #fff;" 
+          type="button">
+          <i _ngcontent-c11="" aria-hidden="true" 
+          class="fa fa-download"></i> นำเข้ารายงาน
+        </button>
+      </div>
     </div>
-       <div class="col-4">
-   <!-- <div  class="custom-file sm" id="customFile" lang="es">
-<input  accept=".xlsx , .xls" aria-describedby="fileHelp" class="custom-file-input"  type="file">
-<label _ngcontent-c9="" class="custom-file-label" for="exampleInputFile"> Select File... </label>
-</div> -->
-
-    <input class="file-input" type="file" ref="file" name="file"  >
-    </div>
-   
-       <div class="col-4 pull-right"> 
- <button @click="uploadFileExcel" class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;" type="button"><i _ngcontent-c11="" aria-hidden="true" class="fa fa-download"></i> นำเข้ารายงาน
-</button>
-    </div>
-    </div>
-      <BwTable 
-     @onActionDetail='DetailSap'
-      :hiddenOder='hiddenOder'
-      :hiddenTabAction='hiddenTabAction'
+    <BwTable 
+    @onActionDetail='DetailSap'
+    :hiddenOder='hiddenOder'
+    :hiddenTabAction='hiddenTabAction'
     :hiddenButtonDetail='hiddenButtonDetail'
-      :hiddenButtonEdit='hiddenButtonEdit'
-      :hiddenButtonDelete='hiddenButtonDelete'
-      :tableData='tableData'
-      :tableColumns='tableColumns'
-      :propsToSearch='propsToSearch'
-      deleteBy="orgId"
-      ></BwTable>
-    </bw-card>
+    :hiddenButtonEdit='hiddenButtonEdit'
+    :hiddenButtonDelete='hiddenButtonDelete'
+    :tableData='tableData'
+    :tableColumns='tableColumns'
+    :propsToSearch='propsToSearch'
+    deleteBy="orgId"
+    ></BwTable>
+  </bw-card>
 </template>
 
 <script>

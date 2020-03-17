@@ -2,19 +2,19 @@
 <div class="row" >
     <div class="col-12">
         <div class="row card" >
-            <div class="col-12">
+            <div class="col-12"><br><h5><label>MTDR</label></h5>
                 <div class='row mt-3'>
                     <div class="col-12 pull-right">
                          <button
                         @click='goBack'
                         type="button"
-                        class="btn-sm btn btn-default pull-left"
+                        class="btn btn-default pull-left"
                         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
                         ย้อนกลับ</button>
                         <button
                         @click='saveMTDR'
                         type="button"
-                        class="btn-sm btn btn-success pull-right"
+                        class="btn btn-success pull-right"
                         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
                         บันทึก </button>
                     </div>
@@ -88,7 +88,7 @@
                         <div class="col-3 mt-3">Transporter :<label></label></div>
                         <div class="col-3 mt-3">Container No. :<label>{{item.ctnNo}}</label></div>
                         <div class='col'>
-                            <button @click='addData(index)' type="button" class="btn-sm btn btn-success pull-right">
+                            <button @click='addData(index)' type="button" class="btn btn-success pull-right">
                             <span class="btn-label"><i class="nc-icon nc-simple-add"></i></span> เพิ่มข้อมูล
                             </button>
                         </div>
@@ -124,6 +124,7 @@ export default {
       [Select.name]: Select,
   },
   async created() {
+      this.getDropdownList()
       if(this.$route.params.data.proformaInvoice != null){
           this.findTruckBookDetail();
       }
@@ -141,6 +142,7 @@ export default {
       },
       dataHead:'',
       truckBookDetailList:'',
+     dataDrop:[],
       isVisible: this.visible,
       hiddenOder: true,
       hiddenTabAction: true,
@@ -152,7 +154,7 @@ export default {
                     {
                          prop: 'material',
                          label: 'Material', 
-                         minWidth: 100,
+                         minWidth: 180,
                     },
                     {
                          prop: 'batch',
@@ -162,7 +164,7 @@ export default {
                     {
                          prop: 'quantity',
                          label: 'Quantity', 
-                         minWidth: 100,
+                         minWidth: 80,
                     },
                     
       ],
@@ -173,16 +175,7 @@ export default {
                          label: 'Meterial.', 
                          minWidth: 120,
                          type:'select',
-                         options: [{
-                                value: 'PB-1-COMMON',
-                                label: 'PB-1-COMMON'
-                                }, {
-                                value: 'PB-2-COMMON',
-                                label: 'PB-2-COMMON'
-                                }, {
-                                value: 'PB-3-COMMON',
-                                label: 'PB-3-COMMON'
-                        }],
+                         options: []
                     },
                     {
                          prop: 'codeNote',
@@ -194,7 +187,8 @@ export default {
                          prop: 'logNo',
                          label: 'Lot No.', 
                          minWidth: 100,
-                         type:'input'
+                        type:'select',
+                         options: []
                     },
                     {
                          prop: 'scNo',
@@ -223,33 +217,14 @@ export default {
                          prop: 'pallet',
                          label: 'Pallet', 
                          minWidth: 120,
-                         type:'select',
-                         options: [{
-                                value: '1',
-                                label: '1'
-                                }, {
-                                value: '2',
-                                label: '2'
-                                }, {
-                                value: '3',
-                                label: '3'
-                        }],
+                        type:'input',
                     },
                     {
                          prop: 'palletType',
                          label: 'Pallet type', 
                          type:'select',
                          minWidth: 130,
-                         options: [{
-                                value: 'PB-1-COMMON',
-                                label: 'PB-1-COMMON'
-                                }, {
-                                value: 'PB-2-COMMON',
-                                label: 'PB-2-COMMON'
-                                }, {
-                                value: 'PB-3-COMMON',
-                                label: 'PB-3-COMMON'
-                        }],
+                         options: [] ,
                     },
                     {
                          prop: 'remark',
@@ -281,7 +256,27 @@ export default {
             this.dataHead = res.data[0];
             console.log("this.mtdrList >>>",res.data);
             console.log("this.dataHead >>>",res.data[0]);
+            // let {dd} = res.data.material
+            this.tableColumns1[0].options = res.data.map((data,idx)=>{
+            
+                return {value : idx ,label : data.material}
+            });
+             this.tableColumns1[2].options = res.data.map((data,idx)=>{
+            
+                return {value : idx ,label : data.batch}
+            });
+            
             this.tableData = res.data;
+            
+        },
+
+        async getDropdownList(){
+            let res = await(await Api()).getDropdownList();
+        
+             this.tableColumns1[7].options = res.data.map((data,idx)=>{
+            
+                return {value : idx ,label : data.lovCode}
+            });
         },
         async getById() {            
             let res = await(await Api()).getById(this.$route.params.data.proformaInvoice);

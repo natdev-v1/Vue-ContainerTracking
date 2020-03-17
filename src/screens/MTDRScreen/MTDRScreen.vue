@@ -1,43 +1,44 @@
 <template>
-  <div class="col-md-12 card">
-    <div class="row justify-content-center mt-3 mb-3">
+<bw-card title='MTDR'>
+  <div class="col-md-12">
+    <div class="row justify-content-cente mb-3">
         <div class="col-4">
                 <fg-input label="Plant">
                   <el-select 
-                             size="large"
-                             placeholder="Select"
-                             v-model="selects.simple">
+                    size="large"
+                    placeholder="Select"
+                    v-model="selects.simple">
                     <el-option v-for="option in selects.countries"
-                               class="select-danger"
-                               :value="option.value"
-                               :label="option.label"
-                               :key="option.label">
+                    class="select-danger"
+                    :value="option.value"
+                    :label="option.label"
+                    :key="option.label">
                     </el-option>
                   </el-select>
                 </fg-input>
               </div>
       <div class="col-4">
         <div class="form-group">
-          <fg-input
-            label="JOB/INV. Number"
+          <label>JOB/INV. Number</label>
+          <input
+            type="text" 
+            class="form-control" 
             placeholder="JOB/INV. Number"
           >
-          </fg-input>
-
         </div>
       </div>
       <div class='col-4 mt-3' >
           <button
           @click='search'
-        class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;"
-        ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
+        class="btn btn-primary" style="background-color: #1CAF9A; color: #fff;"
+        ><span class="btn-label"><i class="nc-icon nc-zoom-split"></i></span>
           ค้นหา </button>
       </div> 
     </div>
     <div>
       <BwTable 
       @onEdit='addMTDR'
-      :textCustom='textCustom'
+      :hiddenPagging="true"
       :hiddenButtonCustom='hiddenButtonCustom'
       :hiddenOder='hiddenOder'
       :tableData='tableData'
@@ -46,6 +47,7 @@
       ></BwTable>
     </div>
   </div>
+</bw-card>
 </template>
 
 <script>
@@ -54,7 +56,7 @@ import {DatePicker, TimeSelect, Slider, Tag, Input, Button, Select, Option} from
 import BwTable from '../../components/BwTable/BwTable'
 import BwCard from '../../components/BwCard/BwCard'
 export default {
-  name:'LovManage',
+  name:'MTDRScreen',
   components: {
       BwTable,
       BwCard,

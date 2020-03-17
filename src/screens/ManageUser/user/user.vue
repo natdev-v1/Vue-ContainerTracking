@@ -1,5 +1,5 @@
 <template>
-    <bw-card title='Lov Table'>
+    <bw-card title='User'>
     <!-- <button v-on:click="addForm()">5555</button> -->
       <BwTable 
       @onActionEdit='onEditLov'
@@ -7,8 +7,7 @@
       :hiddenTabAction='hiddenTabAction'
        :hiddenButtonDelete='hiddenButtonDelete'
       :hiddenButtonEdit='hiddenButtonEdit'
-     
-  
+      :hiddenPagging="true"
       :textCustom='textCustom'
       :onClickTopBtn='onClickAdd'
       :tableData='tableData'
@@ -101,7 +100,7 @@ import Api from '../../../service/CallHttp'
                 ],
                 onClickAdd: {
                 onClick: this.nextPage,
-                text: "Add"
+                text: "เพิ่มข้อมูล"
                 },
                
             }

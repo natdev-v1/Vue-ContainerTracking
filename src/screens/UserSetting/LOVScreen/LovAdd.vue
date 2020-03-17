@@ -1,22 +1,22 @@
 <template>
-  <div class="col-md-12 card">
-    <div class="row mt-3">
+<bw-card title='Lov'>
+    <div class="row">
       <div class="col-6">
-             <button
-         @click='goBack'
-    class="btn  btn-sm " style=" color: #fff;"
-        ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
-          ย้อนกลับ</button>
-      </div>
-           <div class="col-6">
         <button
-         @click='goBack'
-        class="btn  btn-sm pull-right" style=" color: #fff;"
+          @click='goBack'
+          class="btn " style=" color: #fff;"
+        ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
+          กลับ</button>
+      </div>
+      <div class="col-6">
+        <button
+          @click='goBack'
+          class="btn pull-right" style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-simple-remove"></i></span>
           ยกเลิก</button>
         <button
           @click='validate'
-      class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
+          class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
       </div>
@@ -29,8 +29,7 @@
             v-model="form.lovKey"
             placeholder="กรุณากรอก LovKey"
             v-validate="formValidations.lovKey"
-          >
-          </fg-input>
+          ></fg-input>
         </div>
         <div class="form-group">
           <label>Descripton  *  :  </label>
@@ -38,21 +37,22 @@
             v-model="form.descripton"
             placeholder="กรุณากรอก descripton"
             v-validate="formValidations.descripton"
-          >
-          </fg-input>
+          ></fg-input>
         </div>
       </div>
     </div>
-  </div>
+</bw-card>
 </template>
 
 <script>
 import Api from '../../../service/CallHttp'
 import swal from 'sweetalert2'
 import {Wizard, WizardTab} from 'src/components/UIComponents'
+import BwCard from '../../../components/BwCard/BwCard'
 export default {
   name:'LovAdd',
   components: {
+    BwCard
   },
   async created() {
         
@@ -89,7 +89,7 @@ export default {
    
        async onSaveData(){
           let dataSave = await (await Api()).saveLov(this.form)
-          swal('Good job!', 'You clicked the finish button!', 'success')
+          swal('บันทึกสำเร็จ', '', 'success')
           this.$router.go(-1)
         },
         goBack(){

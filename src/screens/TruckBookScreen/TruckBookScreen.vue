@@ -1,13 +1,17 @@
 <template>
-  <div class="col-md-12 card">
+<bw-card title='Truck Booking'>
+  <div class="col-md-12">
       <div class="row justify-content-center mt-3 mb-3">
     <div class="col-4">
         <div class="form-group">
-          <fg-input
+          <label for="">Performa Invoice :</label>
+          <input type="text" class="form-control">
+          <!-- <fg-input
             label="Performa Invoice :"
-            placeholder="*กรอก Performa Invoice"
+            placeholder="กรอก Performa Invoice"
+            
           >
-          </fg-input>
+          </fg-input> -->
         </div>
     </div>
     
@@ -30,14 +34,7 @@
     </div>
 
     <div class="col-2 mt-3">
-      <!-- <div class='pull-right'>
-        <button
-         @click='search'
-          type="button"
-          class="btn btn-success"
-        ><span class="btn-label"><i class="nc-icon nc-zoom-split"></i></span>
-          ค้นหา</button>
-      </div> -->
+
     </div>
 
     <div class="col-2 mt-3">
@@ -45,7 +42,7 @@
         <button
          @click='search'
           type="button"
-   class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;"
+   class="btn btn-primary" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-zoom-split"></i></span>
           ค้นหา</button>
       </div>
@@ -55,6 +52,7 @@
         <div>
           <BwTable 
           @onActionEdit='onTruckBookEdit'
+          :hiddenPagging="true"
           :onEdit='addTruckBook'
           :hiddenButtonEdit='hiddenButtonEdit'
           :hiddenButtonCustom='hiddenButtonCustom'
@@ -67,6 +65,7 @@
           ></BwTable>
         </div>
   </div>
+</bw-card>
 </template>
 
 <script>
@@ -141,15 +140,7 @@ export default {
                         type:'button',
                     },
                     
-                ],
-                // onClickAdd: {
-                // onClick: this.nextPage,
-                // text: "Add"
-                // },
-                // onClickTopCuttom:{
-                // text: "จัดการข้อมูล",
-                // onClick: this.onTruckBookEdit,
-                // },  
+                ],  
                 
       formValidations: {
         

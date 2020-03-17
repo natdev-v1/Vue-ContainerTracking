@@ -14,11 +14,15 @@ export default (Api)=>{
     const saveMTDR = async(bookingNo,items)=>{
       return await Api.post('api/mtdr/save',{bookingNo,items})
     }    
+    const getDropdownList = async (lovKey)=>{
+      return await Api.post('/api/lov/list-data-detail',{lovKey:"PLAET_TYPE"})
+  }
     return {
         getAllMtdr,
         findTruckBookDetail,
         getById,
         getListId,
-        saveMTDR
+        saveMTDR,
+        getDropdownList
     }
 }

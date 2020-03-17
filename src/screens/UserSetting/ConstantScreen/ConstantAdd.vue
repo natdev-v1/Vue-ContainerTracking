@@ -1,11 +1,11 @@
 <template>
-  <div class="col-md-12 card">
-      <div class="row mt-3">
+  <bw-card title='Constant'>
+      <div class="row">
         <div class="col-2">
         <button
           @click='goBack'
           type="button"
- class="btn  btn-sm pull-left" style=" color: #fff;"
+ class="btn pull-left" style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
           ย้อนกลับ</button>
             </div>
@@ -13,19 +13,19 @@
         <button
          @click='goBack'
           type="button"
-        class="btn  btn-sm pull-right" style=" color: #fff;"
+        class="btn pull-right" style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-simple-remove"></i></span>
           ยกเลิก</button>
         <button
           @click='validate'
           v-if="!checkButton"
           type="button"
-       class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
+       class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
         <button v-if="checkButton"
           @click='validateEdit'
-  class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
+  class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
        
         ><span class="btn-label"><i class="nc-icon nc-ruler-pencil"></i></span>
           แก้ไข </button>
@@ -39,7 +39,7 @@
           <fg-input
            ref="name"
             v-model="form.constantKey"
-            placeholder="*กรุณากรอก Constant Key"
+            placeholder="กรอก Constant Key"
             v-validate="formValidations.constantKey"
           >
           </fg-input>
@@ -52,7 +52,7 @@
           <label>Descripton : </label>
           <fg-input
             v-model="form.constantValue"
-            placeholder="*กรุณากรอก Descripton"
+            placeholder="กรอก Descripton"
             v-validate="formValidations.constantValue"
           >
           </fg-input>
@@ -60,14 +60,16 @@
       </div>
     </div>
     
-  </div>
+</bw-card>
 </template>
 
 <script>
 import CallHttp from '../../../service/CallHttp'
+import BwCard from '../../../components/BwCard/BwCard'
 export default {
   
   components: {
+    BwCard
   },
     async created() {
  
@@ -76,8 +78,10 @@ export default {
         //     this.form.constantId = constantId
         //   this.form.constantKey = constantKey
         //   this.form.constantValue = constantValue
-
-        this.getListConstantData();
+  if(this.$route.params.constantId){
+      this.getListConstantData();
+  }
+      
         
   },
    data() {
@@ -131,13 +135,13 @@ export default {
               this.$router.push("constant")
         },
         goBack(){
-          this.$router.push("constant")
+          this.$router.go(-1)
         },
         async getListConstantData() {
-          let res = await(await CallHttp()).getListConstantData(this.$route.params.constantId.constantId)
+          let res = await(await CallHttp()).getListConstantData(this.$route.params.constantId)
           console.log(res.data);
           this.form = res.data;
-          if(this.$route.params.constantId.constantId !=  null){
+          if(this.$route.params.constantId !=  null){
               this.checkButton  = true;
           }
         }

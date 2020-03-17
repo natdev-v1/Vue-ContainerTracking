@@ -11,21 +11,30 @@
                 <card type="login">
                   <!-- <h3 slot="header" class="header text-center">Login</h3> -->
                   <div class="text-center">
-                     <img :src="proIcon" style="width:150px; height:120px;" >
+                    <img :src="proIcon" style="width:150px; height:120px;" >
                   </div>
-                  <fg-input class="mt-3" v-model="form.username" addon-left-icon="nc-icon nc-single-02"
+                  <div class="row mt-2">
+                    <div class="col-3 text-right"><img :src="Icon" style="width:45px; height:40px;"></div>
+                    <div class="col"><h5>Container Tracking</h5></div>
+                  </div>
+                  <fg-input class="mt-3" v-model="form.username"  v-validate="modelValidations.username" addon-left-icon="nc-icon nc-single-02"
                             placeholder="First Name..."></fg-input>
 
-                  <fg-input v-model="form.password" addon-left-icon="nc-icon nc-key-25" placeholder="Password"
+                  <fg-input   v-validate="modelValidations.password" v-model="form.password" addon-left-icon="nc-icon nc-key-25" placeholder="Password"
                             type="password"></fg-input>
 
                   <br>
-
-                  <p-checkbox>
-                    Remember
-                  </p-checkbox>
-
-                  <p-button class="btn btn-primary"  native-type="submit" slot="footer" style="background-color:#65B4B5" type="button" round block>Get started</p-button>
+                  <div class="row">
+                    <div class="col-6">
+                      <p-checkbox>
+                        Remember
+                      </p-checkbox>
+                    </div>
+                    <div class="col-6 sm">
+                      <router-link to="/register" class="text-link d-block text-right">Forgot Password?</router-link>
+                    </div>
+                  </div>
+                  <p-button class="btn btn-primary"  native-type="submit" slot="footer" style="background-color:#65B4B5" type="button" round block>login</p-button>
                 </card>
               </form>
             </div>
@@ -43,7 +52,7 @@
   import AppFooter from '../../components/BwLayout/AppFooter'
   import Api from '../../service/CallHttp'
   import Images from '../../theme/images'
-
+import swal from 'sweetalert2'
 import Axios from 'axios';
   export default {
     components: {
@@ -54,6 +63,11 @@ import Axios from 'axios';
       [Button.name]: Button
     },
     methods: {
+       validate () {
+        this.$validator.validateAll().then(isValid => {
+          this.$emit('on-submit', this.registerForm, isValid)
+        })
+      },
       toggleNavbar() {
         document.body.classList.toggle('nav-open')
       },
@@ -66,16 +80,35 @@ import Axios from 'axios';
         if(token){
             localStorage.setItem('token',token)
             this.$router.push({ path: "/admin" }) 
+        }else{
+         swal({
+            title: 'Warning!!!!',
+            text: 'ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง',
+            type: 'warning',
+            buttonsStyling: false,
+            confirmButtonClass: 'btn btn-defulet btn-fill'
+          })
         }
       }
     },
     data() {
       return {
+          modelValidations: {
+          username: {
+            required: true,
+            email: true
+          },
+          password: {
+            required: true,
+            min: 5
+          }
+        },
         form: {
           username: '',
           password: ''
         },
         proIcon:Images.productIcon,
+        Icon:Images.containerIcon,
         background:Images.background
       }
     },

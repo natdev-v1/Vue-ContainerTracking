@@ -1,17 +1,20 @@
 <template>
-    <BwCard title='Role Table'>
+    <BwCard title='Role'>
       <BwTable
         @onActionEdit='onEditRole'
+        :hiddenPagging="true"
         :hiddenButtonEdit='hiddenButtonEdit'
         :hiddenButtonCustom='hiddenButtonCustom'
         :hiddenTabAction='hiddenTabAction'
         :hiddenOder='hiddenOder'
-
+        :hiddenButtonDelete='true'
         :onClickTopBtn='onClickAdd'
         :tableData='tableData'
         :tableColumns='tableColumns'
         :propsToSearch='propsToSearch'
-        
+        @onDelete='onDelete'
+        deleteBy="roleId"
+
       ></BwTable>
     </BwCard>
 
@@ -76,7 +79,7 @@ export default {
       ],
          onClickAdd: {
         onClick: this.nextPage,
-        text: "Add"
+        text: "เพิ่มข้อมูล"
       }
     };
   },
@@ -87,12 +90,16 @@ export default {
     },
     onEditRole(data) {
       console.log(data)
-      this.$router.push({ name: 'roleDetail', params: { roleId: data }  });
+      this.$router.push({ name: 'roleDetail', params: { data: data }  });
     },
     async getList(){
       let {data} = await(await Api()).getListRole()
       this.tableData = data; 
-    }
+    },
+         async onDelete(data) {
+          let res = await (await Api()).roleIdDelete(data.roleId)
+  
+        },
   }
 };
 </script>

@@ -1,35 +1,36 @@
 <template>
-  <div class="col-md-12 card">
-    <div class="row mt-3 mb-3">
-        <div class="col">
+<bw-card title='VGM (EMC)_Report'>
+  <div class="col-md-12">
+    <div class="row mb-3">
+        <div class="col-4">
             <button
             @click='goBack'
             type="button"
             class="btn btn-default"
             ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
-            ย้อนกลับ</button>
+            กลับ</button>
         </div>
-        <div class="col">
+        <div class="col-4">
+          <label>Invoice No.</label>
             <div class="form-group">
-                <fg-input
-                label="test"
-                placeholder="test">
-                </fg-input>
+                <input
+                type="text" 
+                class="form-control" 
+                placeholder="Invoice No.">
             </div>
+        </div>
+        <div class="col-4">
         </div>
     </div>
     <div>
       <BwTable 
-      @onEdit='addMTDR'
-      :textCustom='textCustom'
-      :hiddenButtonCustom='hiddenButtonCustom'
-      :hiddenOder='hiddenOder'
       :tableData='tableData'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
       ></BwTable>
     </div>
   </div>
+</bw-card>
 </template>
 
 <script>
@@ -57,19 +58,47 @@ export default {
       tableData: [],
       propsToSearch:[],
       tableColumns: [
-                    {
-                         prop: '',
-                         label: 'Seq.', 
-                         minWidth: 100,
-                    },
-                    {
-                         prop: '',
-                         label: 'INVOICE NO.', 
-                         minWidth: 100,
-                    },
-
-                    
-                ],
+        {
+          prop: '',
+          label: 'Booking No.', 
+          minWidth: 65,
+        },
+        {
+          prop: '',
+          label: 'Container No.', 
+          minWidth: 75,
+        },
+        {
+          prop: '',
+          label: 'Verifed Gross Mass', 
+          minWidth: 100,
+        },
+        {
+          prop: '',
+          label: 'Unit of Measurement', 
+          minWidth: 105 ,
+        },
+        {
+          prop: '',
+          label: 'Responsible Party', 
+          minWidth: 95,
+        },
+        {
+          prop: '',
+          label: 'Authorzed Person', 
+          minWidth: 100,
+        },
+        {
+          prop: '',
+          label: 'Method of Weighing', 
+          minWidth: 100,
+        },
+        {
+          prop: '',
+          label: 'Weighing Party', 
+          minWidth: 80,
+        },
+      ],
 
     };
   },

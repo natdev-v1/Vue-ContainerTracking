@@ -2,13 +2,13 @@
 <div class="row" >
     <div class="col-12">
         <div class="row card" >
-            <div class="col-12">
+            <div class="col-12"><br><h5><label>Truck Booking</label></h5>
                 <div class='row mt-1'>
                   <div class="col-4 text-center">
                     <button
                         @click='goBack'
                         type="button"
-                        class="btn-md btn btn-default pull-left btn-sm"
+                        class="btn btn-default pull-left"
                         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
                         ย้อนกลับ</button><br>
                         <label>To : {{getTo}}</label>
@@ -17,13 +17,12 @@
                       <label>Booking No. : {{getBooking}}</label>
                       </div>
                       <div class='col-4'>
-                      <button
-                      @click='dialogVisible = true'
-                        type="button" round outline 
-                        class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
-                 
-                        ><span class="btn-label"><i class="nc-icon nc-simple-add"></i></span>
-                        เพิ่มข้อมูล </button>
+                        <button
+                        @click='onSaveData'
+                        type="button"
+                     class="btn btn-success pull-right"
+                        ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
+                        บันทึก </button>
                       </div>
                 </div> 
             </div>
@@ -77,12 +76,11 @@
                     </div>
                     <div class="col">
                       <button
-                        @click='onSaveData'
-                        type="button"
-                     class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
-                        
-                        ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
-                        บันทึก </button>
+                      @click='dialogVisible = true'
+                        type="button" round outline 
+                        class="btn btn-success pull-right"          
+                        ><span class="btn-label"><i class="nc-icon nc-simple-add"></i></span>
+                        เพิ่มข้อมูล </button>
                     </div>
                     
                 </div>
@@ -90,7 +88,8 @@
             </div>
         </div>
     </div>
-    <BwModal 
+    <BwModal
+       :width="width" 
        :dialogVisible="dialogVisible" 
        :onConfirm="onConfirm"
        :onDialogVisible="()=>dialogVisible = false"
@@ -102,7 +101,7 @@
                 v-for="item in options"
                 :key="item.value"
                 :label="item.label"
-                :value="item.value">
+                :value="item.label">
               </el-option>
          </el-select>
         </div>
@@ -146,6 +145,7 @@ export default {
       [Select.name]: Select,
   },
   async created() {
+    this.getDropdownList();
       if(get(this.$route.params.data,"proformaInvoice")){
           this.findTruckBookDetail();
       }
@@ -165,13 +165,9 @@ export default {
           {value: 'Test2', label: 'Test2'},
           {value: 'Test3', label: 'Test3'},
           ]
-        }, options: [{
-          value: '40',
-          label: '40'
-        }, {
-          value: '50',
-          label: '50'
-        }],
+        },
+        
+        options: [],
         dialogVisible:false,
          model: {
           ctnSize: '',
@@ -197,6 +193,7 @@ export default {
       },
       isVisible: this.visible,
       hiddenOder: true,
+      width:"30%",
       hiddenTabAction: true,
       hiddenButtonEdit: true,
       checkButton: false,
@@ -327,15 +324,26 @@ export default {
           ctnSize: '',
           ctnNo: '',
           sealNo: ''
-          }
+          }	
+
           
         },
         validateedit() {
           this.editLov()
         },
         goBack() {
-            this.$router.push("truckBookData")
+            this.$router.go(-1)
         },
+        async getDropdownList(){
+          let dataDropdown = await (await Api()).getDropdown()     
+          console.log("data1111",dataDropdown.data);
+             this.options = dataDropdown.data.map((data,idx)=>{
+            
+                return {value : idx ,label : data.lovCode}
+            });       
+        } ,
+
+    
         async findTruckBookDetail() {
           let proformaInvoice = get(this.$route.params.data,"proformaInvoice")
         

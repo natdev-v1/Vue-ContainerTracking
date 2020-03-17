@@ -30,5 +30,5 @@ module.exports = {
     sourceMap: process.env.NODE_ENV !== 'production'
   },
   publicPath: '',
-  outputDir: 'dist/Vue-Container'
+  outputDir: 'dist/ContainerTracking'
 };

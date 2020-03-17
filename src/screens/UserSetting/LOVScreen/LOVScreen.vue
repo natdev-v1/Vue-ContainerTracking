@@ -1,16 +1,17 @@
 <template>
-    <bw-card title='Lov Table'>
+    <bw-card title='Lov'>
       <BwTable 
-      @onEdit='onEditLov'
-      :hiddenOder='hiddenOder'
-      :hiddenTabAction='hiddenTabAction'
-      :hiddenButtonCustom='hiddenButtonCustom'
-      :onClickTopCuttom='onClickTopCuttom'
-      :textCustom='textCustom'
-      :onClickTopBtn='onClickAdd'
-      :tableData='tableData'
-      :tableColumns='tableColumns'
-      :propsToSearch='propsToSearch'
+        @onEdit='onEditLov'
+        :hiddenOder='hiddenOder'
+        :hiddenTabAction='hiddenTabAction'
+        :hiddenButtonCustom='hiddenButtonCustom'
+        :onClickTopCuttom='onClickTopCuttom'
+        :textCustom='textCustom'
+        :onClickTopBtn='onClickAdd'
+        :tableData='tableData'
+        :tableColumns='tableColumns'
+        :propsToSearch='propsToSearch'
+        :hiddenPagging="true"
       ></BwTable>
     </bw-card>
 </template>
@@ -75,7 +76,7 @@ import Api from '../../../service/CallHttp'
                 ],
                 onClickAdd: {
                 onClick: this.nextPage,
-                text: "Add"
+                text: "เพิ่มข้อมูล"
                 },
                 onClickTopCuttom:{
                 text: "จัดการข้อมูล",

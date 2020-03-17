@@ -1,5 +1,5 @@
 <template>
-    <BwCard title='Constant Table'>
+    <BwCard title='Constant'>
       <BwTable
         @onActionEdit='onEditConstant'
         :hiddenButtonEdit='hiddenButtonEdit'
@@ -11,6 +11,8 @@
         :tableData='tableData'
         :tableColumns='tableColumns'
         :propsToSearch='propsToSearch'
+        :hiddenPagging="true"
+        
         
       ></BwTable>
     </BwCard>
@@ -30,6 +32,7 @@ export default {
     // console.log(save);
     // this.tableData = await this.$store.getters.callApiGetConstant;
     // console.log(await this.$store.getters.callApiGetConstant);
+  
     this.getList();
     
   },
@@ -65,7 +68,7 @@ export default {
       ],
          onClickAdd: {
         onClick: this.nextPage,
-        text: "Add"
+        text: "เพิ่มข้อมูล"
       }
     };
   },
@@ -76,7 +79,7 @@ export default {
     },
     onEditConstant(data) {
       console.log(data)
-      this.$router.push({ name: 'ConstantAdd', params: { constantId: data }  });
+      this.$router.push({ name: 'ConstantAdd', params: { constantId: data.constantId }  });
 
     },
     async getList(){

@@ -1,35 +1,37 @@
 <template>
-  <div class="col-md-12 card">
-    <div class="row mt-3 mb-3">
-        <div class="col">
+<bw-card title='VGM (LG)_Report'>
+  <div class="col-md-12">
+    <div class="row mb-3">
+        <div class="col-4">
             <button
             @click='goBack'
             type="button"
             class="btn btn-default"
             ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
-            ย้อนกลับ</button>
+            กลับ</button>
         </div>
-        <div class="col">
+        <div class="col-4">
+          <label>Invoice No.</label>
             <div class="form-group">
-                <fg-input
-                label="Test"
-                placeholder="Test">
-                </fg-input>
+                <input
+                type="text" 
+                class="form-control" 
+                placeholder="Invoice No."
+                >
             </div>
+        </div>
+        <div class="col-4">
         </div>
     </div>
     <div>
       <BwTable 
-      @onEdit='addMTDR'
-      :textCustom='textCustom'
-      :hiddenButtonCustom='hiddenButtonCustom'
-      :hiddenOder='hiddenOder'
       :tableData='tableData'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
       ></BwTable>
     </div>
   </div>
+</bw-card>
 </template>
 
 <script>
@@ -59,16 +61,49 @@ export default {
       tableColumns: [
                     {
                          prop: '',
-                         label: 'Test', 
+                         label: 'Seq.', 
+                         minWidth: 50,
+                    },
+                    {
+                         prop: '',
+                         label: 'INVOICE NO.', 
+                         minWidth: 80,
+                    },
+                    {
+                         prop: '',
+                         label: 'Container No.', 
                          minWidth: 100,
                     },
                     {
                          prop: '',
-                         label: 'Test', 
-                         minWidth: 100,
+                         label: 'SEAL', 
+                         minWidth: 60 ,
                     },
-
-                    
+                    {
+                         prop: '',
+                         label: 'Size/Type', 
+                         minWidth: 80,
+                    },
+                    {
+                         prop: '',
+                         label: 'Cargo Weight (kgs)', 
+                         minWidth: 130,
+                    },
+                    {
+                         prop: '',
+                         label: 'Tare Weight (kgs)', 
+                         minWidth: 130,
+                    },
+                    {
+                         prop: '',
+                         label: 'VGM (kgs.)', 
+                         minWidth: 80,
+                    },
+                    {
+                         prop: '',
+                         label: 'Weighing method', 
+                         minWidth: 120,
+                    },
                 ],
 
     };

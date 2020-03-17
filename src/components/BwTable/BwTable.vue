@@ -1,7 +1,7 @@
 <template>
   <div class="col-sm-12">
      <el-col v-if=" Object.keys(onClickTopBtn).length" :xs="1" align='end'>
-       <button  @click="onClickTopBtn.onClick" class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;"><i class="nc-icon nc-simple-add"></i> {{onClickTopBtn.text}}</button>
+       <button  @click="onClickTopBtn.onClick" class="btn btn-primary " style="background-color: #1CAF9A; color: #fff;"><i class="nc-icon nc-simple-add"></i> {{onClickTopBtn.text}}</button>
          <!-- <el-button @click="onClickTopBtn.onClick" type="primary">{{onClickTopBtn.text}}</el-button> -->
      </el-col>
       
@@ -86,14 +86,14 @@
      
   <button  type="button"   @click="()=>onClickTopCuttom.onClick(props.row)" v-if="hiddenButtonCustom" class="btn btn-primary btn-sm"> {{onClickTopCuttom.text}}</button>
      </el-col>
-         
-                    <p-button  type="info "  size="sm" icon v-if="hiddenButtonDetail" @click="handleDetail(props.$index, props.row)">
+         <p-button type="button" class="btn btn-outline-default  btn-default btn-sm" icon v-if="hiddenButtonDetail" @click="handleDetail(props.$index, props.row)">     <i class="nc-icon nc-zoom-split icon-bold"></i> </p-button>
+                    <!-- <p-button class="btn btn-outline-secondary" size="sm" icon v-if="hiddenButtonDetail" @click="handleDetail(props.$index, props.row)" outline round>
                   <i class="nc-icon nc-zoom-split icon-bold"></i> 
-                </p-button>
-                <p-button class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;" icon v-if="hiddenButtonEdit" @click="handleEdit(props.$index, props.row)">
+                </p-button> -->
+                <p-button  class="btn btn-outline-primary  btn-default btn-sm"  icon v-if="hiddenButtonEdit" @click="handleEdit(props.$index, props.row)">
                   <i class="fa fa-edit"></i> 
                 </p-button>
-                <p-button type="danger" size="sm"  v-if="hiddenButtonDelete"  icon @click="handleDelete(props.$index, props.row)">
+                <p-button  class="btn btn-outline-danger  btn-default btn-sm"  v-if="hiddenButtonDelete"  icon @click="handleDelete(props.$index, props.row)">
                   <i class="nc-icon nc-box"></i>
                 </p-button>
                
@@ -102,10 +102,10 @@
             </el-table-column> 
           </el-table>
         </div>
-        <div class="col-sm-6 pagination-info">
+        <div v-if="hiddenPagging" class="col-sm-6 pagination-info" >
           <p class="category">Showing {{from + 1}} to {{to}} of {{total}} entries</p>
         </div>
-        <div class="col-sm-6">
+        <div v-if="hiddenPagging" class="col-sm-6">
           <p-pagination class="pull-right"
                         v-model="pagination.currentPage"
                         :per-page="pagination.perPage"
@@ -270,6 +270,10 @@
        default:false
       },
        hiddenButtonEdit:{
+       type:Boolean,
+       default:false
+      },
+       hiddenPagging:{
        type:Boolean,
        default:false
       },

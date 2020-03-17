@@ -1,31 +1,26 @@
 <template>
-  <div class="col-md-12 card">
-      <div class="row mt-3">
-        <div class="col-2">
-        <button
-          @click='goBack'
-       class="btn btn-sm pull-right" style=" color: #fff;"
+  <bw-card title='Role'>
+      <div class="row">
+      <div class="col-6">
+             <button
+         @click='goBack'
+      class="btn  " style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
           ย้อนกลับ</button>
-            </div>
-      <div class="col-10">
+      </div>
+      <div class="col-6">
         <button
          @click='goBack'
-   class="btn  btn-sm pull-right" style=" color: #fff;"
+      class="btn  pull-right" style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-simple-remove"></i></span>
           ยกเลิก</button>
-        <button
-          @click='validate'
-          v-if="!checkButton"
-  class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
+        <button 
+          @click='checkButton'
+     class="btn btn-primary  pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
-        <!-- <button v-if="checkButton"
-          @click='validateEdit'
-          type="button"
-          class="btn btn-success pull-right"
-        ><span class="btn-label"><i class="nc-icon nc-ruler-pencil"></i></span>
-          แก้ไข </button> -->
+          
+      
       </div>
     </div>
     <div class="row mt-3">
@@ -35,7 +30,7 @@
           <fg-input
            ref="name"
             v-model="form.roleCode"
-            placeholder="*กรุณากรอก Code"
+            placeholder="กรอก Code"
             v-validate="formValidations.roleCode"
           >
           </fg-input>
@@ -48,7 +43,7 @@
           <label>Category : </label>
           <fg-input
             v-model="form.roleCategory"
-            placeholder="*กรุณากรอก Category"
+            placeholder="กรอก Category"
             v-validate="formValidations.roleCategory"
           >
           </fg-input>
@@ -61,7 +56,7 @@
           <label>Description : </label>
           <fg-input
             v-model="form.roleDesc"
-            placeholder="*กรุณากรอก Descripton"
+            placeholder="กรอก Descripton"
             v-validate="formValidations.roleDesc"
           >
           </fg-input>
@@ -69,34 +64,34 @@
       </div>
     </div>
     
-  </div>
+  </bw-card>
 </template>
 
 <script>
 import CallHttp from '../../../service/CallHttp'
+import BwCard from '../../../components/BwCard/BwCard'
 export default {
   
   components: {
+    BwCard
   },
     async created() {
- 
-        // let res = await (await CallHttp()).getConstantById(this.$route.params.constantId.constantId)
-        //  let { constantId,constantKey,constantValue } = res.data
-        //     this.form.constantId = constantId
-        //   this.form.constantKey = constantKey
-        //   this.form.constantValue = constantValue
-
-        this.getListRoleData();
+        
+  if(this.$route.params.data != null){
+   this.getListRoleData();
+  }
+     
         
   },
-   data() {
-    return {
-      props: {
+   props: {
         visible: {
           type: Boolean,
           default: false
         }
       },
+   data() {
+    return {
+     
       checkButton:false,
       isVisible: this.visible,
       form: {
@@ -121,11 +116,6 @@ export default {
         validate() {
           this.onSaveData()
         },
-        // validateEdit(){
-          // this.onSaveData()
-        //   this.editRole()
-        // },
-        
 
         async editRole(){
           let res = await(await CallHttp()).editRole(this.form.roleId,this.form.roleCode,this.form.roleCategory,this.form.roleDesc)
@@ -133,28 +123,20 @@ export default {
           this.$router.push("role")
         },
 
-        // async editConstant(data) {
-        //   console.log(data)
-        // this.$router.push({ name: 'ConstantAdd', params: { constantId: data }  });
-        // },
-   
         async onSaveData(){
-          if(this.$route.params.roleId.roleId != null){
+          if(this.$route.params.data != null){
             let dataSave = await (await CallHttp()).saveRole(this.form)
           }
            let dataSave = await (await CallHttp()).saveRole(this.form)
               this.$router.push("role")
         },
         goBack(){
-          this.$router.push("role")
+          this.$router.go(-1)
         },
         async getListRoleData() {
-          let res = await(await CallHttp()).getListRoleData(this.$route.params.roleId.roleId)
+          let res = await(await CallHttp()).getListRoleData(this.$route.params.data.roleId)
           console.log(res.data);
           this.form = res.data;
-          // if(this.$route.params.roleId.roleId !=  null){
-          //     this.checkButton  = true;
-          // }
         }
     }
 }

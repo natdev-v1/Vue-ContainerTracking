@@ -1,27 +1,27 @@
 <template>
-  <div class="col-md-12 card">
-    <div class="row mt-3">
+<bw-card title='Lov'>
+    <div class="row">
       <div class="col-6">
-             <button
-         @click='goBack'
-    class="btn  btn-sm " style=" color: #fff;"
+        <button
+          @click='goBack'
+          class="btn " style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
-          ย้อนกลับ</button>
+          กลับ</button>
       </div>
       <div class="col-6">
         <button
-         @click='goBack'
-        class="btnbtn-sm pull-right" style="color: #fff;"
+          @click='goBack'
+          class="btn pull-right" style="color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-simple-remove"></i></span>
           ยกเลิก</button>
         <button v-if="!checkButton"
           @click='validate'
-    class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
+          class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
         <button v-if="checkButton"
           @click='validateedit'
-  class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
+          class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-ruler-pencil"></i></span>
           แก้ไข </button>
       </div>
@@ -35,8 +35,7 @@
             placeholder="กรุณากรอก LovKey"
             v-validate="formValidations.lovKey"
             disabled
-          >
-          </fg-input>
+          ></fg-input>
         </div>
         <div class="form-group">
           <label>Descripton :  </label>
@@ -44,14 +43,13 @@
             v-model="form.descripton"
             placeholder="กรุณากรอก descripton"
             v-validate="formValidations.descripton"
-          >
-          </fg-input>
+          ></fg-input>
         </div>
       </div> 
     </div>
     <div class='row mb-3'>
         <div class='col'>
-            <button @click='addData'  class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;">
+            <button @click='addData'  class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;">
             <span class="btn-label">
             <i class="nc-icon nc-simple-add">
             </i></span> เพิ่มข้อมูล
@@ -60,17 +58,17 @@
     </div>
     <div>
       <BwTable 
-      @onActionEdit='onDelete'
-      :hiddenOder='hiddenOder'
-      :hiddenTabAction='hiddenTabAction'
-      :hiddenButtonDelete='hiddenButtonDelete'
-      :tableData='tableData'
-      :tableColumns='tableColumns'
-      :propsToSearch='propsToSearch'
-      @onDelete='onDelete'
+        @onActionEdit='onDelete'
+        :hiddenOder='hiddenOder'
+        :hiddenTabAction='hiddenTabAction'
+        :hiddenButtonDelete='hiddenButtonDelete'
+        :tableData='tableData'
+        :tableColumns='tableColumns'
+        :propsToSearch='propsToSearch'
+        @onDelete='onDelete'
       ></BwTable>
     </div>
-  </div>
+</bw-card>
 </template>
 
 <script>
@@ -178,10 +176,10 @@ export default {
           console.log('>>>>>>',data);
           
           let res = await (await Api()).lovDelete(data.lovDetailId)
-          this.$router.go(-1);
+ 
         },
         goBack(){
-          this.$router.push("lov")
+          this.$router.go(-1)
         },
         addData(){
           this.tableData.push({lovKey:this.form.lovKey ,lovCode:'',descTh1:'',descTh2:'',descEn1:'',descEn2:'',orderNo:''})

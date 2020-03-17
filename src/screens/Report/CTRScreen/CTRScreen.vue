@@ -1,6 +1,7 @@
 <template>
-  <div class="col-md-12 card">
-    <div class="row justify-content-center mt-3 mb-3">
+<bw-card title='Container Tracking Report'>
+  <div class="col-md-12">
+    <div class="row justify-content-center mb-3">
         <div class="col-md-4">
             <h6 class="card-title">Plant : </h6>
             <fg-input ></fg-input>
@@ -116,22 +117,23 @@
     <div class="row justify-content-center mt-3 mb-3">
         <div class="col-md-4">
                 <button
-   class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;"
+   class="btn btn-primary" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-send"></i></span>
           Report</button>
           <button
-     class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;"
+     class="btn btn-primary" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-settings-gear-65"></i></span>
           Edit</button>
           <button
           type="button"
-          class="btn btn-default  btn-sm"
+          class="btn btn-default"
        
         ><span class="btn-label"><i class="nc-icon nc-simple-remove"></i></span>
           Close</button>
           </div>
     </div>
   </div>
+</bw-card>
 </template>
 
 <script>

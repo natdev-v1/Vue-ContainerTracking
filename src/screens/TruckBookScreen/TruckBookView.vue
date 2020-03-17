@@ -2,13 +2,13 @@
 <div class="row" >
     <div class="col-12">
         <div class="row card" >
-            <div class="col-12">
+            <div class="col-12"><br><h5><label>Truck Booking</label></h5>
                 <div class='row mt-1'>
                   <div class="col-4 text-center">
                     <button
                         @click='goBack'
                         type="button"
-                        class="btn-md btn btn-default pull-left"
+                        class=" btn btn-default pull-left"
                         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
                         ย้อนกลับ</button><br>
                         <label>To :  {{getTo}}</label>
@@ -228,7 +228,7 @@ export default {
           this.editLov()
         },
         goBack() {
-            this.$router.push("truckBookData")
+            this.$router.go(-1)
         },
         async findTruckBookDetail() {
             let truckBookDetail = await(await Api()).findTruckBookDetail(this.$route.params.data.proformaInvoice);

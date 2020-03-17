@@ -2,15 +2,15 @@
 <div class="row" >
     <div class="col-12">
         <div class="row card" >
-            <div class="col-12">
+            <div class="col-12"><br><h5><label>MTDR</label></h5>
                 <div class='row mt-3'>
                     <div class="col-12 pull-right">
-                         <button
+                        <button
                         @click='goBack'
                         type="button"
-                        class="btn-sm btn btn-default pull-left"
+                        class="btn btn-default pull-left"
                         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
-                        ย้อนกลับ</button>
+                        กลับ</button>
                     </div>
                 </div>
                 <div class='row mt-3'>
@@ -86,6 +86,7 @@
                     </div>
                     <div>
                         <BwTable 
+                      
                         :tableData='item.mtdritems'
                         :tableColumns='tableColumns1'
                         :propsToSearch='propsToSearch'

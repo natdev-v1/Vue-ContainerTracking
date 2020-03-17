@@ -1,17 +1,19 @@
 <template>
-  <div class="col-md-12 card">
-    <div class="row mt-3">
+  <bw-card title='Organize'>
+
+    <div class="row">
       <div class="col-6">
-             <button
+        <button
          @click='goBack'
-         class="btn btn-sm " style=" color: #fff;"
+         class="btn  " style=" color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
-          ย้อนกลับ</button>
+          กลับ
+        </button>
       </div>
       <div class="col-6">
         <button
           @click='validate'
- class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;"
+ class="btn btn-primary  pull-right" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           บันทึก </button>
       </div>
@@ -43,7 +45,7 @@
     <div class='row mb-3'>
         <div class='col'>
             
-            <button @click='addData'  class="btn btn-primary btn-sm pull-right" style="background-color: #1CAF9A; color: #fff;">
+            <button @click='addData'  class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;">
             <span class="btn-label">
             <i class="nc-icon nc-simple-add">
             </i></span> เพิ่มข้อมูล
@@ -54,14 +56,14 @@
       <BwTable 
       :hiddenOder='hiddenOder'
       :hiddenTabAction='hiddenTabAction'
-      :hiddenButtonDelete='hiddenButtonDelete'
+      :hiddenButtonDelete='true'
       :tableData='tableData'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
       deleteBy="departId"
       ></BwTable>
     </div>
-  </div>
+</bw-card>
 </template>
 
 <script>
@@ -76,8 +78,10 @@ export default {
       BwTable,
       BwCard
   },
-  async created() { 
+  async created() {
+    if(this.$route.params.data != null){
       this.getListOrg();
+    } 
   },
    data() {
     return {
@@ -95,9 +99,8 @@ export default {
       },
       hiddenOder: true,
       hiddenTabAction: true,
-      hiddenButtonDelete: true,
       tableData: [],
-      propsToSearch:["orgCode"],
+      propsToSearch:[],
       tableColumns: [
                     {
                          prop: 'departCode',
@@ -129,23 +132,20 @@ export default {
           this.saveOrg()
         },
         goBack(){
-          this.$router.push("organize")
+          this.$router.go(-1)
         },
         addData(){
           this.tableData.push({departCode:'',departDesc:''})
         },
         async getListOrg() {
-            let id = this.$route.params.orgId.orgId
-            const res = await(await Api()).getListOrg(id)
-            this.form.orgCode = res.data.orgCode
-            this.form.orgDescription = res.data.orgDescription
-            this.tableData = res.data.departDetail 
+          let res = await(await Api()).getListOrg(this.$route.params.data.orgId)
+          console.log(res.data);
+          this.form = res.data;
         },
         async saveOrg() {
-    
-               let dataSave = await (await Api()).saveOrg(this.$route.params.orgId.orgId,this.form.orgCode,this.form.orgDescription,this.tableData)
-               swal('Good job!', 'You clicked the finish button!', 'success')
-               this.$router.push('organize') 
+          let dataSave = await (await Api()).saveOrg(this.$route.params.data.orgId,this.form.orgCode,this.form.orgDescription,this.tableData)
+          swal('You clicked the finish button!', 'success')
+          this.$router.push('organize') 
         }
       }
 
