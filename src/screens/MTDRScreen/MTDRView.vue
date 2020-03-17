@@ -5,12 +5,12 @@
             <div class="col-12">
                 <div class='row mt-3'>
                     <div class="col-12 pull-right">
-                         <button
+                        <button
                         @click='goBack'
                         type="button"
                         class="btn btn-default pull-left"
                         ><span class="btn-label"><i class="nc-icon nc-minimal-left"></i></span>
-                        ย้อนกลับ</button>
+                        กลับ</button>
                     </div>
                 </div>
                 <div class='row mt-3'>
