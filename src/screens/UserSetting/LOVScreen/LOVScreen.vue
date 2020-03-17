@@ -76,7 +76,7 @@ import Api from '../../../service/CallHttp'
                 ],
                 onClickAdd: {
                 onClick: this.nextPage,
-                text: "เพิ่ม"
+                text: "เพิ่มข้อมูล"
                 },
                 onClickTopCuttom:{
                 text: "จัดการข้อมูล",
