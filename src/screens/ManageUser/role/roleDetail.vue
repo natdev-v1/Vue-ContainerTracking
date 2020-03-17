@@ -152,7 +152,7 @@ export default {
               this.$router.push("role")
         },
         goBack(){
-          this.$router.push("role")
+          this.$router.go(-1)
         },
         async getListRoleData() {
           let res = await(await CallHttp()).getListRoleData(this.$route.params.data.roleId)

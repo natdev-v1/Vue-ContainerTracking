@@ -2,12 +2,12 @@
 <el-dialog
   :title="title"
   :visible.sync="dialogVisible"
-  width="30%"
+  width="80%"
   :before-close="handleClose">
   <slot></slot>
   <span slot="footer" class="dialog-footer">
-    <el-button class="btn  btn-sm"  @click="onDialogVisible">Cancel</el-button>
-    <el-button class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;" @click="onConfirm">Confirm</el-button>
+    <el-button class="btn"  @click="onDialogVisible">Cancel</el-button>
+    <el-button class="btn btn-primary" style="background-color: #1CAF9A; color: #fff;" @click="onConfirm">Save</el-button>
   </span>
 </el-dialog>
 </template>

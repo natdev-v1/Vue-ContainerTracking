@@ -19,28 +19,33 @@
     <div class="row justify-content-center mt-3 mb-3">
       <div class="col-4">
         <div class="form-group">
-          <label>Code  </label>
+          <label>Code  :  *  </label>
           <fg-input
-            v-model="form.orgCode"
+            v-model="form.customerCode"
             placeholder="ใส่รหัส"
-            v-validate="formValidations.orgCode">
+            v-validate="formValidations.customerCode">
           </fg-input>
         </div>
       </div>
       <div class="col-4">
           <div class="form-group">
-          <label>Description  </label>
+          <label>Description  :  *  </label>
           <fg-input
-            v-model="form.orgDescription"
+            v-model="form.customerName"
             placeholder="ใส่คำอธิบาย"
-            v-validate="formValidations.orgDescription">
+            v-validate="formValidations.customerName">
           </fg-input>
           </div>
       </div> 
     </div>
+    <hr>
     <div class='row mb-3'>
+        <div class="col">รายละเอียด</div>
         <div class='col'>
-            <button @click='addData'  class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;">
+            <button 
+            @click='dialogVisible = true'
+            type="button" round outline
+            class="btn btn-primary pull-right" style="background-color: #1CAF9A; color: #fff;">
             <span class="btn-label">
             <i class="nc-icon nc-simple-add">
             </i></span> เพิ่มข้อมูล
@@ -49,15 +54,38 @@
     </div>
     <div>
       <BwTable 
-      :hiddenOder='hiddenOder'
-      :hiddenTabAction='hiddenTabAction'
-      :hiddenButtonDelete='hiddenButtonDelete'
+      :hiddenTabAction='true'
+      :hiddenButtonDelete='true'
+      :hiddenButtonEdit='true'
       :tableData='tableData'
       :tableColumns='tableColumns'
       :propsToSearch='propsToSearch'
-      deleteBy="departId"
+      deleteBy="userId"
       ></BwTable>
     </div>
+    <BwModal 
+    :dialogVisible="dialogVisible" 
+    :onConfirm="onConfirm"
+    :onDialogVisible="()=>dialogVisible = false">
+    <!-- <div class="form-group">
+      <label>CTN No.</label>
+        <fg-input  type="text"
+        name="ctnNo"
+        v-validate="modelValidations.ctnNo"
+        v-model="model.ctnNo"
+        :error="getError('ctnNo')">
+        </fg-input>
+        </div>
+    <div class="form-group">
+      <label>Seal No.</label>
+        <fg-input  type="text"
+        name="sealNo"
+        v-validate="modelValidations.sealNo"
+        v-model="model.sealNo"
+        :error="getError('sealNo')">
+        </fg-input>
+    </div> -->
+    </BwModal>
   </div>
 </template>
 
@@ -65,16 +93,24 @@
 import Api from '../../../service/CallHttp'
 import BwTable from '../../../components/BwTable/BwTable'
 import BwCard from '../../../components/BwCard/BwCard'
+import BwModal from '../../../components/BwModal/BwModal'
 import swal from 'sweetalert2'
 import {Wizard, WizardTab} from 'src/components/UIComponents'
 export default {
   name:'TransporterDeatil',
   components: {
       BwTable,
-      BwCard
+      BwCard,
+      BwModal
   },
   async created() { 
-      this.getListOrg();
+      
+      if(this.$route.params.id != null){
+          this.getByIdCustomer();
+      }
+      if(this.$route.params.id != null){
+          this.getListUser();
+      }
   },
    data() {
     return {
@@ -86,34 +122,57 @@ export default {
       },
       isVisible: this.visible,
       form: {
-        orgId:"",
-        orgCode: "",
-        orgDescription: ""  
+          transporterCustomerId:this.$route.params.id,
+          customerCode: "",
+          customerName: "",
+          customerBranch: "",
+          contractNo:"",
+          rentalArea:"",
+          remark:"",
+          compCode:"",
       },
-      hiddenOder: true,
-      hiddenTabAction: true,
-      hiddenButtonDelete: true,
+      options: [],
+        dialogVisible:false,
+         model: {
+          ctnSize: '',
+          ctnNo: '',
+          sealNo: ''
+      },
+      modelValidations: {
+          ctnSize: {
+            required: true,
+          },
+          ctnCode: {
+            required: true,
+          },
+          sealCode: {
+            required: true,
+          }
+      },
       tableData: [],
-      propsToSearch:["orgCode"],
+      propsToSearch:[],
       tableColumns: [
                     {
-                         prop: 'departCode',
-                         label: 'Department Code', 
+                         prop: 'userName',
+                         label: 'ชื่อผู้ใช้งาน', 
                          minWidth: 200,
-                         type:'input'
                     },
                     {
-                         prop: 'departDesc',
-                         label: 'Department Description', 
+                         prop: 'dataName',
+                         label: 'ชื่อ-นามสกุล', 
                          minWidth: 200,
-                         type:'input'
+                    },
+                    {
+                         prop: 'role',
+                         label: 'บทบาท', 
+                         minWidth: 200,
                     },
       ],
       formValidations: {
-        orgCode: {
+        customerCode: {
           required: true,
         },
-        orgDescription: {
+        customerName: {
           required: true,        
         },
       },
@@ -123,27 +182,45 @@ export default {
     methods: {
    
         validate() {
-          this.saveOrg()
+            this.saveTransporter();
         },
         goBack(){
-          this.$router.push("organize")
+            this.$router.go(-1)
         },
-        addData(){
-          this.tableData.push({departCode:'',departDesc:''})
+        async getByIdCustomer(){   
+            let {data} = await(await Api()).getByIdCustomer(this.$route.params.id)
+            this.form.customerCode = data.customerCode
+            this.form.customerName = data.customerName
+            
         },
-        async getListOrg() {
-            let id = this.$route.params.orgId.orgId
-            const res = await(await Api()).getListOrg(id)
-            this.form.orgCode = res.data.orgCode
-            this.form.orgDescription = res.data.orgDescription
-            this.tableData = res.data.departDetail 
+        async getListUser(){
+            let {data} = await(await Api()).getListUser(this.$route.params.id)
+            console.log("asdasdasdasd",data);
+            this.tableData = data.map((data)=>{
+            data.dataName = data.name +" "+ data.surname
+            data.role = "-"
+            return data;
+            })  
         },
-        async saveOrg() {
-    
-               let dataSave = await (await Api()).saveOrg(this.$route.params.orgId.orgId,this.form.orgCode,this.form.orgDescription,this.tableData)
-               swal('Good job!', 'You clicked the finish button!', 'success')
-               this.$router.push('organize') 
-        }
+        async saveTransporter(){
+            let dataSave = await (await Api()).saveTransporter(this.form)
+            swal('You clicked the finish button!','success')
+            this.$router.go(-1)
+        },
+        getError (fieldName) {
+          return this.errors.first(fieldName)
+        },
+        onConfirm () {
+          this.$validator.validateAll().then(isValid => {
+          //this.$emit('on-submit', this.registerForm, isValid)
+          console.log(isValid)
+          if(isValid){
+              this.tableDataAdd.push({...this.model,place:415,nw:53,gw:12,tare:24,vgm:95,bag:103,pallet:40,m3:110})
+              this.clearForm()
+              this.dialogVisible = false
+          }
+          })
+        },
       }
 
 

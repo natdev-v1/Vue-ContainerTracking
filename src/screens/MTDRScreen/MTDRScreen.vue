@@ -29,7 +29,7 @@
       <div class='col-4 mt-3' >
           <button
           @click='search'
-        class="btn btn-primary btn-sm" style="background-color: #1CAF9A; color: #fff;"
+        class="btn btn-primary" style="background-color: #1CAF9A; color: #fff;"
         ><span class="btn-label"><i class="nc-icon nc-check-2"></i></span>
           ค้นหา </button>
       </div> 
@@ -55,7 +55,7 @@ import {DatePicker, TimeSelect, Slider, Tag, Input, Button, Select, Option} from
 import BwTable from '../../components/BwTable/BwTable'
 import BwCard from '../../components/BwCard/BwCard'
 export default {
-  name:'LovManage',
+  name:'MTDRScreen',
   components: {
       BwTable,
       BwCard,
