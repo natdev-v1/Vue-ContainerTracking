@@ -69,7 +69,7 @@
               <span class="d-lg-none d-md-block">Some Actions</span>
             </p>
           </a>
-          <a class="dropdown-item" href="#"><i class="fa fa-user-circle" aria-hidden="true"></i> นามสมชาย ใจดี</a>
+          <a class="dropdown-item" @click="proFile"><i class="fa fa-user-circle" aria-hidden="true"></i> นามสมชาย ใจดี</a>
           <a class="dropdown-item" @click="nextPage"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
         </drop-down>
         <!-- <li class="nav-item">
@@ -102,6 +102,9 @@
       nextPage(){
         localStorage.removeItem('token')
         this.$router.replace({path:'/'})
+      },
+      proFile(){
+        this.$router.replace({path:'/pages/user'})
       },
       capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1)

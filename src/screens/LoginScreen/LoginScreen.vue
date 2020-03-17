@@ -11,7 +11,11 @@
                 <card type="login">
                   <!-- <h3 slot="header" class="header text-center">Login</h3> -->
                   <div class="text-center">
-                     <img :src="proIcon" style="width:150px; height:120px;" >
+                    <img :src="proIcon" style="width:150px; height:120px;" >
+                  </div>
+                  <div class="row mt-2">
+                    <div class="col-3 text-right"><img :src="Icon" style="width:45px; height:40px;"></div>
+                    <div class="col"><h5>Container Tracking</h5></div>
                   </div>
                   <fg-input class="mt-3" v-model="form.username"  v-validate="modelValidations.username" addon-left-icon="nc-icon nc-single-02"
                             placeholder="First Name..."></fg-input>
@@ -20,11 +24,16 @@
                             type="password"></fg-input>
 
                   <br>
-
-                  <p-checkbox>
-                    Remember
-                  </p-checkbox>
-
+                  <div class="row">
+                    <div class="col-6">
+                      <p-checkbox>
+                        Remember
+                      </p-checkbox>
+                    </div>
+                    <div class="col-6 sm">
+                      <router-link to="/register" class="text-link d-block text-right">Forgot Password?</router-link>
+                    </div>
+                  </div>
                   <p-button class="btn btn-primary"  native-type="submit" slot="footer" style="background-color:#65B4B5" type="button" round block>login</p-button>
                 </card>
               </form>
@@ -99,6 +108,7 @@ import Axios from 'axios';
           password: ''
         },
         proIcon:Images.productIcon,
+        Icon:Images.containerIcon,
         background:Images.background
       }
     },
