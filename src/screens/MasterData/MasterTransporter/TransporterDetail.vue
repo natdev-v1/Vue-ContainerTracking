@@ -69,8 +69,9 @@
     :dialogVisible="dialogVisible"
     :onConfirm="onConfirm"
     :onDialogVisible="()=>dialogVisible = false">
-    <dir class="row">
-        <dir class="col-6">
+    <hr>
+    <div class="row">
+        <div class="col-6">
           <div class="form-group">
             <label>ชื่อ *</label>
             <input 
@@ -80,8 +81,8 @@
               v-validate="formValidations.customerName"
             >
           </div>
-        </dir>
-        <dir class="col-6">
+        </div>
+        <div class="col-6">
           <div class="form-group">
             <label>Username *</label>
             <input
@@ -91,10 +92,10 @@
               v-validate="formValidations.customerName"
             >
           </div>
-        </dir>
-    </dir>
-    <dir class="row">
-      <dir class="col-6">
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
         <div class="form-group">
           <label>นามสกุล *</label>
           <input
@@ -104,8 +105,8 @@
             v-validate="formValidations.customerName"
           >
         </div>
-      </dir>
-      <dir class="col-6">
+      </div>
+      <div class="col-6">
         <div class="form-group">
           <label>Password *</label>
           <input
@@ -115,10 +116,10 @@
             v-validate="formValidations.customerName"
           >
         </div>
-      </dir>
-    </dir>
-    <dir class="row">
-      <dir class="col-6">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
         <div class="form-group">
           <label>Email * </label>
           <input
@@ -128,8 +129,8 @@
             v-validate="formValidations.customerName"
           >
         </div>
-      </dir>
-      <dir class="col-6">
+      </div>
+      <div class="col-6">
         <div class="form-group">
           <label>Confirm Password *</label>
           <input
@@ -139,27 +140,16 @@
             v-validate="formValidations.customerName"
           >
         </div>
-      </dir>
-    </dir>
+      </div>
+    </div>
     <hr>
-    <!-- <div class="form-group">
-      <label>CTN No.</label>
-        <fg-input  type="text"
-        name="ctnNo"
-        v-validate="modelValidations.ctnNo"
-        v-model="model.ctnNo"
-        :error="getError('ctnNo')">
-        </fg-input>
-        </div>
-    <div class="form-group">
-      <label>Seal No.</label>
-        <fg-input  type="text"
-        name="sealNo"
-        v-validate="modelValidations.sealNo"
-        v-model="model.sealNo"
-        :error="getError('sealNo')">
-        </fg-input>
-    </div> -->
+    <div>
+      <BwTable 
+      :tableData='tableData1'
+      :tableColumns='tableColumns1'
+      :propsToSearch='propsToSearch'
+      ></BwTable>
+    </div>
     </BwModal>
   </div>
 </template>
@@ -227,23 +217,36 @@ export default {
           }
       },
       tableData: [],
+      tableData1: [],
       propsToSearch:[],
       tableColumns: [
-                    {
-                         prop: 'userName',
-                         label: 'ชื่อผู้ใช้งาน', 
-                         minWidth: 200,
-                    },
-                    {
-                         prop: 'dataName',
-                         label: 'ชื่อ-นามสกุล', 
-                         minWidth: 200,
-                    },
-                    {
-                         prop: 'role',
-                         label: 'บทบาท', 
-                         minWidth: 200,
-                    },
+        {
+          prop: 'userName',
+          label: 'ชื่อผู้ใช้งาน', 
+          minWidth: 200,
+        },
+        {
+          prop: 'dataName',
+          label: 'ชื่อ-นามสกุล', 
+          minWidth: 200,
+        },
+        {
+          prop: 'role',
+          label: 'บทบาท', 
+          minWidth: 200,
+        },
+      ],
+      tableColumns1: [
+        {
+          prop: '',
+          label: 'Code', 
+          minWidth: 200,
+        },
+        {
+          prop: '',
+          label: 'Description', 
+          minWidth: 200,
+        },
       ],
       formValidations: {
         customerCode: {
