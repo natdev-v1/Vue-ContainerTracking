@@ -2,11 +2,11 @@
 //
 //## For each of Bootstrap's buttons, define text, background and border color.
 @font-face {
-    font-family: 'kanit';
+    font-family: 'Sarabun';
     // src: url('../fonts/prompt/Prompt-Regular.otf');
     // src: url('../fonts/prompt/Prompt-Medium.ttf');
 
-    src: url('../fonts/Kanit-Regular.ttf');
+    src: url("/src/assets/fonts/Sarabun/Sarabun-Regular.ttf");
 
 
     // src: url('../fonts/Sarabun/Sarabun-Regular.ttf');
@@ -15,8 +15,8 @@
 
 $font-color:                 #66615b !default;
 $fill-font-color:            rgba(255, 255, 255, 0.8);
-$font-family-sans-serif:     'Kanit', "", Arial, sans-serif;
-$sans-serif-family:          'Kanit', '',  Arial, sans-serif;
+$font-family-sans-serif:     'Sarabun', "", Arial, sans-serif;
+$sans-serif-family:          'Sarabun', '',  Arial, sans-serif;
 
 
 $none:                       0   !default;
